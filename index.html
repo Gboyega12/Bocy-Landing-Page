@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BOCY — Beyond Budgeting, Start Optimising</title>
+    <meta name="description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://bocy.io">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bocy.io/">
+    <meta property="og:title" content="BOCY — Beyond Budgeting, Start Optimising">
+    <meta property="og:description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    <meta property="og:image" content="https://bocy.io/og-image.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bocy_io">
+    <meta name="twitter:title" content="BOCY — Beyond Budgeting, Start Optimising">
+    <meta name="twitter:description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #000; --bg-elevated: #0A0A0A; --bg-subtle: #111; --bg-muted: #161616;
+            --text: #FFF; --text-secondary: #A1A1A1; --text-muted: #666;
+            --accent: #00D4AA; --accent-hover: #00E8BB;
+            --blue: #4D9FFF; --purple: #A855F7; --coral: #FF6B6B; --teal: #2DD4BF;
+            --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1rem; line-height: 1.5;
+            color: var(--text); background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 1.25rem;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav__inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .nav__logo { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
+        .nav__cta {
+            display: none; padding: 0.5rem 1rem;
+            background: var(--text); color: var(--bg);
+            font-size: 0.875rem; font-weight: 500;
+            border-radius: 100px; border: none;
+        }
+        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } }
+        @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.25rem; } }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 7rem 1.5rem 4rem; text-align: center; position: relative;
+        }
+        .hero__glow {
+            position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(20, 22, 22, 0.08) 0%, transparent 70%);
+            filter: blur(80px); pointer-events: none;
+        }
+        .hero__content { position: relative; z-index: 1; max-width: 600px; }
+        .hero__badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem; margin-bottom: 2rem;
+            background: rgba(0,212,170,0.08); border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px; font-size: 0.75rem; font-weight: 500; color: var(--accent);
+        }
+        .hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+        .hero__title { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero__title-gradient {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero__subtitle {
+            font-size: 1rem; color: var(--text-secondary); line-height: 1.65;
+            margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto;
+        }
+        .hero__cta-group { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 320px; margin: 0 auto 4rem; }
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center;
+            padding: 1rem 1.5rem; font-size: 1rem; font-weight: 500;
+            border-radius: 12px; border: none; transition: all 0.2s ease;
+        }
+        .btn--primary { background: var(--text); color: var(--bg); }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
+        .btn--secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+        .btn--secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+        @media (min-width: 640px) {
+            .hero { padding: 8rem 2rem 5rem; }
+            .hero__title { font-size: 2.25rem; }
+            .hero__subtitle { font-size: 1.125rem; }
+            .hero__cta-group { flex-direction: row; max-width: 400px; }
+            .btn { flex: 1; }
+        }
+        @media (min-width: 1024px) {
+            .hero { padding: 8rem 3rem 6rem; }
+            .hero__title { font-size: 3rem; }
+            .hero__subtitle { max-width: 500px; }
+        }
+        @media (min-width: 1280px) { .hero__title { font-size: 3.75rem; } }
+
+        /* PHONE */
+        .phone {
+            width: 220px; margin: 0 auto;
+            background: var(--bg-muted); border-radius: 24px;
+            padding: 6px; box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+        }
+        .phone__screen {
+            background: var(--bg); border-radius: 20px;
+            padding: 1.25rem 1rem 1.5rem;
+            aspect-ratio: 9/19; display: flex; flex-direction: column;
+        }
+        .phone__header { margin-bottom: 1rem; }
+        .phone__greeting { font-size: 0.875rem; font-weight: 500; }
+        .phone__status { text-align: center; padding: 0.75rem 0; }
+        .phone__status-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+        .phone__status-value {
+            font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .phone__status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 12px var(--accent); }
+        .orbs { flex: 1; display: flex; justify-content: center; align-items: center; padding-top: 1rem; }
+        .orbs__container { position: relative; width: 150px; height: 145px; }
+        .orb {
+            position: absolute; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.5rem; font-weight: 600; color: var(--text);
+            text-transform: uppercase; letter-spacing: 0.02em;
+        }
+        .orb--income { width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--teal)); top: 0; left: 50%; transform: translateX(-50%); animation: float-c 3.5s ease-in-out infinite; }
+        .orb--bills { width: 44px; height: 44px; background: linear-gradient(135deg, #666, #999); top: 40px; left: 0; animation: float 3.5s ease-in-out infinite 0.2s; }
+        .orb--credit { width: 44px; height: 44px; background: linear-gradient(135deg, var(--purple), #7C3AED); top: 40px; right: 0; animation: float 3.5s ease-in-out infinite 0.4s; }
+        .orb--debt { width: 44px; height: 44px; background: linear-gradient(135deg, var(--coral), #F97316); bottom: 0; left: 12px; animation: float 3.5s ease-in-out infinite 0.6s; }
+        .orb--savings { width: 44px; height: 44px; background: linear-gradient(135deg, var(--teal), var(--purple)); bottom: 0; right: 12px; animation: float 3.5s ease-in-out infinite 0.8s; }
+        .orbs__center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.875rem; color: rgba(255,255,255,0.2); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
+
+        @media (min-width: 640px) {
+            .phone { width: 260px; border-radius: 32px; }
+            .phone__screen { border-radius: 28px; padding: 1.5rem 1.25rem; }
+            .phone__status-value { font-size: 1.875rem; }
+            .orbs__container { width: 175px; height: 170px; }
+            .orb--income { width: 58px; height: 58px; font-size: 0.55rem; }
+            .orb--bills, .orb--credit { width: 52px; height: 52px; top: 46px; font-size: 0.55rem; }
+            .orb--debt, .orb--savings { width: 52px; height: 52px; font-size: 0.55rem; }
+        }
+        @media (min-width: 1024px) {
+            .phone { width: 280px; border-radius: 40px; }
+            .phone__screen { border-radius: 36px; }
+            .orbs__container { width: 190px; height: 185px; }
+            .orb--income { width: 64px; height: 64px; }
+            .orb--bills, .orb--credit { width: 56px; height: 56px; top: 52px; }
+            .orb--debt, .orb--savings { width: 56px; height: 56px; }
+        }
+
+        /* TRUST */
+        .trust { padding: 2.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+        .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none; }
+        .trust__item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .trust__icon {
+            width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+            background: rgba(0,212,170,0.1); border-radius: 50%; font-size: 0.75rem;
+        }
+        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 3rem; } }
+
+        /* TIMELINE */
+        .timeline-section { padding: 5rem 1.25rem; }
+        .timeline-section__header { text-align: center; margin-bottom: 4rem; }
+        .timeline-section__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .timeline-section__subtitle { font-family: var(--font-mono); font-size: 0.875rem; color: var(--text-muted); }
+        .timeline { max-width: 520px; margin: 0 auto; }
+        .timeline__item {
+            position: relative; padding: 1.5rem;
+            border: 1px solid var(--border); border-radius: 12px;
+            margin-bottom: 1rem; background: var(--bg);
+        }
+        .timeline__item::before {
+            content: ''; position: absolute; left: 50%; bottom: -17px;
+            transform: translateX(-50%); width: 1px; height: 16px; background: var(--border);
+        }
+        .timeline__item:last-child::before { display: none; }
+        .timeline__item:last-child { margin-bottom: 0; }
+        .timeline__step {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); margin-bottom: 0.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .timeline__step::before { content: '>'; color: var(--accent); }
+        .timeline__title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .timeline__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
+        .timeline__data {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            background: var(--bg-subtle); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden;
+        }
+        .timeline__row { display: flex; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+        .timeline__row:last-child { border-bottom: none; }
+        .timeline__row-label { color: var(--text-muted); }
+        .timeline__row-value { color: var(--text-secondary); }
+        .timeline__row-value--highlight { color: var(--accent); font-weight: 500; }
+        .timeline__row-value--negative { color: var(--text-muted); }
+        .timeline__actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .timeline__btn {
+            flex: 1; padding: 0.75rem; font-family: var(--font-mono);
+            font-size: 0.75rem; font-weight: 500; border-radius: 8px;
+            border: 1px solid var(--border); background: transparent; color: var(--text-secondary);
+        }
+        .timeline__btn--approve { background: var(--text); border-color: var(--text); color: var(--bg); }
+        .timeline__result {
+            margin-top: 1rem; padding: 0.75rem 1rem;
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);
+            border: 1px solid rgba(0,212,170,0.2); border-radius: 8px;
+            background: rgba(0,212,170,0.05);
+        }
+        @media (min-width: 768px) {
+            .timeline-section { padding: 6rem 2rem; }
+            .timeline-section__title { font-size: 1.875rem; }
+            .timeline__item { padding: 2rem; }
+        }
+        @media (min-width: 1024px) {
+            .timeline-section { padding: 6rem 3rem; }
+            .timeline-section__title { font-size: 2.25rem; }
+        }
+
+        /* FEATURES */
+        .features { padding: 5rem 1.25rem; border-top: 1px solid var(--border); }
+        .features__header { text-align: center; margin-bottom: 3rem; }
+        .features__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .features__subtitle { font-size: 1rem; color: var(--text-secondary); }
+        .features__grid { display: grid; gap: 1rem; max-width: 900px; margin: 0 auto; }
+        .feature {
+            display: flex; gap: 1rem; padding: 1.25rem;
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            border-radius: 16px; transition: border-color 0.2s ease;
+        }
+        .feature:hover { border-color: var(--border-hover); }
+        .feature__icon {
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            background: var(--bg-subtle); border-radius: 8px; font-size: 1.125rem; flex-shrink: 0;
+        }
+        .feature__title { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; }
+        .feature__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+        @media (min-width: 768px) {
+            .features { padding: 6rem 2rem; }
+            .features__title { font-size: 1.875rem; }
+            .features__grid { grid-template-columns: repeat(3, 1fr); }
+            .feature { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .feature__icon { margin: 0 auto 1rem; }
+        }
+        @media (min-width: 1024px) { .features { padding: 6rem 3rem; } .features__title { font-size: 2.25rem; } }
+
+        /* CTA */
+        .cta { padding: 5rem 1.25rem; background: var(--bg-elevated); text-align: center; }
+        .cta__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .cta__subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
+        .cta__form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
+        .cta__input {
+            padding: 1rem; background: var(--bg);
+            border: 1px solid var(--border); border-radius: 12px;
+            color: var(--text); font-size: 1rem; font-family: inherit;
+        }
+        .cta__input:focus { outline: none; border-color: var(--accent); }
+        .cta__input::placeholder { color: var(--text-muted); }
+        .cta__btn {
+            padding: 1rem; background: var(--accent); color: var(--bg);
+            font-size: 1rem; font-weight: 600; border: none; border-radius: 12px;
+        }
+        .cta__btn:hover { background: var(--accent-hover); }
+        .cta__btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .cta__success { padding: 1rem; color: var(--accent); font-weight: 500; }
+        .cta__error { padding: 0.5rem; color: var(--coral); font-size: 0.875rem; }
+        @media (min-width: 640px) { .cta__form { flex-direction: row; } .cta__input { flex: 1; } .cta__btn { padding: 1rem 1.5rem; } }
+        @media (min-width: 768px) { .cta { padding: 6rem 2rem; } .cta__title { font-size: 1.875rem; } }
+        @media (min-width: 1024px) { .cta { padding: 6rem 3rem; } }
+
+        /* FOOTER */
+        .footer { padding: 2.5rem 1.25rem; border-top: 1px solid var(--border); }
+        .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer__top { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
+        .footer__logo { font-size: 1.125rem; font-weight: 600; }
+        .footer__social { display: flex; gap: 1rem; }
+        .footer__social-link {
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 50%;
+        }
+        .footer__social-link:hover { background: var(--bg-muted); border-color: var(--border-hover); }
+        .footer__social-link svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+        .footer__social-link:hover svg { fill: var(--text); }
+        .footer__links { display: flex; gap: 1.5rem; list-style: none; }
+        .footer__link { font-size: 0.875rem; color: var(--text-secondary); }
+        .footer__link:hover { color: var(--text); }
+        .footer__bottom { padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; }
+        .footer__copy { font-size: 0.75rem; color: var(--text-muted); }
+        @media (min-width: 768px) {
+            .footer { padding: 3rem 2rem; }
+            .footer__top { flex-direction: row; justify-content: space-between; text-align: left; }
+            .footer__right { display: flex; align-items: center; gap: 2rem; }
+        }
+        @media (min-width: 1024px) { .footer { padding: 3rem; } }
+
+        /* ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="/" class="nav__logo">BOCY</a>
+            <a href="#waitlist" class="nav__cta">Get Early Access</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero__glow"></div>
+            <div class="hero__content">
+                <span class="hero__badge">
+                    <span class="hero__badge-dot"></span>
+                    The future of personal finance
+                </span>
+                <h1 class="hero__title">
+                    Beyond budgeting.
+                    <span class="hero__title-gradient">Start optimising.</span>
+                </h1>
+                <p class="hero__subtitle">Your AI financial manager that sees everything, explains every decision, and only acts when you approve.</p>
+                <div class="hero__cta-group">
+                    <a href="#waitlist" class="btn btn--primary">Join Waitlist</a>
+                    <a href="#how-it-works" class="btn btn--secondary">See how it works</a>
+                </div>
+                <div class="phone">
+                    <div class="phone__screen">
+                        <div class="phone__header"><span class="phone__greeting">Hi, there</span></div>
+                        <div class="phone__status">
+                            <p class="phone__status-label">Your money is</p>
+                            <p class="phone__status-value"><span class="phone__status-dot"></span>Stable</p>
+                        </div>
+                        <div class="orbs">
+                            <div class="orbs__container">
+                                <div class="orb orb--income">Income</div>
+                                <div class="orb orb--bills">Bills</div>
+                                <div class="orb orb--credit">Credit</div>
+                                <div class="orb orb--debt">Debt</div>
+                                <div class="orb orb--savings">Savings</div>
+                                <span class="orbs__center">✦</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust">
+            <ul class="trust__list">
+                <li class="trust__item"><span class="trust__icon">🔒</span>Bank-level encryption</li>
+                <li class="trust__item"><span class="trust__icon">👁</span>Full transparency</li>
+                <li class="trust__item"><span class="trust__icon">✓</span>You approve every action</li>
+            </ul>
+        </section>
+
+        <section id="how-it-works" class="timeline-section">
+            <header class="timeline-section__header reveal">
+                <h2 class="timeline-section__title">See exactly how BOCY works</h2>
+                <p class="timeline-section__subtitle">// Real example: £847 monthly surplus</p>
+            </header>
+            <div class="timeline">
+                <article class="timeline__item reveal">
+                    <p class="timeline__step">01 ANALYSE</p>
+                    <h3 class="timeline__title">BOCY scans your finances</h3>
+                    <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time.</p>
+                    <div class="timeline__data">
+                        <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">£3,200</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">£1,850</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">£503</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">£847</span></div>
+                    </div>
+                </article>
+                <article class="timeline__item reveal">
+                    <p class="timeline__step">02 COMPARE</p>
+                    <h3 class="timeline__title">What should you do with £847?</h3>
+                    <p class="timeline__desc">BOCY calculates the financial impact of each option so you can see which one benefits you most.</p>
+                    <div class="timeline__data">
+                        <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves £127/yr</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns £38/yr</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">£0</span></div>
+                    </div>
+                </article>
+                <article class="timeline__item reveal">
+                    <p class="timeline__step">03 RECOMMEND</p>
+                    <h3 class="timeline__title">Clear action, clear reasoning</h3>
+                    <p class="timeline__desc">BOCY recommends the best option and explains why. You always see the full picture.</p>
+                    <div class="timeline__data">
+                        <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay £600 to card</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">£247</span></div>
+                        <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+£94</span></div>
+                    </div>
+                    <div class="timeline__actions">
+                        <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
+                        <button class="timeline__btn" type="button">modify</button>
+                    </div>
+                </article>
+                <article class="timeline__item reveal">
+                    <p class="timeline__step">04 EXECUTE</p>
+                    <h3 class="timeline__title">Only when you say so</h3>
+                    <p class="timeline__desc">BOCY never moves your money without permission. One tap to approve, or set your own automation rules.</p>
+                    <div class="timeline__result">✓ £600 payment scheduled for tomorrow</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="features">
+            <header class="features__header reveal">
+                <h2 class="features__title">Built on trust</h2>
+                <p class="features__subtitle">Your money. Your control. Always.</p>
+            </header>
+            <div class="features__grid">
+                <article class="feature reveal">
+                    <div class="feature__icon">👁</div>
+                    <div class="feature__content">
+                        <h3 class="feature__title">Full visibility</h3>
+                        <p class="feature__desc">See every calculation, every trade-off, every reason behind recommendations.</p>
+                    </div>
+                </article>
+                <article class="feature reveal">
+                    <div class="feature__icon">🔐</div>
+                    <div class="feature__content">
+                        <h3 class="feature__title">You stay in control</h3>
+                        <p class="feature__desc">Nothing happens without your approval. Set your own rules and limits.</p>
+                    </div>
+                </article>
+                <article class="feature reveal">
+                    <div class="feature__icon">🏦</div>
+                    <div class="feature__content">
+                        <h3 class="feature__title">Bank-grade security</h3>
+                        <p class="feature__desc">256-bit encryption. Open Banking regulated. Your data is never sold.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="waitlist" class="cta">
+            <div class="reveal">
+                <h2 class="cta__title">Ready to optimise your finances?</h2>
+                <p class="cta__subtitle">Join the waitlist. Be the first to know when we launch.</p>
+                <form class="cta__form" id="waitlist-form" action="https://gboyegaademosu.getform.com/pmp9g" method="POST">
+                    <label for="email" class="visually-hidden">Email address</label>
+                    <input type="email" id="email" name="email" class="cta__input" placeholder="your@email.com" required autocomplete="email">
+                    <button type="submit" class="cta__btn" id="submit-btn">Join Waitlist</button>
+                </form>
+                <div id="form-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__top">
+                <a href="/" class="footer__logo">BOCY</a>
+                <div class="footer__right">
+                    <div class="footer__social">
+                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://x.com/bocy_io" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                    <nav>
+                        <ul class="footer__links">
+                            <li><a href="#" class="footer__link">Privacy</a></li>
+                            <li><a href="#" class="footer__link">Terms</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copy">© 2025 BOCY. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Form submission to Google Sheets
+        const form = document.getElementById('waitlist-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const formMessage = document.getElementById('form-message');
+
+  // ← PASTE YOUR REAL WEB APP URL HERE (from Apps Script Deploy → Web app)
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/1GeOvzJ71iqNcdEESUfhNbwhXiyiY2GQiPji5YT2sE2U/exec';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+    formMessage.innerHTML = '';
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: new FormData(form),  // ← sends {email: '...'} automatically
+      });
+
+      // GAS often returns empty/204 on success with FormData → assume OK if no error
+      formMessage.innerHTML = '<p class="cta_success">You\'re on the list. We\'ll be in touch soon.</p>';
+      form.reset();  // clear input
+
+    } catch (error) {
+      console.error('Error:', error);
+      formMessage.innerHTML = '<p class="cta_error">Something went wrong. Please try again.</p>';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join Waitlist';
+    }
+        });
+    </script>
+</body>
+</html>
