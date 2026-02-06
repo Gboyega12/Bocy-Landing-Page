@@ -8,14 +8,12 @@
     <meta name="theme-color" content="#000000">
     <link rel="canonical" href="https://bocy.io">
     
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bocy.io/">
     <meta property="og:title" content="BOCY — Beyond Budgeting, Start Optimising">
     <meta property="og:description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
     <meta property="og:image" content="https://bocy.io/og-image.png">
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@bocy_io">
     <meta name="twitter:title" content="BOCY — Beyond Budgeting, Start Optimising">
@@ -49,6 +47,27 @@
         button { font-family: inherit; cursor: pointer; }
         .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
+        /* MOTION DOT BACKGROUND */
+        .dot-field {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .dot {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: drift 20s infinite linear;
+        }
+        .dot:nth-child(odd) { animation-duration: 25s; }
+        .dot:nth-child(3n) { animation-duration: 30s; background: rgba(0,212,170,0.1); }
+        @keyframes drift {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
         /* NAV */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -58,7 +77,7 @@
             border-bottom: 1px solid var(--border);
         }
         .nav__inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .nav__logo { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
+        .nav__logo { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; position: relative; z-index: 1; }
         .nav__cta {
             display: none; padding: 0.5rem 1rem;
             background: var(--text); color: var(--bg);
@@ -72,33 +91,37 @@
         .hero {
             min-height: 100vh; min-height: 100dvh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 7rem 1.5rem 4rem; text-align: center; position: relative;
+            padding: 7rem 1.5rem 4rem; text-align: center; position: relative; z-index: 1;
         }
         .hero__glow {
             position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
-            filter: blur(80px); pointer-events: none;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%);
+            filter: blur(100px); pointer-events: none;
         }
         .hero__content { position: relative; z-index: 1; max-width: 600px; }
         .hero__badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.5rem 1rem; margin-bottom: 2rem;
-            background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.15);
-            border-radius: 100px; font-size: 0.75rem; font-weight: 500; color: var(--accent);
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px; font-size: 0.75rem; font-weight: 500; color: var(--text);
+            letter-spacing: 0.02em;
         }
-        .hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+        .hero__badge-dot {
+            width: 6px; height: 6px; background: var(--text); border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
         .hero__title { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero__title-gradient {
-            display: block;
-            background: linear-gradient(135deg, var(--accent), var(--blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
+        .hero__title-line { display: block; color: var(--text); }
         .hero__subtitle {
             font-size: 1rem; color: var(--text-secondary); line-height: 1.65;
             margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto;
         }
-        .hero__cta-group { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 320px; margin: 0 auto 4rem; }
+        .hero__cta-group { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 280px; margin: 0 auto 4rem; }
         .btn {
             display: inline-flex; justify-content: center; align-items: center;
             padding: 1rem 1.5rem; font-size: 1rem; font-weight: 500;
@@ -106,15 +129,19 @@
         }
         .btn--primary { background: var(--text); color: var(--bg); }
         .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
-        .btn--secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+        .btn--secondary {
+            background: transparent; color: var(--text-secondary); border: 1px solid var(--border);
+            padding: 0.75rem 1.25rem; font-size: 0.875rem;
+        }
         .btn--secondary:hover { border-color: var(--border-hover); color: var(--text); }
 
         @media (min-width: 640px) {
             .hero { padding: 8rem 2rem 5rem; }
             .hero__title { font-size: 2.25rem; }
             .hero__subtitle { font-size: 1.125rem; }
-            .hero__cta-group { flex-direction: row; max-width: 400px; }
-            .btn { flex: 1; }
+            .hero__cta-group { flex-direction: row; max-width: 360px; align-items: center; }
+            .btn--primary { flex: 1; }
+            .btn--secondary { flex: 0 0 auto; }
         }
         @media (min-width: 1024px) {
             .hero { padding: 8rem 3rem 6rem; }
@@ -134,7 +161,7 @@
             padding: 1.25rem 1rem 1.5rem;
             aspect-ratio: 9/19; display: flex; flex-direction: column;
         }
-        .phone__header { margin-bottom: 1rem; }
+        .phone__header { margin-bottom: 1rem; text-align: left; }
         .phone__greeting { font-size: 0.875rem; font-weight: 500; }
         .phone__status { text-align: center; padding: 0.75rem 0; }
         .phone__status-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem; }
@@ -178,44 +205,64 @@
             .orb--debt, .orb--savings { width: 56px; height: 56px; }
         }
 
-        /* TRUST */
-        .trust { padding: 2.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+        /* TRUST - HIDDEN ON MOBILE */
+        .trust { display: none; padding: 2.5rem 1.25rem; border-bottom: 1px solid var(--border); position: relative; z-index: 1; }
         .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none; }
         .trust__item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--text-secondary); }
         .trust__icon {
-            width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-            background: rgba(0,212,170,0.1); border-radius: 50%; font-size: 0.75rem;
+            font-family: var(--font-mono); font-size: 0.875rem; color: var(--text-muted);
         }
-        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 3rem; } }
+        @media (min-width: 768px) { .trust { display: block; padding: 3rem 2rem; } .trust__list { gap: 3rem; } }
 
         /* TIMELINE */
-        .timeline-section { padding: 5rem 1.25rem; }
+        .timeline-section { padding: 5rem 1.25rem; position: relative; z-index: 1; }
         .timeline-section__header { text-align: center; margin-bottom: 4rem; }
         .timeline-section__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
         .timeline-section__subtitle { font-family: var(--font-mono); font-size: 0.875rem; color: var(--text-muted); }
-        .timeline { max-width: 520px; margin: 0 auto; }
+        .timeline { max-width: 520px; margin: 0 auto; position: relative; padding-left: 2rem; }
+        
+        /* Timeline vertical line */
+        .timeline::before {
+            content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+            width: 1px; border-left: 1px dashed rgba(255,255,255,0.2);
+        }
+        
         .timeline__item {
-            position: relative; padding: 1.5rem;
-            border: 1px solid var(--border); border-radius: 12px;
-            margin-bottom: 1rem; background: var(--bg);
+            position: relative; padding: 0 0 3rem 2rem;
         }
-        .timeline__item::before {
-            content: ''; position: absolute; left: 50%; bottom: -17px;
-            transform: translateX(-50%); width: 1px; height: 16px; background: var(--border);
+        .timeline__item:last-child { padding-bottom: 0; }
+        
+        /* Timeline dot */
+        .timeline__dot {
+            position: absolute; left: -2rem; top: 0;
+            width: 16px; height: 16px;
+            background: var(--bg); border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%; z-index: 2;
         }
-        .timeline__item:last-child::before { display: none; }
-        .timeline__item:last-child { margin-bottom: 0; }
+        .timeline__item--active .timeline__dot {
+            background: var(--text); border-color: var(--text);
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
+            animation: pulse-timeline 2s ease-in-out infinite;
+        }
+        @keyframes pulse-timeline {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(255,255,255,0.1); }
+            50% { box-shadow: 0 0 0 8px rgba(255,255,255,0.05); }
+        }
+        
+        .timeline__card {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem;
+        }
         .timeline__step {
-            font-family: var(--font-mono); font-size: 0.75rem;
+            font-family: var(--font-mono); font-size: 0.625rem;
             color: var(--text-muted); margin-bottom: 0.75rem;
-            display: flex; align-items: center; gap: 0.5rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
         }
-        .timeline__step::before { content: '>'; color: var(--accent); }
         .timeline__title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
         .timeline__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
         .timeline__data {
             font-family: var(--font-mono); font-size: 0.75rem;
-            background: var(--bg-subtle); border: 1px solid var(--border);
+            background: var(--bg); border: 1px solid var(--border);
             border-radius: 8px; overflow: hidden;
         }
         .timeline__row { display: flex; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
@@ -240,7 +287,7 @@
         @media (min-width: 768px) {
             .timeline-section { padding: 6rem 2rem; }
             .timeline-section__title { font-size: 1.875rem; }
-            .timeline__item { padding: 2rem; }
+            .timeline__card { padding: 2rem; }
         }
         @media (min-width: 1024px) {
             .timeline-section { padding: 6rem 3rem; }
@@ -248,7 +295,7 @@
         }
 
         /* FEATURES */
-        .features { padding: 5rem 1.25rem; border-top: 1px solid var(--border); }
+        .features { padding: 5rem 1.25rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
         .features__header { text-align: center; margin-bottom: 3rem; }
         .features__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
         .features__subtitle { font-size: 1rem; color: var(--text-secondary); }
@@ -260,8 +307,16 @@
         }
         .feature:hover { border-color: var(--border-hover); }
         .feature__icon {
-            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            background: var(--bg-subtle); border-radius: 8px; font-size: 1.125rem; flex-shrink: 0;
+            width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 1.25rem; color: var(--text-muted);
+            flex-shrink: 0; position: relative;
+        }
+        /* ASCII art dot decoration */
+        .feature__icon::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border: 1px dashed rgba(255,255,255,0.1);
+            border-radius: 8px;
         }
         .feature__title { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; }
         .feature__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
@@ -270,12 +325,12 @@
             .features__title { font-size: 1.875rem; }
             .features__grid { grid-template-columns: repeat(3, 1fr); }
             .feature { flex-direction: column; text-align: center; padding: 1.5rem; }
-            .feature__icon { margin: 0 auto 1rem; }
+            .feature__icon { margin: 0 auto 1rem; width: 56px; height: 56px; }
         }
         @media (min-width: 1024px) { .features { padding: 6rem 3rem; } .features__title { font-size: 2.25rem; } }
 
         /* CTA */
-        .cta { padding: 5rem 1.25rem; background: var(--bg-elevated); text-align: center; }
+        .cta { padding: 5rem 1.25rem; background: var(--bg-elevated); text-align: center; position: relative; z-index: 1; }
         .cta__title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
         .cta__subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
         .cta__form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
@@ -299,18 +354,18 @@
         @media (min-width: 1024px) { .cta { padding: 6rem 3rem; } }
 
         /* FOOTER */
-        .footer { padding: 2.5rem 1.25rem; border-top: 1px solid var(--border); }
+        .footer { padding: 2.5rem 1.25rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
         .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
         .footer__top { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
         .footer__logo { font-size: 1.125rem; font-weight: 600; }
         .footer__social { display: flex; gap: 1rem; }
         .footer__social-link {
             width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 50%;
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+            border: 1px dashed rgba(255,255,255,0.15); border-radius: 8px;
+            transition: all 0.2s ease;
         }
-        .footer__social-link:hover { background: var(--bg-muted); border-color: var(--border-hover); }
-        .footer__social-link svg { width: 18px; height: 18px; fill: var(--text-secondary); }
-        .footer__social-link:hover svg { fill: var(--text); }
+        .footer__social-link:hover { color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.02); }
         .footer__links { display: flex; gap: 1.5rem; list-style: none; }
         .footer__link { font-size: 0.875rem; color: var(--text-secondary); }
         .footer__link:hover { color: var(--text); }
@@ -330,6 +385,25 @@
     </style>
 </head>
 <body>
+    <!-- Motion dot field background -->
+    <div class="dot-field" aria-hidden="true">
+        <div class="dot" style="left: 5%; animation-delay: 0s;"></div>
+        <div class="dot" style="left: 15%; animation-delay: 2s;"></div>
+        <div class="dot" style="left: 25%; animation-delay: 4s;"></div>
+        <div class="dot" style="left: 35%; animation-delay: 1s;"></div>
+        <div class="dot" style="left: 45%; animation-delay: 3s;"></div>
+        <div class="dot" style="left: 55%; animation-delay: 5s;"></div>
+        <div class="dot" style="left: 65%; animation-delay: 2.5s;"></div>
+        <div class="dot" style="left: 75%; animation-delay: 4.5s;"></div>
+        <div class="dot" style="left: 85%; animation-delay: 1.5s;"></div>
+        <div class="dot" style="left: 95%; animation-delay: 3.5s;"></div>
+        <div class="dot" style="left: 10%; animation-delay: 6s;"></div>
+        <div class="dot" style="left: 30%; animation-delay: 7s;"></div>
+        <div class="dot" style="left: 50%; animation-delay: 8s;"></div>
+        <div class="dot" style="left: 70%; animation-delay: 9s;"></div>
+        <div class="dot" style="left: 90%; animation-delay: 10s;"></div>
+    </div>
+
     <nav class="nav">
         <div class="nav__inner">
             <a href="/" class="nav__logo">BOCY</a>
@@ -346,8 +420,8 @@
                     The future of personal finance
                 </span>
                 <h1 class="hero__title">
-                    Beyond budgeting.
-                    <span class="hero__title-gradient">Start optimising.</span>
+                    <span class="hero__title-line">Beyond budgeting.</span>
+                    <span class="hero__title-line">Start optimising.</span>
                 </h1>
                 <p class="hero__subtitle">Your AI financial manager that sees everything, explains every decision, and only acts when you approve.</p>
                 <div class="hero__cta-group">
@@ -378,9 +452,9 @@
 
         <section class="trust">
             <ul class="trust__list">
-                <li class="trust__item"><span class="trust__icon">🔒</span>Bank-level encryption</li>
-                <li class="trust__item"><span class="trust__icon">👁</span>Full transparency</li>
-                <li class="trust__item"><span class="trust__icon">✓</span>You approve every action</li>
+                <li class="trust__item"><span class="trust__icon">[=]</span>Bank-level encryption</li>
+                <li class="trust__item"><span class="trust__icon">(o)</span>Full transparency</li>
+                <li class="trust__item"><span class="trust__icon">[✓]</span>You approve every action</li>
             </ul>
         </section>
 
@@ -390,46 +464,58 @@
                 <p class="timeline-section__subtitle">// Real example: £847 monthly surplus</p>
             </header>
             <div class="timeline">
-                <article class="timeline__item reveal">
-                    <p class="timeline__step">01 ANALYSE</p>
-                    <h3 class="timeline__title">BOCY scans your finances</h3>
-                    <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time.</p>
-                    <div class="timeline__data">
-                        <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">£3,200</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">£1,850</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">£503</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">£847</span></div>
+                <article class="timeline__item timeline__item--active reveal">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <p class="timeline__step">01 · Analyse</p>
+                        <h3 class="timeline__title">BOCY scans your finances</h3>
+                        <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time.</p>
+                        <div class="timeline__data">
+                            <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">£3,200</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">£1,850</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">£503</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">£847</span></div>
+                        </div>
                     </div>
                 </article>
                 <article class="timeline__item reveal">
-                    <p class="timeline__step">02 COMPARE</p>
-                    <h3 class="timeline__title">What should you do with £847?</h3>
-                    <p class="timeline__desc">BOCY calculates the financial impact of each option so you can see which one benefits you most.</p>
-                    <div class="timeline__data">
-                        <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves £127/yr</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns £38/yr</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">£0</span></div>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <p class="timeline__step">02 · Compare</p>
+                        <h3 class="timeline__title">What should you do with £847?</h3>
+                        <p class="timeline__desc">BOCY calculates the financial impact of each option so you can see which one benefits you most.</p>
+                        <div class="timeline__data">
+                            <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves £127/yr</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns £38/yr</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">£0</span></div>
+                        </div>
                     </div>
                 </article>
                 <article class="timeline__item reveal">
-                    <p class="timeline__step">03 RECOMMEND</p>
-                    <h3 class="timeline__title">Clear action, clear reasoning</h3>
-                    <p class="timeline__desc">BOCY recommends the best option and explains why. You always see the full picture.</p>
-                    <div class="timeline__data">
-                        <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay £600 to card</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">£247</span></div>
-                        <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+£94</span></div>
-                    </div>
-                    <div class="timeline__actions">
-                        <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
-                        <button class="timeline__btn" type="button">modify</button>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <p class="timeline__step">03 · Recommend</p>
+                        <h3 class="timeline__title">Clear action, clear reasoning</h3>
+                        <p class="timeline__desc">BOCY recommends the best option and explains why. You always see the full picture.</p>
+                        <div class="timeline__data">
+                            <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay £600 to card</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">£247</span></div>
+                            <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+£94</span></div>
+                        </div>
+                        <div class="timeline__actions">
+                            <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
+                            <button class="timeline__btn" type="button">modify</button>
+                        </div>
                     </div>
                 </article>
                 <article class="timeline__item reveal">
-                    <p class="timeline__step">04 EXECUTE</p>
-                    <h3 class="timeline__title">Only when you say so</h3>
-                    <p class="timeline__desc">BOCY never moves your money without permission. One tap to approve, or set your own automation rules.</p>
-                    <div class="timeline__result">✓ £600 payment scheduled for tomorrow</div>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <p class="timeline__step">04 · Execute</p>
+                        <h3 class="timeline__title">Only when you say so</h3>
+                        <p class="timeline__desc">BOCY never moves your money without permission. One tap to approve, or set your own automation rules.</p>
+                        <div class="timeline__result">✓ £600 payment scheduled for tomorrow</div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -441,21 +527,21 @@
             </header>
             <div class="features__grid">
                 <article class="feature reveal">
-                    <div class="feature__icon">👁</div>
+                    <div class="feature__icon">(◉)</div>
                     <div class="feature__content">
                         <h3 class="feature__title">Full visibility</h3>
                         <p class="feature__desc">See every calculation, every trade-off, every reason behind recommendations.</p>
                     </div>
                 </article>
                 <article class="feature reveal">
-                    <div class="feature__icon">🔐</div>
+                    <div class="feature__icon">[≡]</div>
                     <div class="feature__content">
                         <h3 class="feature__title">You stay in control</h3>
                         <p class="feature__desc">Nothing happens without your approval. Set your own rules and limits.</p>
                     </div>
                 </article>
                 <article class="feature reveal">
-                    <div class="feature__icon">🏦</div>
+                    <div class="feature__icon">{∆}</div>
                     <div class="feature__content">
                         <h3 class="feature__title">Bank-grade security</h3>
                         <p class="feature__desc">256-bit encryption. Open Banking regulated. Your data is never sold.</p>
@@ -484,12 +570,8 @@
                 <a href="/" class="footer__logo">BOCY</a>
                 <div class="footer__right">
                     <div class="footer__social">
-                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="https://x.com/bocy_io" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X">
-                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
+                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">[ig]</a>
+                        <a href="https://x.com/bocy_io" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X">[ x]</a>
                     </div>
                     <nav>
                         <ul class="footer__links">
@@ -527,12 +609,22 @@
             });
         });
 
-        // Form submission to Google Sheets
+        // Timeline active state on scroll
+        const timelineItems = document.querySelectorAll('.timeline__item');
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    timelineItems.forEach(item => item.classList.remove('timeline__item--active'));
+                    entry.target.classList.add('timeline__item--active');
+                }
+            });
+        }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
+        timelineItems.forEach(item => timelineObserver.observe(item));
+
+        // Form submission
         const form = document.getElementById('waitlist-form');
         const submitBtn = document.getElementById('submit-btn');
         const formMessage = document.getElementById('form-message');
-
-        // Replace with your deployed Google Apps Script URL
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwOJ7DwZo4z3jiW25aH6nu5cC3qkIQs-GIizz0-xyeaoxe5Hdxg1TK3jxl_K1yJpIFRg/exec';
 
         form.addEventListener('submit', async function(e) {
@@ -547,11 +639,7 @@
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        timestamp: new Date().toISOString(),
-                        source: 'bocy.io'
-                    })
+                    body: JSON.stringify({ email: email, timestamp: new Date().toISOString(), source: 'bocy.io' })
                 });
                 form.style.display = 'none';
                 formMessage.innerHTML = '<p class="cta__success">✓ You\'re on the list. We\'ll be in touch soon.</p>';
