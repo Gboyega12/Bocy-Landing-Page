@@ -45,7 +45,7 @@
            RESET & BASE
            ═══════════════════════════════════════ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             font-size: 1rem; line-height: 1.6;
@@ -71,7 +71,7 @@
 
         /* Cursor glow that illuminates the dot grid */
         .cursor-glow {
-            position: fixed; width: 500px; height: 500px;
+            position: fixed; width: min(500px, 100vw); height: 500px;
             background: radial-gradient(circle, rgba(0,212,170,0.035) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; z-index: 0;
             transform: translate(-50%, -50%);
@@ -186,11 +186,11 @@
             min-height: 100vh; min-height: 100dvh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             padding: 7rem 1.5rem 4rem; text-align: center;
-            position: relative; z-index: 1;
+            position: relative; z-index: 1; overflow: hidden;
         }
         .hero__glow {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 700px; height: 700px;
+            width: min(700px, 100vw); height: 700px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
             filter: blur(80px); pointer-events: none;
             animation: hero-glow-pulse 6s ease-in-out infinite;
@@ -329,7 +329,7 @@
            TRUST BAR — ASCII dot art icons
            ═══════════════════════════════════════ */
         .trust { padding: 2rem 1.25rem; position: relative; z-index: 1; }
-        .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none; }
+        .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; list-style: none; }
         .trust__item {
             display: flex; align-items: center; gap: 0.75rem;
             font-size: 0.8125rem; color: var(--text-secondary);
@@ -341,7 +341,7 @@
         }
         .trust__icon .dot-icon { gap: 2px; grid-template-columns: repeat(3, 4px); grid-template-rows: repeat(3, 4px); }
         .trust__icon .dot-icon span { width: 4px; height: 4px; }
-        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 1rem; } }
+        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 1.25rem; } }
 
         /* ═══════════════════════════════════════
            PEOPLE SECTION — User stories
@@ -625,12 +625,12 @@
         /* Dot-matrix text navigation */
         .footer__dot-nav {
             display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
+            gap: 1rem; margin-bottom: 3rem; padding-bottom: 3rem;
             border-bottom: 1px solid var(--glass-border);
         }
         .dot-text {
             font-family: var(--font-mono); font-weight: 700;
-            font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.12em;
+            font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;
             color: transparent;
             background-image: radial-gradient(circle, var(--text) 1.1px, transparent 1.1px);
             background-size: 4.5px 4.5px;
@@ -665,12 +665,12 @@
         }
         @media (min-width: 768px) {
             .footer { padding: 5rem 2rem 3rem; }
-            .footer__dot-nav { gap: 2.5rem; }
-            .dot-text { font-size: 2.25rem; }
+            .footer__dot-nav { gap: 2rem; }
+            .dot-text { font-size: 1.5rem; letter-spacing: 0.12em; }
             .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
             .footer__right { display: flex; align-items: center; gap: 2rem; }
         }
-        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } .dot-text { font-size: 3rem; } }
+        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } .dot-text { font-size: 2.25rem; } }
 
         /* ═══════════════════════════════════════
            SECTION DIVIDER — ASCII dot art
@@ -679,7 +679,7 @@
             text-align: center; padding: 1.5rem 0; position: relative; z-index: 1;
             font-family: var(--font-mono); font-size: 0.625rem;
             color: rgba(255,255,255,0.08); letter-spacing: 0.3em;
-            user-select: none;
+            user-select: none; overflow: hidden; max-width: 100%;
         }
 
         /* ═══════════════════════════════════════
