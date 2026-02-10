@@ -268,61 +268,23 @@
             box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 100px var(--accent-glow);
         }
         .phone__screen {
-            background: var(--bg); border-radius: 24px;
-            padding: 1.25rem 1rem 1.5rem;
-            aspect-ratio: 9/19; display: flex; flex-direction: column;
-            position: relative; overflow: hidden;
+            border-radius: 24px; overflow: hidden;
+            display: block;
         }
-        /* Dot grid inside phone screen */
-        .phone__screen::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 16px 16px;
-            pointer-events: none;
+        .phone__screen img {
+            width: 100%; height: auto; display: block;
+            border-radius: 24px;
         }
-        .phone__header { margin-bottom: 1rem; text-align: left; position: relative; z-index: 1; }
-        .phone__greeting { font-size: 0.875rem; font-weight: 500; }
-        .phone__status { text-align: center; padding: 0.75rem 0; position: relative; z-index: 1; }
-        .phone__status-label { font-size: 0.6875rem; color: var(--text-muted); margin-bottom: 0.25rem; font-family: var(--font-mono); }
-        .phone__status-value {
-            font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em;
-            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-        }
-        .phone__status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 16px var(--accent); }
-        .orbs { flex: 1; display: flex; justify-content: center; align-items: center; padding-top: 1rem; position: relative; z-index: 1; }
-        .orbs__container { position: relative; width: 150px; height: 145px; }
-        .orb {
-            position: absolute; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.5rem; font-weight: 600; color: var(--text);
-            text-transform: uppercase; letter-spacing: 0.02em;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        }
-        .orb--income { width: 50px; height: 50px; background: linear-gradient(135deg, rgba(77,159,255,0.7), rgba(45,212,191,0.7)); top: 0; left: 50%; transform: translateX(-50%); animation: float-c 3.5s ease-in-out infinite; }
-        .orb--bills { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(102,102,102,0.7), rgba(153,153,153,0.5)); top: 40px; left: 0; animation: float 3.5s ease-in-out infinite 0.2s; }
-        .orb--credit { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(168,85,247,0.7), rgba(124,58,237,0.5)); top: 40px; right: 0; animation: float 3.5s ease-in-out infinite 0.4s; }
-        .orb--debt { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(255,107,107,0.7), rgba(249,115,22,0.5)); bottom: 0; left: 12px; animation: float 3.5s ease-in-out infinite 0.6s; }
-        .orb--savings { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(45,212,191,0.7), rgba(168,85,247,0.5)); bottom: 0; right: 12px; animation: float 3.5s ease-in-out infinite 0.8s; }
-        .orbs__center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.875rem; color: rgba(255,255,255,0.15); }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-        @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
 
         @media (min-width: 640px) {
             .phone { width: 260px; border-radius: 36px; }
-            .phone__screen { border-radius: 32px; padding: 1.5rem 1.25rem; }
-            .phone__status-value { font-size: 1.875rem; }
-            .orbs__container { width: 175px; height: 170px; }
-            .orb--income { width: 58px; height: 58px; font-size: 0.55rem; }
-            .orb--bills, .orb--credit { width: 52px; height: 52px; top: 46px; font-size: 0.55rem; }
-            .orb--debt, .orb--savings { width: 52px; height: 52px; font-size: 0.55rem; }
+            .phone__screen { border-radius: 32px; }
+            .phone__screen img { border-radius: 32px; }
         }
         @media (min-width: 1024px) {
             .phone { width: 280px; border-radius: 40px; }
             .phone__screen { border-radius: 36px; }
-            .orbs__container { width: 190px; height: 185px; }
-            .orb--income { width: 64px; height: 64px; }
-            .orb--bills, .orb--credit { width: 56px; height: 56px; top: 52px; }
-            .orb--debt, .orb--savings { width: 56px; height: 56px; }
+            .phone__screen img { border-radius: 36px; }
         }
 
         /* ═══════════════════════════════════════
@@ -735,21 +697,7 @@
                 </div>
                 <div class="phone">
                     <div class="phone__screen">
-                        <div class="phone__header"><span class="phone__greeting">Hi, there</span></div>
-                        <div class="phone__status">
-                            <p class="phone__status-label">your money is</p>
-                            <p class="phone__status-value"><span class="phone__status-dot"></span>Stable</p>
-                        </div>
-                        <div class="orbs">
-                            <div class="orbs__container">
-                                <div class="orb orb--income">Income</div>
-                                <div class="orb orb--bills">Bills</div>
-                                <div class="orb orb--credit">Credit</div>
-                                <div class="orb orb--debt">Debt</div>
-                                <div class="orb orb--savings">Savings</div>
-                                <span class="orbs__center">✦</span>
-                            </div>
-                        </div>
+                        <img src="IMG_0818.png" alt="BOCY app showing financial overview with income, bills, credit, debt and savings" loading="lazy">
                     </div>
                 </div>
             </div>
