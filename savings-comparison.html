@@ -184,12 +184,19 @@
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-md);
             transition: all 0.25s;
+            text-decoration: none; color: inherit; cursor: pointer;
         }
         .rate-card:hover {
             background: var(--glass-bg-hover);
             border-color: var(--glass-border-hover);
             transform: translateY(-1px);
         }
+        .rate-card__visit {
+            font-size: 0.625rem; font-family: var(--font-mono);
+            color: var(--text-muted); margin-top: 0.125rem;
+            transition: color 0.2s;
+        }
+        .rate-card:hover .rate-card__visit { color: var(--accent); }
         .rate-card--top {
             border-color: rgba(0,212,170,0.2);
             background: rgba(0,212,170,0.04);
@@ -303,7 +310,6 @@
             <div class="nav__links">
                 <a href="/savings-comparison.html" class="nav__link nav__link--active">Savings</a>
                 <a href="/isa-comparison.html" class="nav__link">ISAs</a>
-                <a href="/" class="nav__link">Home</a>
             </div>
         </div>
     </nav>
@@ -318,7 +324,7 @@
     <div class="info-bar">
         <div class="info-pill"><span class="info-pill__dot"></span>BoE Base Rate: 3.75%</div>
         <div class="info-pill"><span class="info-pill__dot"></span>FSCS Limit: £120,000</div>
-        <div class="info-pill"><span class="info-pill__dot"></span>Updated: Feb 2026</div>
+        <div class="info-pill"><span class="info-pill__dot"></span>Updated: <span id="update-date">Feb 2026</span></div>
     </div>
 
     <div class="filters">
@@ -342,7 +348,7 @@
         </div>
 
         <div class="rate-list">
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.aldermore.co.uk/personal/personal-savings-accounts/easy-access-account/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#1</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Aldermore</div>
@@ -356,10 +362,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.90%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.shawbrook.co.uk/savings/easy-access-savings-accounts/easy-access/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#2</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Shawbrook Bank</div>
@@ -372,10 +379,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.70%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.tembo.money/savings" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#3</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Tembo</div>
@@ -389,10 +397,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.55%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.chase.co.uk/gb/en/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#4</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Chase</div>
@@ -406,10 +415,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.50%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.mansfieldbs.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#5</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Mansfield BS</div>
@@ -423,10 +433,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.25%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.sidekickmoney.com/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#6</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Sidekick</div>
@@ -439,10 +450,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.23%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://uk.virginmoney.com/savings/easy-access/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#7</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Virgin Money</div>
@@ -455,10 +467,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.15%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.themanchester.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#8</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Manchester BS</div>
@@ -471,10 +484,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.15%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.shawbrook.co.uk/savings/easy-access-savings-accounts/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#9</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Shawbrook Bank</div>
@@ -487,10 +501,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.13%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.springmoney.co.uk/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#10</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Spring</div>
@@ -503,10 +518,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.11%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.dfcapital.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#11</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">DF Capital</div>
@@ -519,10 +535,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.10%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.barclays.co.uk/savings/rainy-day-saver/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#12</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Barclays</div>
@@ -536,10 +553,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.98%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.getchip.uk/savings-accounts/easy-access-saver" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#13</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Chip</div>
@@ -553,10 +571,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.81%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.getchip.uk/savings-accounts" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#14</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Chip</div>
@@ -570,10 +589,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.76%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.marcus.co.uk/uk/en/savings/online-savings-account" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#15</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Marcus</div>
@@ -586,10 +606,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.75%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.tandem.co.uk/savings" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#16</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Tandem</div>
@@ -602,10 +623,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.65%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.nationwide.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#17</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Nationwide</div>
@@ -618,10 +640,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.25%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.starlingbank.com/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#18</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Starling</div>
@@ -634,10 +657,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.00%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.zopa.com/savings/easy-access-savings" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#19</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Zopa</div>
@@ -650,10 +674,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">2.95%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://monzo.com/savings-isas/instant-access" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#20</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Monzo</div>
@@ -666,8 +691,9 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">2.75%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -684,7 +710,7 @@
         </div>
 
         <div class="rate-list">
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.alrayanbank.co.uk/personal-banking/savings/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#1</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Al Rayan Bank</div>
@@ -698,10 +724,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.40%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.dfcapital.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#2</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">DF Capital</div>
@@ -715,10 +742,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.25%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.rovasavings.co.uk/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#3</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Rova</div>
@@ -732,10 +760,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.25%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.cynergybank.co.uk/personal/fixed-rate-bonds" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#4</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Cynergy Bank</div>
@@ -748,10 +777,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.24%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.ublogin.co.uk/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#5</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Union Bank of India (UK)</div>
@@ -764,10 +794,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.23%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.chetwoodbank.com/savings" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#6</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Chetwood Bank</div>
@@ -780,10 +811,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.21%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.closebrothers.com/savings" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#7</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Close Brothers</div>
@@ -796,10 +828,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.21%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.atombank.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#8</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Atom Bank</div>
@@ -813,10 +846,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.15%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.mbna.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#9</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">MBNA</div>
@@ -829,10 +863,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.12%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.aldermore.co.uk/personal/personal-savings-accounts/fixed-rate-accounts/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#10</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Aldermore</div>
@@ -845,10 +880,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.06%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.zopa.com/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#11</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Zopa</div>
@@ -861,10 +897,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.05%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.shawbrook.co.uk/savings/fixed-rate-bonds/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#12</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Shawbrook Bank</div>
@@ -877,10 +914,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.00%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.paragonbank.co.uk/savings" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#13</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Paragon Bank</div>
@@ -893,10 +931,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.95%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.starlingbank.com/savings/fixed-rate-savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#14</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Starling</div>
@@ -910,8 +949,9 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">3.30%</div>
                     <div class="rate-card__rate-label">AER Fixed</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -928,7 +968,7 @@
         </div>
 
         <div class="rate-list">
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.oxbury.com/savings/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#1</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Oxbury Bank</div>
@@ -942,10 +982,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.50%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card rate-card--top reveal">
+            <a href="https://www.oxbury.com/savings/" target="_blank" rel="noopener noreferrer" class="rate-card rate-card--top reveal">
                 <span class="rate-card__rank">#2</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Oxbury Bank</div>
@@ -959,10 +1000,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.45%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.oxbury.com/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#3</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">Oxbury Bank</div>
@@ -976,10 +1018,11 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.40%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="rate-card reveal">
+            <a href="https://www.utbank.co.uk/savings/" target="_blank" rel="noopener noreferrer" class="rate-card reveal">
                 <span class="rate-card__rank">#4</span>
                 <div class="rate-card__info">
                     <div class="rate-card__provider">UTB</div>
@@ -992,8 +1035,9 @@
                 <div class="rate-card__rate">
                     <div class="rate-card__rate-value">4.05%</div>
                     <div class="rate-card__rate-label">AER</div>
+                    <div class="rate-card__visit">Visit &rarr;</div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1049,6 +1093,14 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
         reveals.forEach(el => observer.observe(el));
+
+        // ═══ Auto-update date ═══
+        const dateEl = document.getElementById('update-date');
+        if (dateEl) {
+            const d = new Date();
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            dateEl.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
     </script>
 </body>
 </html>
