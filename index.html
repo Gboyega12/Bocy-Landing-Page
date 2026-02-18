@@ -178,7 +178,14 @@
             transition: all 0.2s ease;
         }
         .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); }
-        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } }
+        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
+        .nav__link {
+            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+            border-radius: var(--radius-pill); transition: all 0.2s;
+            border: 1px solid transparent; white-space: nowrap;
+        }
+        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
+        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
         @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.25rem; } }
 
         /* ═══════════════════════════════════════
@@ -675,7 +682,11 @@
     <nav class="nav">
         <div class="nav__inner">
             <a href="/" class="nav__logo">BOCY<span>.</span></a>
-            <a href="#waitlist" class="nav__cta">Get Early Access</a>
+            <div class="nav__links">
+                <a href="/savings-comparison.html" class="nav__link">Savings</a>
+                <a href="/isa-comparison.html" class="nav__link">ISAs</a>
+                <a href="#waitlist" class="nav__cta">Get Early Access</a>
+            </div>
         </div>
     </nav>
 
@@ -892,6 +903,8 @@
             <nav class="footer__dot-nav" aria-label="Footer navigation">
                 <a href="#how-it-works" class="dot-text">How It Works</a>
                 <a href="#features" class="dot-text">Features</a>
+                <a href="/savings-comparison.html" class="dot-text">Savings</a>
+                <a href="/isa-comparison.html" class="dot-text">ISAs</a>
                 <a href="#waitlist" class="dot-text">Waitlist</a>
                 <a href="https://telegram-truelayer-webapp.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Demo</a>
             </nav>
