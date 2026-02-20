@@ -23,8 +23,8 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://telegram-truelayer-webapp.vercel.app">
-    <link rel="prefetch" href="https://telegram-truelayer-webapp.vercel.app" as="document">
+    <link rel="preconnect" href="https://native-app-ashy.vercel.app">
+    <link rel="prefetch" href="https://native-app-ashy.vercel.app" as="document">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -254,9 +254,7 @@
             .hero { padding: 8rem 2rem 5rem; }
             .hero__title { font-size: 3rem; }
             .hero__subtitle { font-size: 1.125rem; }
-            .hero__cta-group { flex-direction: row; max-width: 420px; align-items: center; }
-            .btn--primary { flex: 1; }
-            .btn--glass { flex: 0 0 auto; }
+            .hero__cta-group { flex-direction: row; max-width: 320px; align-items: center; justify-content: center; }
         }
         @media (min-width: 1024px) {
             .hero { padding: 8rem 3rem 6rem; }
@@ -530,62 +528,117 @@
         }
 
         /* ═══════════════════════════════════════
-           CTA / WAITLIST — Glass treatment
+           TAMAGOTCHI BOCY — Live character
            ═══════════════════════════════════════ */
-        .cta {
-            padding: 5rem 1.25rem; text-align: center; position: relative; z-index: 1;
+        .bocy-pet {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            z-index: 90; cursor: pointer;
+            animation: bocy-float 3s ease-in-out infinite;
+            -webkit-tap-highlight-color: transparent;
         }
-        .cta__container {
-            max-width: 600px; margin: 0 auto;
-            padding: 3rem 1.5rem;
+        @keyframes bocy-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .bocy-pet__body {
+            width: 56px; height: 56px; position: relative;
             background: var(--glass-bg);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            position: relative; overflow: hidden;
+            border-radius: 50%;
+            display: grid; place-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 40px var(--accent-glow);
         }
-        /* Dot grid decoration in CTA */
-        .cta__container::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 20px 20px; pointer-events: none;
+        .bocy-pet:hover .bocy-pet__body {
+            border-color: var(--accent);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 60px rgba(0,212,170,0.15);
+            transform: scale(1.08);
         }
-        .cta__title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; position: relative; }
-        .cta__subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; position: relative; }
-        .cta__form {
-            display: flex; flex-direction: column; gap: 0.75rem;
-            max-width: 420px; margin: 0 auto; position: relative;
+        .bocy-pet__face {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+            padding: 2px; position: relative;
         }
-        .cta__input {
-            padding: 0.875rem 1.25rem;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: var(--radius-pill);
-            color: var(--text); font-size: 0.9375rem; font-family: inherit;
-            transition: border-color 0.2s ease;
+        .bocy-pet__eye {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 6px var(--accent);
+            animation: bocy-blink 4s ease-in-out infinite;
+            transition: all 0.2s;
         }
-        .cta__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
-        .cta__input::placeholder { color: var(--text-muted); }
-        .cta__btn {
-            padding: 0.875rem 1.5rem; background: var(--accent); color: var(--bg);
-            font-size: 0.9375rem; font-weight: 600; border: none; border-radius: var(--radius-pill);
-            transition: all 0.2s ease;
+        .bocy-pet__eye:nth-child(2) { animation-delay: 0.1s; }
+        @keyframes bocy-blink {
+            0%, 42%, 46%, 100% { transform: scaleY(1); }
+            44% { transform: scaleY(0.1); }
         }
-        .cta__btn:hover { background: var(--teal); transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-dim); }
-        .cta__btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .cta__success { padding: 1rem; color: var(--accent); font-weight: 500; }
-        .cta__error { padding: 0.5rem; color: var(--coral); font-size: 0.875rem; }
-        @media (min-width: 640px) {
-            .cta__form { flex-direction: row; }
-            .cta__input { flex: 1; }
-            .cta__btn { padding: 0.875rem 1.75rem; }
+        .bocy-pet:hover .bocy-pet__eye {
+            background: #fff;
+            box-shadow: 0 0 10px #fff;
+            width: 7px; height: 7px;
+        }
+        /* Active/clicked state */
+        .bocy-pet.is-happy .bocy-pet__eye {
+            transform: scaleY(0.6); border-radius: 50% 50% 0 0;
+        }
+        .bocy-pet.is-happy .bocy-pet__body {
+            border-color: var(--accent);
+        }
+        /* Mouth - appears on hover */
+        .bocy-pet__mouth {
+            position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            width: 8px; height: 4px;
+            border-bottom: 2px solid var(--accent);
+            border-radius: 0 0 50% 50%;
+            opacity: 0; transition: opacity 0.2s;
+        }
+        .bocy-pet:hover .bocy-pet__mouth { opacity: 1; }
+        .bocy-pet.is-happy .bocy-pet__mouth { opacity: 1; height: 5px; }
+        /* Status dot ring */
+        .bocy-pet__ring {
+            position: absolute; inset: -3px; border-radius: 50%;
+            border: 1px solid transparent;
+            border-top-color: var(--accent);
+            animation: bocy-ring-spin 3s linear infinite;
+            opacity: 0.4;
+        }
+        @keyframes bocy-ring-spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Speech bubble */
+        .bocy-pet__bubble {
+            position: absolute; bottom: calc(100% + 10px); right: 0;
+            padding: 0.5rem 0.75rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--text-secondary); white-space: nowrap;
+            opacity: 0; transform: translateY(4px) scale(0.95);
+            transition: all 0.25s ease; pointer-events: none;
+        }
+        .bocy-pet__bubble::after {
+            content: ''; position: absolute; bottom: -5px; right: 18px;
+            width: 8px; height: 8px;
+            background: var(--glass-bg);
+            border-right: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            transform: rotate(45deg);
+        }
+        .bocy-pet:hover .bocy-pet__bubble,
+        .bocy-pet.is-speaking .bocy-pet__bubble {
+            opacity: 1; transform: translateY(0) scale(1);
+        }
+        /* Particle burst on click */
+        .bocy-particle {
+            position: fixed; width: 4px; height: 4px;
+            background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 89;
         }
         @media (min-width: 768px) {
-            .cta { padding: 6rem 2rem; }
-            .cta__container { padding: 4rem 3rem; }
-            .cta__title { font-size: 2rem; }
+            .bocy-pet { bottom: 2rem; right: 2rem; }
+            .bocy-pet__body { width: 64px; height: 64px; }
         }
-        @media (min-width: 1024px) { .cta { padding: 7rem 3rem; } }
 
         /* ═══════════════════════════════════════
            FOOTER — Nothing.tech style with dot-matrix nav
@@ -669,7 +722,9 @@
             .reveal { opacity: 1; transform: none; transition: none; }
             .hero__glow { animation: none; }
             .hero__badge-dot { animation: none; }
-            .orb, .orb--income { animation: none; }
+            .bocy-pet { animation: none; }
+            .bocy-pet__eye { animation: none; }
+            .bocy-pet__ring { animation: none; }
         }
     </style>
 </head>
@@ -685,7 +740,7 @@
             <div class="nav__links">
                 <a href="/savings-comparison.html" class="nav__link">Savings</a>
                 <a href="/isa-comparison.html" class="nav__link">ISAs</a>
-                <a href="#waitlist" class="nav__cta">Get Early Access</a>
+                <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="nav__cta">Start Optimising</a>
             </div>
         </div>
     </nav>
@@ -705,8 +760,7 @@
                 </h1>
                 <p class="hero__subtitle">Your AI financial decision assistant that sees the full picture, breaks down every option, and only acts when you say so.</p>
                 <div class="hero__cta-group">
-                    <a href="https://telegram-truelayer-webapp.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Try the Demo →</a>
-                    <a href="#waitlist" class="btn btn--glass">Join Waitlist</a>
+                    <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Start Optimising →</a>
                 </div>
                 <div class="phone">
                     <div class="phone__screen">
@@ -847,7 +901,7 @@
         <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
 
         <!-- ═══ FEATURES — ASCII dot-art icons ═══ -->
-        <section class="features">
+        <section id="features" class="features">
             <header class="features__header reveal">
                 <p class="mono-label">// built on trust</p>
                 <h2 class="features__title">Your money. Your rules. Always.</h2>
@@ -881,21 +935,20 @@
             </div>
         </section>
 
-        <!-- ═══ CTA / WAITLIST ═══ -->
-        <section id="waitlist" class="cta">
-            <div class="cta__container reveal">
-                <p class="mono-label">// join the waitlist</p>
-                <h2 class="cta__title">Ready to take control?</h2>
-                <p class="cta__subtitle">Be the first to know when Bocy launches. No spam, just one email.</p>
-                <form class="cta__form" id="waitlist-form">
-                    <label for="email" class="visually-hidden">Email address</label>
-                    <input type="email" id="email" name="email" class="cta__input" placeholder="your@email.com" required autocomplete="email">
-                    <button type="submit" class="cta__btn" id="submit-btn">Join Waitlist</button>
-                </form>
-                <div id="form-message"></div>
-            </div>
-        </section>
     </main>
+
+    <!-- ═══ TAMAGOTCHI BOCY — Live character ═══ -->
+    <div class="bocy-pet" role="button" aria-label="BOCY assistant — click to start optimising" tabindex="0">
+        <div class="bocy-pet__body">
+            <div class="bocy-pet__ring"></div>
+            <div class="bocy-pet__face">
+                <div class="bocy-pet__eye"></div>
+                <div class="bocy-pet__eye"></div>
+                <div class="bocy-pet__mouth"></div>
+            </div>
+        </div>
+        <div class="bocy-pet__bubble">Hey! Let me help you optimise</div>
+    </div>
 
     <footer class="footer">
         <div class="footer__inner">
@@ -905,8 +958,7 @@
                 <a href="#features" class="dot-text">Features</a>
                 <a href="/savings-comparison.html" class="dot-text">Savings</a>
                 <a href="/isa-comparison.html" class="dot-text">ISAs</a>
-                <a href="#waitlist" class="dot-text">Waitlist</a>
-                <a href="https://telegram-truelayer-webapp.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Demo</a>
+                <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Start</a>
             </nav>
 
             <div class="footer__bottom-row">
@@ -924,7 +976,7 @@
                     </nav>
                 </div>
             </div>
-            <p class="footer__copy">© 2025 BOCY. All rights reserved.</p>
+            <p class="footer__copy">© 2026 BOCY. All rights reserved.</p>
         </div>
     </footer>
 
@@ -974,34 +1026,55 @@
         }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
         timelineItems.forEach(item => timelineObserver.observe(item));
 
-        // ═══ Form submission ═══
-        const form = document.getElementById('waitlist-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const formMessage = document.getElementById('form-message');
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwOJ7DwZo4z3jiW25aH6nu5cC3qkIQs-GIizz0-xyeaoxe5Hdxg1TK3jxl_K1yJpIFRg/exec';
+        // ═══ Tamagotchi BOCY ═══
+        const bocyPet = document.querySelector('.bocy-pet');
+        const bocyBubble = document.querySelector('.bocy-pet__bubble');
+        const bocyMessages = [
+            'Hey! Let me help you optimise',
+            'Your money deserves better',
+            'Tap to start optimising',
+            'I see opportunities for you',
+            'Let\'s make your money work harder',
+            'Ready when you are',
+        ];
+        let messageIndex = 0;
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
-            formMessage.innerHTML = '';
-
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, timestamp: new Date().toISOString(), source: 'bocy.io' })
-                });
-                form.style.display = 'none';
-                formMessage.innerHTML = '<p class="cta__success">✓ You\'re on the list. We\'ll be in touch soon.</p>';
-            } catch (error) {
-                formMessage.innerHTML = '<p class="cta__error">Something went wrong. Please try again.</p>';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Join Waitlist';
+        // Click handler — happy expression + particle burst + navigate
+        bocyPet.addEventListener('click', (e) => {
+            bocyPet.classList.add('is-happy');
+            // Particle burst
+            for (let i = 0; i < 6; i++) {
+                const p = document.createElement('div');
+                p.className = 'bocy-particle';
+                const rect = bocyPet.getBoundingClientRect();
+                p.style.left = (rect.left + rect.width / 2) + 'px';
+                p.style.top = (rect.top + rect.height / 2) + 'px';
+                document.body.appendChild(p);
+                const angle = (Math.PI * 2 / 6) * i;
+                const dist = 30 + Math.random() * 20;
+                p.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px) scale(0)`, opacity: 0 }
+                ], { duration: 500, easing: 'ease-out' });
+                setTimeout(() => p.remove(), 500);
             }
+            setTimeout(() => bocyPet.classList.remove('is-happy'), 800);
+            // Navigate on second click
+            setTimeout(() => {
+                window.open('https://native-app-ashy.vercel.app', '_blank');
+            }, 400);
         });
+
+        // Cycle messages periodically
+        function cycleMessage() {
+            bocyBubble.textContent = bocyMessages[messageIndex];
+            bocyPet.classList.add('is-speaking');
+            setTimeout(() => bocyPet.classList.remove('is-speaking'), 3000);
+            messageIndex = (messageIndex + 1) % bocyMessages.length;
+        }
+        // Show first message after 5s, then every 15s
+        setTimeout(cycleMessage, 5000);
+        setInterval(cycleMessage, 15000);
     </script>
 </body>
 </html>
