@@ -247,11 +247,8 @@
         }
         .hero__cta-group {
             display: flex; flex-direction: column; gap: 0.75rem;
-            width: 100%; max-width: 340px; margin: 0 auto 1.5rem;
+            width: 100%; max-width: 340px; margin: 0 auto 4rem;
         }
-        .hero__ph { margin-bottom: 3rem; }
-        .hero__ph img { opacity: 0.9; transition: opacity 0.2s; }
-        .hero__ph img:hover { opacity: 1; }
 
         @media (min-width: 640px) {
             .hero { padding: 8rem 2rem 5rem; }
@@ -649,22 +646,23 @@
         .footer { padding: 4rem 1.25rem 2.5rem; position: relative; z-index: 1; }
         .footer__inner { max-width: 1200px; margin: 0 auto; }
 
-        /* Dot-matrix text navigation */
-        .footer__dot-nav {
+        /* Footer navigation */
+        .footer__nav {
             display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 1rem; margin-bottom: 3rem; padding-bottom: 3rem;
+            gap: 0.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
             border-bottom: 1px solid var(--glass-border);
         }
-        .dot-text {
-            font-family: var(--font-mono); font-weight: 700;
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;
-            color: transparent;
-            background-image: radial-gradient(circle, var(--text) 1.1px, transparent 1.1px);
-            background-size: 4.5px 4.5px;
-            -webkit-background-clip: text; background-clip: text;
-            transition: filter 0.3s; line-height: 1.3;
+        .footer__nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+            border-radius: var(--radius-pill);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
-        .dot-text:hover { filter: brightness(1.5) drop-shadow(0 0 8px rgba(255,255,255,0.15)); }
+        .footer__nav-link:hover {
+            color: var(--text); background: var(--glass-bg);
+            border-color: var(--glass-border);
+        }
 
         .footer__bottom-row {
             display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;
@@ -692,12 +690,12 @@
         }
         @media (min-width: 768px) {
             .footer { padding: 5rem 2rem 3rem; }
-            .footer__dot-nav { gap: 2rem; }
-            .dot-text { font-size: 1.5rem; letter-spacing: 0.12em; }
+            .footer__nav { gap: 0.5rem; }
+            .footer__nav-link { font-size: 0.9375rem; }
             .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
             .footer__right { display: flex; align-items: center; gap: 2rem; }
         }
-        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } .dot-text { font-size: 2.25rem; } }
+        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } }
 
         /* ═══════════════════════════════════════
            SECTION DIVIDER — ASCII dot art
@@ -764,9 +762,6 @@
                 <p class="hero__subtitle">Your AI financial decision assistant that sees the full picture, breaks down every option, and only acts when you say so.</p>
                 <div class="hero__cta-group">
                     <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Start Optimising →</a>
-                </div>
-                <div class="hero__ph">
-                    <a href="https://www.producthunt.com/products/bocy-ai-financial-decision-assistant?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-bocy-ai-financial-decision-assistant" target="_blank" rel="noopener noreferrer"><img alt="BOCY — AI financial decision assistant. - Beyond budgeting, Start Optimising | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1084399&amp;theme=light&amp;t=1771864571738"></a>
                 </div>
                 <div class="phone">
                     <div class="phone__screen">
@@ -958,14 +953,13 @@
 
     <footer class="footer">
         <div class="footer__inner">
-            <!-- Nothing.tech-style dot-matrix navigation -->
-            <nav class="footer__dot-nav" aria-label="Footer navigation">
-                <a href="#how-it-works" class="dot-text">How It Works</a>
-                <a href="#features" class="dot-text">Features</a>
-                <a href="/savings-comparison.html" class="dot-text">Savings</a>
-                <a href="/isa-comparison.html" class="dot-text">ISAs</a>
-                <a href="/compare.html" class="dot-text">Compare</a>
-                <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Start</a>
+            <nav class="footer__nav" aria-label="Footer navigation">
+                <a href="#how-it-works" class="footer__nav-link">How It Works</a>
+                <a href="#features" class="footer__nav-link">Features</a>
+                <a href="/savings-comparison.html" class="footer__nav-link">Savings</a>
+                <a href="/isa-comparison.html" class="footer__nav-link">ISAs</a>
+                <a href="/compare.html" class="footer__nav-link">Compare</a>
+                <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="footer__nav-link">Start Optimising</a>
             </nav>
 
             <div class="footer__bottom-row">
