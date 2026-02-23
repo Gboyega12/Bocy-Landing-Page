@@ -1,0 +1,92 @@
+name: Daily Rate Check
+
+on:
+  schedule:
+    # Run at 08:00 UTC every day (morning UK time)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-rates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read current rates
+        id: current
+        run: |
+          echo "rates_hash=$(sha256sum rates.json | cut -d' ' -f1)" >> $GITHUB_OUTPUT
+          echo "last_updated=$(jq -r '.lastUpdated' rates.json)" >> $GITHUB_OUTPUT
+
+      - name: Create rate-check issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const lastUpdated = '${{ steps.current.outputs.last_updated }}';
+            const today = new Date().toISOString().split('T')[0];
+
+            // Calculate days since last update
+            const lastDate = new Date(lastUpdated);
+            const todayDate = new Date(today);
+            const daysSince = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
+
+            if (daysSince < 7) {
+              console.log(`Rates updated ${daysSince} day(s) ago — skipping.`);
+              return;
+            }
+
+            // Check for existing open issue
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'rate-update',
+              state: 'open'
+            });
+
+            if (issues.length > 0) {
+              console.log('Open rate-update issue already exists — skipping.');
+              return;
+            }
+
+            const sections = [
+              '### Savings',
+              '- [ ] Easy Access accounts',
+              '- [ ] Notice accounts',
+              '- [ ] Fixed Rate accounts',
+              '',
+              '### ISAs',
+              '- [ ] Easy Access Cash ISAs',
+              '- [ ] Fixed Rate Cash ISAs',
+              '- [ ] Stocks & Shares ISAs',
+              '- [ ] Lifetime ISAs',
+              '',
+              '### Verification',
+              '- [ ] Check BoE base rate (currently 3.75%)',
+              '- [ ] Cross-check top 3 in each category against provider websites',
+              '- [ ] Update `rates.json` with new rates',
+              '- [ ] Update `lastUpdated` date in `rates.json`',
+              '- [ ] Spot-check rendered pages'
+            ];
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Rate update needed — last updated ${lastUpdated} (${daysSince} days ago)`,
+              body: [
+                `Rates were last updated on **${lastUpdated}** (${daysSince} days ago).`,
+                '',
+                'Use this checklist to verify and update rates:',
+                '',
+                ...sections,
+                '',
+                '---',
+                '*Automated by the daily rate-check workflow.*'
+              ].join('\n'),
+              labels: ['rate-update']
+            });
+
+            console.log('Created rate-update issue.');

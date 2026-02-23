@@ -1,0 +1,1485 @@
+{
+  "lastUpdated": "2026-02-23",
+  "savings": {
+    "easyAccess": [
+      {
+        "provider": "Tembo",
+        "account": "HomeSaver",
+        "rate": "4.55%",
+        "rateLabel": "AER",
+        "url": "https://www.tembomoney.com/savings/homesaver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Chase",
+        "account": "Saver (Boosted Rate)",
+        "rate": "4.50%",
+        "rateLabel": "AER",
+        "url": "https://www.chase.co.uk/gb/en/product/chase-saver-account/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "New customers",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Mansfield BS",
+        "account": "Triple Access Bonus Saver",
+        "rate": "4.25%",
+        "rateLabel": "AER",
+        "url": "https://www.mansfieldbs.co.uk/savings/triple-access-bonus-saver-1st-issue/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "Max 3 withdrawals/yr",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Sidekick",
+        "account": "Multi Shield",
+        "rate": "4.23%",
+        "rateLabel": "AER",
+        "url": "https://www.sidekickmoney.com/multi-shield-savings",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "6m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Barclays",
+        "account": "Rainy Day Saver (Blue Rewards)",
+        "rate": "4.21%",
+        "rateLabel": "AER",
+        "url": "https://www.barclays.co.uk/savings/instant-access/rainy-day-saver/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "First \u00a35,000",
+            "type": ""
+          },
+          {
+            "text": "Blue Rewards req.",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Manchester BS",
+        "account": "Rainy Day Saver",
+        "rate": "4.15%",
+        "rateLabel": "AER",
+        "url": "https://manchester.co.uk/savings/product/manchester-rainy-day-saver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "1 withdrawal/yr",
+            "type": ""
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Shawbrook Bank",
+        "account": "Bonus Easy Access",
+        "rate": "4.13%",
+        "rateLabel": "AER",
+        "url": "https://www.shawbrook.co.uk/savings/easy-access-savings-accounts/bonus-easy-access-savings-account/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "New customers",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Spring",
+        "account": "Easy Saver",
+        "rate": "4.11%",
+        "rateLabel": "AER",
+        "url": "https://www.spring-savings.co.uk/save/easy-saver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "By Paragon Bank",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "DF Capital",
+        "account": "Easy Access Account",
+        "rate": "4.10%",
+        "rateLabel": "AER",
+        "url": "https://www.dfcapital.bank/savings/easy-access/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Aldermore",
+        "account": "Double Access Account",
+        "rate": "4.00%",
+        "rateLabel": "AER",
+        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/double-access-savings-account/double-access-account/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          },
+          {
+            "text": "Max 2 withdrawals/yr",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Shawbrook Bank",
+        "account": "Easy Access Plus",
+        "rate": "3.88%",
+        "rateLabel": "AER",
+        "url": "https://www.shawbrook.co.uk/savings/easy-access-savings-accounts/easy-access-plus/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "New customers",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Chip",
+        "account": "Easy Access Saver",
+        "rate": "3.81%",
+        "rateLabel": "AER",
+        "url": "https://www.getchip.uk/savings-accounts/easy-access-saver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m boost",
+            "type": "bonus"
+          },
+          {
+            "text": "Tracks base rate",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Chip",
+        "account": "Instant Access Account",
+        "rate": "3.76%",
+        "rateLabel": "AER",
+        "url": "https://www.getchip.uk/savings-accounts/instant-access-account",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m boost",
+            "type": "bonus"
+          },
+          {
+            "text": "New customers",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Marcus",
+        "account": "Online Savings Account",
+        "rate": "3.75%",
+        "rateLabel": "AER",
+        "url": "https://www.marcus.co.uk/uk/en/savings/online-savings-account",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          }
+        ]
+      },
+      {
+        "provider": "Tandem",
+        "account": "Instant Access Saver",
+        "rate": "3.40%",
+        "rateLabel": "AER",
+        "url": "https://www.tandem.co.uk/save/instant-access-saver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "App only",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Zopa",
+        "account": "Easy Access Pots",
+        "rate": "2.95%",
+        "rateLabel": "AER",
+        "url": "https://www.zopa.com/savings/easy-access-savings",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "App-based",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Monzo",
+        "account": "Instant Access Savings Pots",
+        "rate": "2.75%",
+        "rateLabel": "AER",
+        "url": "https://monzo.com/savings-isas/instant-access",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "3.25% with Perks (\u00a37/mo)",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Starling",
+        "account": "Easy Saver",
+        "rate": "2.50%",
+        "rateLabel": "AER",
+        "url": "https://www.starlingbank.com/savings/easy-saver/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Current a/c required",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Nationwide",
+        "account": "Flex Instant Saver",
+        "rate": "2.30%",
+        "rateLabel": "AER",
+        "url": "https://www.nationwide.co.uk/savings/flex-instant-saver",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Current a/c required",
+            "type": ""
+          }
+        ]
+      }
+    ],
+    "noticeAccounts": [
+      {
+        "provider": "Oxbury Bank",
+        "account": "120 Day Notice Tracker Premium 2",
+        "rate": "4.34%",
+        "rateLabel": "AER",
+        "url": "https://www.oxbury.com/savings-accounts/personal-savings/personal-120-day-notice-tracker-premium-2-434-aer/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "120 day notice",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Oxbury Bank",
+        "account": "90 Day Notice Tracker Premium 3",
+        "rate": "4.21%",
+        "rateLabel": "AER",
+        "url": "https://www.oxbury.com/savings-accounts/personal-savings/14012026-personal-90-day-notice-tracker-premium-3-421-aer/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "90 day notice",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Oxbury Bank",
+        "account": "60 Day Notice Tracker Premium 2",
+        "rate": "4.16%",
+        "rateLabel": "AER",
+        "url": "https://www.oxbury.com/savings-accounts/personal-savings/14012026-personal-60-day-notice-tracker-premium-2-416-aer/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "60 day notice",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Oxbury Bank",
+        "account": "35 Day Notice Tracker Premium 2",
+        "rate": "4.14%",
+        "rateLabel": "AER",
+        "url": "https://www.oxbury.com/savings-accounts/personal-savings/personal-35-day-notice-tracker-premium-2-414-aer/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "35 day notice",
+            "type": ""
+          }
+        ]
+      }
+    ],
+    "fixedRate": [
+      {
+        "provider": "Al Rayan Bank",
+        "account": "1 Year Fixed Term Deposit",
+        "rate": "4.40%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.alrayanbank.co.uk/personal-banking/savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          },
+          {
+            "text": "Shariah-compliant",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "DF Capital",
+        "account": "1 Year Fixed Rate Deposit",
+        "rate": "4.25%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.dfcapital.bank/savings/fixed-rate/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          },
+          {
+            "text": "No early access",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Rova",
+        "account": "Savings Vault (1 Year)",
+        "rate": "4.25%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.rovasavings.co.uk/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a3500",
+            "type": ""
+          },
+          {
+            "text": "App only",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Cynergy Bank",
+        "account": "1 Year Fixed Rate Bond",
+        "rate": "4.24%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.cynergybank.co.uk/personal/fixed-rate-bonds",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Union Bank of India (UK)",
+        "account": "1 Year Fixed Deposit",
+        "rate": "4.23%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.ublogin.co.uk/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Chetwood Bank",
+        "account": "Fixed Rate Savings (1 Year)",
+        "rate": "4.21%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.chetwoodbank.com/savings",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Close Brothers",
+        "account": "1 Year Fixed Rate Bond",
+        "rate": "4.21%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.closebrothers.com/savings",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Atom Bank",
+        "account": "1 Year Fixed Saver",
+        "rate": "4.15%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.atombank.co.uk/savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a350",
+            "type": ""
+          },
+          {
+            "text": "App only",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "MBNA",
+        "account": "1 Year Fixed Saver",
+        "rate": "4.12%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.mbna.co.uk/savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Aldermore",
+        "account": "1 Year Fixed Rate Account",
+        "rate": "4.06%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/fixed-rate-savings-accounts/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Zopa",
+        "account": "1 Year Fixed Term",
+        "rate": "4.05%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.zopa.com/savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Shawbrook Bank",
+        "account": "1 Year Fixed Rate Bond",
+        "rate": "4.00%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.shawbrook.co.uk/savings/fixed-rate-bonds/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Paragon Bank",
+        "account": "1 Year Fixed Rate Bond",
+        "rate": "3.95%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.paragonbank.co.uk/savings",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Starling",
+        "account": "Fixed Saver (1 Year)",
+        "rate": "3.30%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.starlingbank.com/savings/fixed-rate-savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          },
+          {
+            "text": "App only",
+            "type": ""
+          }
+        ]
+      }
+    ]
+  },
+  "isa": {
+    "easyAccess": [
+      {
+        "provider": "Moneybox",
+        "account": "Cash ISA",
+        "rate": "4.39%",
+        "rateLabel": "AER",
+        "url": "https://www.moneyboxapp.com/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "Max 3 withdrawals/yr",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Plum",
+        "account": "Cash ISA",
+        "rate": "4.38%",
+        "rateLabel": "AER",
+        "url": "https://withplum.com/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "New deposits only",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Cynergy Bank",
+        "account": "Online ISA",
+        "rate": "4.10%",
+        "rateLabel": "AER",
+        "url": "https://www.cynergybank.co.uk/personal/online-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Unlimited withdrawals",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Moneybox",
+        "account": "Open Access Cash ISA",
+        "rate": "4.00%",
+        "rateLabel": "AER",
+        "url": "https://www.moneyboxapp.com/open-access-cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a3500",
+            "type": ""
+          },
+          {
+            "text": "No bonus drop",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Leeds BS",
+        "account": "Easy Access ISA",
+        "rate": "3.96%",
+        "rateLabel": "AER",
+        "url": "https://www.leedsbuildingsociety.co.uk/savings/cash-isas/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Trading 212",
+        "account": "Cash ISA",
+        "rate": "3.80%",
+        "rateLabel": "AER",
+        "url": "https://www.trading212.com/isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Flexible ISA",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Tembo",
+        "account": "Easy Access Cash ISA",
+        "rate": "3.80%",
+        "rateLabel": "AER",
+        "url": "https://www.tembomoney.com/savings/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "No conditions",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Chip",
+        "account": "Cash ISA",
+        "rate": "3.76%",
+        "rateLabel": "AER",
+        "url": "https://www.getchip.uk/savings-accounts/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m boost",
+            "type": "bonus"
+          },
+          {
+            "text": "Tracks base rate",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Marcus",
+        "account": "Cash ISA",
+        "rate": "3.75%",
+        "rateLabel": "AER",
+        "url": "https://www.marcus.co.uk/uk/en/savings/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          }
+        ]
+      },
+      {
+        "provider": "Shawbrook Bank",
+        "account": "Easy Access ISA",
+        "rate": "3.70%",
+        "rateLabel": "AER",
+        "url": "https://www.shawbrook.co.uk/savings/cash-isas/easy-access-cash-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          }
+        ]
+      },
+      {
+        "provider": "Zopa",
+        "account": "Smart Easy Access ISA",
+        "rate": "3.25%",
+        "rateLabel": "AER",
+        "url": "https://www.zopa.com/smart-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Flexible ISA",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Aldermore",
+        "account": "Easy Access Cash ISA",
+        "rate": "2.75%",
+        "rateLabel": "AER",
+        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/cash-isas/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "HSBC",
+        "account": "Loyalty Cash ISA",
+        "rate": "2.50%",
+        "rateLabel": "AER",
+        "url": "https://www.hsbc.co.uk/savings/products/cash-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Current a/c required",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Barclays",
+        "account": "Instant Cash ISA",
+        "rate": "1.10%",
+        "rateLabel": "AER",
+        "url": "https://www.barclays.co.uk/savings/isas/instant-cash-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          }
+        ]
+      },
+      {
+        "provider": "Lloyds",
+        "account": "Instant Cash ISA",
+        "rate": "1.00%",
+        "rateLabel": "AER",
+        "url": "https://www.lloydsbank.com/isas/instant-cash-isa.html",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          }
+        ]
+      }
+    ],
+    "fixedRate": [
+      {
+        "provider": "Coventry BS",
+        "account": "1-Year Fixed Rate Cash ISA",
+        "rate": "4.13%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.coventrybuildingsociety.co.uk/member/savings/cash-isas.html",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Castle Trust Bank",
+        "account": "1-Year Fixed Cash ISA",
+        "rate": "4.12%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.castletrust.co.uk/savings/1-year-fixed-rate-e-cash-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Close Brothers",
+        "account": "2-Year Fixed Cash ISA",
+        "rate": "4.10%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.closesavings.co.uk/personal/savings-accounts/fixed-rate-cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a310,000",
+            "type": ""
+          },
+          {
+            "text": "2 years",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Cynergy Bank",
+        "account": "1-Year Fixed Rate ISA",
+        "rate": "4.08%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.cynergybank.co.uk/personal/fixed-variable-cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Zopa",
+        "account": "1-Year Fixed Cash ISA",
+        "rate": "4.05%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.zopa.com/smart-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Flexible ISA",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Virgin Money",
+        "account": "1-Year Fixed Cash ISA",
+        "rate": "4.01%",
+        "rateLabel": "AER Fixed",
+        "url": "https://uk.virginmoney.com/savings/isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Barclays",
+        "account": "1-Year Flexible Cash ISA",
+        "rate": "3.80%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.barclays.co.uk/savings/isas/1-year-flexible-cash-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Max 3 withdrawals",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Nationwide",
+        "account": "1-Year Fixed Rate ISA",
+        "rate": "3.80%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.nationwide.co.uk/savings/fixed-rate-cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "NatWest",
+        "account": "1-Year Fixed Rate ISA",
+        "rate": "3.60%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.natwest.com/savings/cash-isa.html",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "HSBC",
+        "account": "1-Year Fixed Rate ISA",
+        "rate": "3.30%",
+        "rateLabel": "AER Fixed",
+        "url": "https://www.hsbc.co.uk/savings/products/fixed-rate-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Current a/c required",
+            "type": ""
+          },
+          {
+            "text": "1 year",
+            "type": ""
+          }
+        ]
+      }
+    ],
+    "stocksShares": [
+      {
+        "provider": "Trading 212",
+        "account": "Stocks &amp; Shares ISA",
+        "rate": "0.00%",
+        "rateLabel": "Platform Fee",
+        "url": "https://www.trading212.com/isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Free trades",
+            "type": ""
+          },
+          {
+            "text": "13,000+ assets",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "InvestEngine",
+        "account": "DIY Stocks &amp; Shares ISA",
+        "rate": "0.00%",
+        "rateLabel": "Platform Fee (DIY)",
+        "url": "https://investengine.com/isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Free trades",
+            "type": ""
+          },
+          {
+            "text": "ETFs only",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "Lightyear",
+        "account": "Stocks &amp; Shares ISA",
+        "rate": "0.00%",
+        "rateLabel": "Platform Fee",
+        "url": "https://lightyear.com/en-gb/stocks-and-shares-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Free trades",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "Vanguard",
+        "account": "Stocks &amp; Shares ISA",
+        "rate": "0.15%",
+        "rateLabel": "Platform Fee",
+        "url": "https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Capped at \u00a3375/yr",
+            "type": ""
+          },
+          {
+            "text": "Min \u00a34/mo",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "AJ Bell",
+        "account": "Stocks &amp; Shares ISA",
+        "rate": "0.25%",
+        "rateLabel": "Platform Fee",
+        "url": "https://www.ajbell.co.uk/investment-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "\u00a35 share deals",
+            "type": ""
+          },
+          {
+            "text": "Full range",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "Hargreaves Lansdown",
+        "account": "Stocks &amp; Shares ISA",
+        "rate": "0.35%",
+        "rateLabel": "Platform Fee",
+        "url": "https://www.hl.co.uk/investment-services/isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "\u00a36.95 share deals",
+            "type": ""
+          },
+          {
+            "text": "Full range",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "Moneyfarm",
+        "account": "DIY Stocks &amp; Shares ISA",
+        "rate": "0.35%",
+        "rateLabel": "Platform Fee (DIY)",
+        "url": "https://www.moneyfarm.com/uk/stocks-and-shares-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Capped at \u00a345/yr (DIY)",
+            "type": ""
+          },
+          {
+            "text": "Robo-advisor",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      },
+      {
+        "provider": "Nutmeg",
+        "account": "Managed Stocks &amp; Shares ISA",
+        "rate": "0.45%",
+        "rateLabel": "From (Fixed Alloc.)",
+        "url": "https://www.nutmeg.com/stocks-and-shares-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Managed portfolios",
+            "type": ""
+          }
+        ],
+        "isFee": true
+      }
+    ],
+    "lifetime": [
+      {
+        "provider": "Tembo",
+        "account": "Cash LISA",
+        "rate": "4.30%",
+        "rateLabel": "AER + Bonus",
+        "url": "https://www.tembomoney.com/savings/cash-lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "3.80% after",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Moneybox",
+        "account": "Cash LISA",
+        "rate": "4.26%",
+        "rateLabel": "AER + Bonus",
+        "url": "https://www.moneyboxapp.com/lifetime-isa/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          }
+        ]
+      },
+      {
+        "provider": "Plum",
+        "account": "Cash LISA",
+        "rate": "4.25%",
+        "rateLabel": "AER + Bonus",
+        "url": "https://withplum.com/lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          }
+        ]
+      },
+      {
+        "provider": "AJ Bell Dodl",
+        "account": "S&amp;S LISA (cash rate)",
+        "rate": "3.80%",
+        "rateLabel": "AER on cash",
+        "url": "https://dodl.co.uk/lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "S&amp;S LISA",
+            "type": "risk"
+          }
+        ]
+      },
+      {
+        "provider": "Paragon Bank",
+        "account": "Cash LISA",
+        "rate": "3.51%",
+        "rateLabel": "AER + Bonus",
+        "url": "https://www.paragonbank.co.uk/savings/lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "No bonus drop",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Skipton BS",
+        "account": "Cash LISA",
+        "rate": "2.05%",
+        "rateLabel": "AER (Variable)",
+        "url": "https://www.skipton.co.uk/savings/isas/lifetime-isa/cash-lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          }
+        ]
+      }
+    ]
+  }
+}
