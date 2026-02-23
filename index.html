@@ -377,6 +377,57 @@
         }
 
         /* ═══════════════════════════════════════
+           RATES SNAPSHOT — Homepage comparison
+           ═══════════════════════════════════════ */
+        .rates-snapshot { padding: 5rem 1.25rem; position: relative; z-index: 1; }
+        .rates-snapshot__header { text-align: center; margin-bottom: 3.5rem; }
+        .rates-snapshot__title {
+            font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem;
+        }
+        .rates-snapshot__subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto; }
+        .rates-snapshot__grid {
+            display: grid; gap: 1rem; max-width: 960px; margin: 0 auto;
+        }
+        .snapshot-card { padding: 1.75rem; position: relative; overflow: hidden; }
+        .snapshot-card__header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.25rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .snapshot-card__title { font-size: 0.9375rem; font-weight: 600; }
+        .snapshot-card__link {
+            font-size: 0.6875rem; font-family: var(--font-mono); color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .snapshot-card:hover .snapshot-card__link { color: var(--accent); }
+        .snapshot-card__rows { display: flex; flex-direction: column; gap: 0.75rem; }
+        .snapshot-row {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8125rem;
+        }
+        .snapshot-row__left { display: flex; align-items: center; gap: 0.625rem; }
+        .snapshot-row__rank {
+            font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted);
+            width: 1.25rem; text-align: center;
+        }
+        .snapshot-row__rank--top { color: var(--accent); }
+        .snapshot-row__provider { color: var(--text-secondary); }
+        .snapshot-row__rate {
+            font-family: var(--font-mono); font-weight: 600; color: var(--accent);
+        }
+        .snapshot-row__rate--purple { color: var(--purple); }
+        .snapshot-row__rate--blue { color: var(--blue); }
+        @media (min-width: 768px) {
+            .rates-snapshot { padding: 6rem 2rem; }
+            .rates-snapshot__title { font-size: 2rem; }
+            .rates-snapshot__grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .rates-snapshot { padding: 7rem 3rem; }
+            .rates-snapshot__title { font-size: 2.5rem; }
+        }
+
+        /* ═══════════════════════════════════════
            TIMELINE / HOW IT WORKS — Glass cards
            ═══════════════════════════════════════ */
         .timeline-section { padding: 5rem 1.25rem; position: relative; z-index: 1; }
@@ -834,6 +885,106 @@
 
         <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
 
+        <!-- ═══ RATES SNAPSHOT — Best rates at a glance ═══ -->
+        <section id="rates" class="rates-snapshot">
+            <header class="rates-snapshot__header reveal">
+                <p class="mono-label">// live rates · verified feb 2026</p>
+                <h2 class="rates-snapshot__title">Best UK Rates Right Now</h2>
+                <p class="rates-snapshot__subtitle">Verified against provider websites. No guesswork, no hallucinated data.</p>
+            </header>
+            <div class="rates-snapshot__grid">
+                <a href="/savings-comparison.html" class="snapshot-card glass-card reveal reveal-delay-1">
+                    <div class="snapshot-card__header">
+                        <span class="snapshot-card__title">Easy Access Savings</span>
+                        <span class="snapshot-card__link">See all 19 →</span>
+                    </div>
+                    <div class="snapshot-card__rows">
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank snapshot-row__rank--top">#1</span>
+                                <span class="snapshot-row__provider">Tembo HomeSaver</span>
+                            </div>
+                            <span class="snapshot-row__rate">4.55%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#2</span>
+                                <span class="snapshot-row__provider">Chase Saver</span>
+                            </div>
+                            <span class="snapshot-row__rate">4.50%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#3</span>
+                                <span class="snapshot-row__provider">Mansfield BS</span>
+                            </div>
+                            <span class="snapshot-row__rate">4.25%</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/isa-comparison.html" class="snapshot-card glass-card reveal reveal-delay-2">
+                    <div class="snapshot-card__header">
+                        <span class="snapshot-card__title">Cash ISAs</span>
+                        <span class="snapshot-card__link">See all 15 →</span>
+                    </div>
+                    <div class="snapshot-card__rows">
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank snapshot-row__rank--top">#1</span>
+                                <span class="snapshot-row__provider">Trading 212</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--purple">4.40%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#2</span>
+                                <span class="snapshot-row__provider">Moneybox</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--purple">4.39%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#3</span>
+                                <span class="snapshot-row__provider">Plum</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--purple">4.38%</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/isa-comparison.html" class="snapshot-card glass-card reveal reveal-delay-3">
+                    <div class="snapshot-card__header">
+                        <span class="snapshot-card__title">Lifetime ISAs</span>
+                        <span class="snapshot-card__link">See all 6 →</span>
+                    </div>
+                    <div class="snapshot-card__rows">
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank snapshot-row__rank--top">#1</span>
+                                <span class="snapshot-row__provider">Tembo LISA</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--blue">4.30%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#2</span>
+                                <span class="snapshot-row__provider">Moneybox</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--blue">4.26%</span>
+                        </div>
+                        <div class="snapshot-row">
+                            <div class="snapshot-row__left">
+                                <span class="snapshot-row__rank">#3</span>
+                                <span class="snapshot-row__provider">Plum</span>
+                            </div>
+                            <span class="snapshot-row__rate snapshot-row__rate--blue">4.25%</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+
         <!-- ═══ HOW IT WORKS — Timeline ═══ -->
         <section id="how-it-works" class="timeline-section">
             <header class="timeline-section__header reveal">
@@ -956,6 +1107,7 @@
             <nav class="footer__dot-nav" aria-label="Footer navigation">
                 <a href="#how-it-works" class="dot-text">How It Works</a>
                 <a href="#features" class="dot-text">Features</a>
+                <a href="#rates" class="dot-text">Rates</a>
                 <a href="/savings-comparison.html" class="dot-text">Savings</a>
                 <a href="/isa-comparison.html" class="dot-text">ISAs</a>
                 <a href="https://native-app-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Start</a>
