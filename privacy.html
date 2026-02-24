@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Privacy Policy — BOCY AI LIMITED</title>
+    <meta name="description" content="Privacy Policy for BOCY AI LIMITED. How we collect, use and protect your personal data.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000; --bg-elevated: #060606; --bg-subtle: #0A0A0A;
+            --text: #FAFAFA; --text-secondary: #999; --text-muted: #555;
+            --accent: #00D4AA; --accent-dim: rgba(0,212,170,0.12); --accent-glow: rgba(0,212,170,0.06);
+            --glass-bg: rgba(255,255,255,0.03); --glass-bg-hover: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.07); --glass-border-hover: rgba(255,255,255,0.14);
+            --font-mono: 'JetBrains Mono', monospace;
+            --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-pill: 100px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1rem; line-height: 1.6;
+            color: var(--text); background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .dot-grid {
+            position: fixed; inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none; z-index: 0;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 1.25rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav__inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .nav__logo {
+            font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
+            font-family: var(--font-mono); color: var(--text);
+        }
+        .nav__logo span { color: var(--accent); }
+        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
+        .nav__link {
+            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+            border-radius: var(--radius-pill); transition: all 0.2s;
+            border: 1px solid transparent; white-space: nowrap;
+        }
+        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); text-decoration: none; }
+        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
+
+        /* Content */
+        .policy {
+            max-width: 760px; margin: 0 auto;
+            padding: 7rem 1.25rem 4rem;
+            position: relative; z-index: 1;
+        }
+        .policy__header { margin-bottom: 3rem; }
+        .policy__label {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+        .policy__title {
+            font-size: 2rem; font-weight: 700; letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+        .policy__meta {
+            font-family: var(--font-mono); font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .policy h2 {
+            font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;
+            margin: 2.5rem 0 1rem; padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .policy h3 {
+            font-size: 1.0625rem; font-weight: 600;
+            margin: 1.75rem 0 0.75rem;
+        }
+        .policy p {
+            color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.8;
+        }
+        .policy ul, .policy ol {
+            color: var(--text-secondary); margin-bottom: 1rem;
+            padding-left: 1.5rem; line-height: 1.8;
+        }
+        .policy li { margin-bottom: 0.375rem; }
+        .policy strong { color: var(--text); font-weight: 600; }
+        .policy .data-table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem;
+            font-size: 0.875rem;
+        }
+        .policy .data-table th, .policy .data-table td {
+            text-align: left; padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary); vertical-align: top;
+        }
+        .policy .data-table th {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--text-muted); font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .policy { padding: 8rem 2rem 5rem; }
+            .policy__title { font-size: 2.5rem; }
+        }
+
+        /* Footer */
+        .footer { padding: 4rem 1.25rem 2.5rem; position: relative; z-index: 1; }
+        .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+        .footer__logo { font-size: 1rem; font-weight: 700; font-family: var(--font-mono); color: var(--text); }
+        .footer__logo:hover { text-decoration: none; }
+        .footer__copy { font-size: 0.6875rem; color: var(--text-muted); font-family: var(--font-mono); }
+    </style>
+</head>
+<body>
+    <div class="dot-grid" aria-hidden="true"></div>
+
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="/" class="nav__logo">BOCY<span>.</span></a>
+            <div class="nav__links">
+                <a href="/" class="nav__link">Home</a>
+                <a href="/savings-comparison.html" class="nav__link">Savings</a>
+                <a href="/isa-comparison.html" class="nav__link">ISAs</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="policy">
+        <header class="policy__header">
+            <p class="policy__label">// legal</p>
+            <h1 class="policy__title">Privacy Policy</h1>
+            <p class="policy__meta">Last updated: 24 February 2026</p>
+        </header>
+
+        <h2>1. Who we are</h2>
+        <p><strong>BOCY AI LIMITED</strong> ("BOCY", "we", "us", "our") is a company registered in England and Wales.</p>
+        <ul>
+            <li><strong>Company number:</strong> 16760137</li>
+            <li><strong>Registered address:</strong> Apartment 15 Adlay Apartments, 3 Millet Place, London, England, E16 2YE</li>
+            <li><strong>SIC codes:</strong> 62012 — Business and domestic software development; 64999 — Financial intermediation not elsewhere classified</li>
+        </ul>
+        <p>We are the data controller for the personal information we collect through the BOCY application, website (bocy.io), and related services (collectively, the "Service"). This means we decide how and why your personal data is processed.</p>
+        <p>At BOCY, we are building an AI financial decision assistant that helps you optimise where your money sits. Like all AI, BOCY relies on data to be effective — it is at the heart of what we do, letting us make your money work more efficiently and intelligently for you. We take the security of your data very seriously and are committed to assuring and respecting your privacy.</p>
+
+        <h2>2. About this policy</h2>
+        <p>This Privacy Policy sets out how and on what basis we collect information about you, and the ways in which it is used and protected. It covers your rights under:</p>
+        <ul>
+            <li>The UK General Data Protection Regulation (UK GDPR)</li>
+            <li>The Data Protection Act 2018</li>
+            <li>The Privacy and Electronic Communications Regulations 2003 (PECR)</li>
+        </ul>
+        <p>By using the Service, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with this policy, please do not use the Service.</p>
+        <p>We may update this policy from time to time. If we make significant changes, we will notify you through the app or by email. The "Last updated" date at the top of this page indicates when the policy was last revised.</p>
+
+        <h2>3. Information we collect</h2>
+        <p>We collect and process the following categories of personal data:</p>
+
+        <h3>3.1 Information you provide directly</h3>
+        <ul>
+            <li><strong>Account information:</strong> name, email address, and password when you create a BOCY account</li>
+            <li><strong>Profile information:</strong> date of birth, employment status, income details, and financial goals you choose to share</li>
+            <li><strong>Communications:</strong> messages, feedback, and support requests you send to us</li>
+        </ul>
+
+        <h3>3.2 Information collected through Open Banking</h3>
+        <p>When you connect your bank accounts via Open Banking, we receive:</p>
+        <ul>
+            <li><strong>Account data:</strong> account type, provider, balances, and account identifiers</li>
+            <li><strong>Transaction data:</strong> transaction history including amounts, dates, descriptions, and categories</li>
+            <li><strong>Standing orders and direct debits:</strong> recurring payment details</li>
+        </ul>
+        <p>Open Banking data is provided through FCA-regulated third-party providers. We access this data in read-only mode — we cannot move your money or make changes to your accounts without your explicit approval.</p>
+
+        <h3>3.3 Information collected automatically</h3>
+        <ul>
+            <li><strong>Device information:</strong> device type, operating system, browser type, and version</li>
+            <li><strong>Usage data:</strong> pages visited, features used, time spent, and interaction patterns</li>
+            <li><strong>Log data:</strong> IP address, access times, and referring URLs</li>
+            <li><strong>Cookies and similar technologies:</strong> see Section 9 for details</li>
+        </ul>
+
+        <h2>4. How we use your information</h2>
+        <p>We use your personal data for the following purposes:</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Purpose</th>
+                    <th>Legal basis (UK GDPR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Provide the Service — analyse your finances, generate recommendations, compare savings rates</td>
+                    <td>Performance of contract (Art. 6(1)(b))</td>
+                </tr>
+                <tr>
+                    <td>Create and manage your account</td>
+                    <td>Performance of contract (Art. 6(1)(b))</td>
+                </tr>
+                <tr>
+                    <td>Improve and personalise the Service through AI-driven analysis</td>
+                    <td>Legitimate interest (Art. 6(1)(f))</td>
+                </tr>
+                <tr>
+                    <td>Send service notifications (e.g. rate changes, better savings options found)</td>
+                    <td>Legitimate interest (Art. 6(1)(f))</td>
+                </tr>
+                <tr>
+                    <td>Send marketing communications (only with your consent)</td>
+                    <td>Consent (Art. 6(1)(a))</td>
+                </tr>
+                <tr>
+                    <td>Detect fraud and ensure security</td>
+                    <td>Legitimate interest (Art. 6(1)(f))</td>
+                </tr>
+                <tr>
+                    <td>Comply with legal obligations (e.g. anti-money laundering)</td>
+                    <td>Legal obligation (Art. 6(1)(c))</td>
+                </tr>
+                <tr>
+                    <td>Respond to your support requests and feedback</td>
+                    <td>Performance of contract (Art. 6(1)(b))</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. How our AI uses your data</h2>
+        <p>BOCY uses artificial intelligence to analyse your financial data and provide personalised recommendations. Specifically:</p>
+        <ul>
+            <li><strong>Financial analysis:</strong> our AI scans your income, bills, debts, and savings to identify your surplus and optimisation opportunities</li>
+            <li><strong>Rate comparison:</strong> we compare your current savings rates against live market data to find better options</li>
+            <li><strong>Personalised recommendations:</strong> the AI generates specific, reasoned recommendations (e.g. "move £600 to pay down credit card — saves £127/year")</li>
+            <li><strong>Pattern recognition:</strong> we identify spending patterns, recurring charges, and seasonal income fluctuations to help you plan ahead</li>
+        </ul>
+        <p><strong>Important:</strong> BOCY never moves your money or takes action on your behalf without your explicit approval. Every recommendation requires your consent before execution. You can override, modify, or reject any suggestion at any time.</p>
+        <p>We do not use your personal data to train general-purpose AI models. Your financial data is only used to provide the Service to you.</p>
+
+        <h2>6. Who we share your data with</h2>
+        <p>We do not sell your personal data. We will never directly or indirectly transfer your data for any monetisation-related service. We may share your data with the following categories of recipients:</p>
+        <ul>
+            <li><strong>Open Banking providers:</strong> FCA-regulated Account Information Service Providers (AISPs) that facilitate secure access to your bank data</li>
+            <li><strong>Cloud infrastructure providers:</strong> to host and operate the Service securely</li>
+            <li><strong>Analytics providers:</strong> to help us understand how the Service is used (data is aggregated and anonymised where possible)</li>
+            <li><strong>Law enforcement or regulators:</strong> where we are legally required to do so</li>
+            <li><strong>Professional advisors:</strong> lawyers, auditors, and accountants where necessary</li>
+        </ul>
+        <p>All third-party processors are bound by data processing agreements that require them to protect your data in accordance with UK GDPR.</p>
+
+        <h2>7. Data retention</h2>
+        <p>We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected:</p>
+        <ul>
+            <li><strong>Account data:</strong> retained while your account is active, and deleted within 30 days of account deletion request</li>
+            <li><strong>Financial data (Open Banking):</strong> retained while your account is active to provide the Service. Deleted within 30 days of account deletion or disconnection of bank link</li>
+            <li><strong>Transaction history:</strong> retained for up to 6 years after account closure to comply with financial record-keeping obligations</li>
+            <li><strong>Usage and log data:</strong> retained for up to 12 months, then anonymised or deleted</li>
+            <li><strong>Marketing consent records:</strong> retained for as long as you are subscribed, plus 12 months</li>
+        </ul>
+        <p>If you request that your account be deleted, we will delete all retained personal information on you in line with the above retention periods, unless we are legally required to keep certain records.</p>
+
+        <h2>8. Your rights</h2>
+        <p>Under UK GDPR, you have the following rights regarding your personal data:</p>
+        <ul>
+            <li><strong>Right of access:</strong> request a copy of the personal data we hold about you</li>
+            <li><strong>Right to rectification:</strong> request correction of inaccurate or incomplete data</li>
+            <li><strong>Right to erasure:</strong> request deletion of your personal data ("right to be forgotten")</li>
+            <li><strong>Right to restrict processing:</strong> request that we limit how we use your data</li>
+            <li><strong>Right to data portability:</strong> receive your data in a structured, machine-readable format</li>
+            <li><strong>Right to object:</strong> object to processing based on legitimate interests or for direct marketing</li>
+            <li><strong>Right to withdraw consent:</strong> where processing is based on consent, withdraw it at any time</li>
+            <li><strong>Rights related to automated decision-making:</strong> you have the right not to be subject to a decision based solely on automated processing that produces legal or significant effects. BOCY's AI provides recommendations, but all final decisions and actions require your explicit approval</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="mailto:privacy@bocy.io">privacy@bocy.io</a>. We will respond within one month, as required by law.</p>
+        <p>If you are not satisfied with how we handle your request, you have the right to lodge a complaint with the <strong>Information Commissioner's Office (ICO)</strong>:</p>
+        <ul>
+            <li>Website: <a href="https://ico.org.uk">ico.org.uk</a></li>
+            <li>Phone: 0303 123 1113</li>
+        </ul>
+
+        <h2>9. Cookies and tracking</h2>
+        <p>We use cookies and similar technologies on our website and app. Cookies are small text files stored on your device that help us provide and improve the Service.</p>
+
+        <h3>9.1 Types of cookies we use</h3>
+        <ul>
+            <li><strong>Essential cookies:</strong> required for the Service to function (e.g. authentication, security). These cannot be disabled</li>
+            <li><strong>Analytics cookies:</strong> help us understand how you use the Service so we can improve it. These are only set with your consent</li>
+        </ul>
+
+        <h3>9.2 Managing cookies</h3>
+        <p>You can control cookies through your browser settings. Disabling essential cookies may affect the functionality of the Service. For analytics cookies, you can opt out through our cookie consent banner or your browser settings.</p>
+
+        <h2>10. Data security</h2>
+        <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. These measures include:</p>
+        <ul>
+            <li>256-bit TLS encryption for all data in transit</li>
+            <li>AES-256 encryption for data at rest</li>
+            <li>Access controls and authentication for all internal systems</li>
+            <li>Regular security assessments and penetration testing</li>
+            <li>Employee access restricted on a need-to-know basis</li>
+        </ul>
+        <p>While we take all reasonable steps to protect your data, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
+
+        <h2>11. International transfers</h2>
+        <p>Your data is primarily stored and processed in the United Kingdom. If we transfer your data outside the UK, we will ensure appropriate safeguards are in place, such as:</p>
+        <ul>
+            <li>UK adequacy regulations (transfers to countries deemed adequate by the UK government)</li>
+            <li>International Data Transfer Agreements (IDTAs) or UK Addendum to EU Standard Contractual Clauses</li>
+        </ul>
+
+        <h2>12. Children's data</h2>
+        <p>The Service is not intended for individuals under the age of 18. We do not knowingly collect personal data from children. If we become aware that we have collected data from a child, we will take steps to delete it promptly. If you believe a child has provided us with personal data, please contact us at <a href="mailto:privacy@bocy.io">privacy@bocy.io</a>.</p>
+
+        <h2>13. Third-party links</h2>
+        <p>The Service may contain links to third-party websites, including banks and financial providers. We are not responsible for the privacy practices of these third parties. We encourage you to read their privacy policies before providing any personal data.</p>
+
+        <h2>14. Changes to this policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, the Service, or legal requirements. We will notify you of material changes by:</p>
+        <ul>
+            <li>Posting the updated policy on our website with a new "Last updated" date</li>
+            <li>Sending you an in-app notification or email for significant changes</li>
+        </ul>
+        <p>Your continued use of the Service after any changes constitutes acceptance of the updated policy.</p>
+
+        <h2>15. Contact us</h2>
+        <p>If you have any questions about this Privacy Policy, your personal data, or wish to exercise your rights, please contact us:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:privacy@bocy.io">privacy@bocy.io</a></li>
+            <li><strong>Postal address:</strong> BOCY AI LIMITED, Apartment 15 Adlay Apartments, 3 Millet Place, London, England, E16 2YE</li>
+            <li><strong>Company number:</strong> 16760137</li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <a href="/" class="footer__logo">BOCY.</a>
+            <p class="footer__copy">&copy; 2026 BOCY AI LIMITED. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
