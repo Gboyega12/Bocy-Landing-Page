@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-23",
+  "lastUpdated": "2026-02-25",
   "savings": {
     "easyAccess": [
       {
@@ -764,7 +764,7 @@
       {
         "provider": "Cynergy Bank",
         "account": "Online ISA",
-        "rate": "4.10%",
+        "rate": "4.05%",
         "rateLabel": "AER",
         "url": "https://www.cynergybank.co.uk/personal/online-isa",
         "tags": [
@@ -1355,6 +1355,27 @@
     ],
     "lifetime": [
       {
+        "provider": "Plum",
+        "account": "Cash LISA",
+        "rate": "4.38%",
+        "rateLabel": "AER + Bonus",
+        "url": "https://withplum.com/lifetime-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "25% Govt Bonus",
+            "type": "govt"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          }
+        ]
+      },
+      {
         "provider": "Tembo",
         "account": "Cash LISA",
         "rate": "4.30%",
@@ -1385,27 +1406,6 @@
         "rate": "4.26%",
         "rateLabel": "AER + Bonus",
         "url": "https://www.moneyboxapp.com/lifetime-isa/",
-        "tags": [
-          {
-            "text": "FSCS",
-            "type": "fscs"
-          },
-          {
-            "text": "25% Govt Bonus",
-            "type": "govt"
-          },
-          {
-            "text": "12m bonus",
-            "type": "bonus"
-          }
-        ]
-      },
-      {
-        "provider": "Plum",
-        "account": "Cash LISA",
-        "rate": "4.25%",
-        "rateLabel": "AER + Bonus",
-        "url": "https://withplum.com/lifetime-isa",
         "tags": [
           {
             "text": "FSCS",
