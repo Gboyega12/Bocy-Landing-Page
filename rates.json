@@ -3,27 +3,6 @@
   "savings": {
     "easyAccess": [
       {
-        "provider": "Tembo",
-        "account": "HomeSaver",
-        "rate": "4.55%",
-        "rateLabel": "AER",
-        "url": "https://www.tembomoney.com/savings/homesaver",
-        "tags": [
-          {
-            "text": "FSCS",
-            "type": "fscs"
-          },
-          {
-            "text": "12m bonus",
-            "type": "bonus"
-          },
-          {
-            "text": "Min \u00a31",
-            "type": ""
-          }
-        ]
-      },
-      {
         "provider": "Chase",
         "account": "Saver (Boosted Rate)",
         "rate": "4.50%",
