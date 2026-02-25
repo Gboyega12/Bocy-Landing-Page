@@ -627,11 +627,11 @@
         ]
       },
       {
-        "provider": "Aldermore",
-        "account": "1 Year Fixed Rate Account",
-        "rate": "4.06%",
+        "provider": "Zopa",
+        "account": "1 Year Fixed Term",
+        "rate": "4.05%",
         "rateLabel": "AER Fixed",
-        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/fixed-rate-savings-accounts/",
+        "url": "https://www.zopa.com/savings/",
         "tags": [
           {
             "text": "FSCS",
@@ -644,11 +644,11 @@
         ]
       },
       {
-        "provider": "Zopa",
-        "account": "1 Year Fixed Term",
-        "rate": "4.05%",
+        "provider": "Aldermore",
+        "account": "1 Year Fixed Rate Account",
+        "rate": "4.00%",
         "rateLabel": "AER Fixed",
-        "url": "https://www.zopa.com/savings/",
+        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/fixed-rate-savings-accounts/",
         "tags": [
           {
             "text": "FSCS",
@@ -720,6 +720,27 @@
   "isa": {
     "easyAccess": [
       {
+        "provider": "Plum",
+        "account": "Cash ISA",
+        "rate": "4.42%",
+        "rateLabel": "AER",
+        "url": "https://withplum.com/cash-isa",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m bonus",
+            "type": "bonus"
+          },
+          {
+            "text": "New deposits only",
+            "type": ""
+          }
+        ]
+      },
+      {
         "provider": "Moneybox",
         "account": "Cash ISA",
         "rate": "4.39%",
@@ -736,27 +757,6 @@
           },
           {
             "text": "Max 3 withdrawals/yr",
-            "type": ""
-          }
-        ]
-      },
-      {
-        "provider": "Plum",
-        "account": "Cash ISA",
-        "rate": "4.38%",
-        "rateLabel": "AER",
-        "url": "https://withplum.com/cash-isa",
-        "tags": [
-          {
-            "text": "FSCS",
-            "type": "fscs"
-          },
-          {
-            "text": "12m bonus",
-            "type": "bonus"
-          },
-          {
-            "text": "New deposits only",
             "type": ""
           }
         ]
@@ -800,6 +800,23 @@
         ]
       },
       {
+        "provider": "Aldermore",
+        "account": "Easy Access Cash ISA",
+        "rate": "4.00%",
+        "rateLabel": "AER",
+        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/cash-isas/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Min \u00a31,000",
+            "type": ""
+          }
+        ]
+      },
+      {
         "provider": "Leeds BS",
         "account": "Easy Access ISA",
         "rate": "3.96%",
@@ -812,23 +829,6 @@
           },
           {
             "text": "Min \u00a31",
-            "type": ""
-          }
-        ]
-      },
-      {
-        "provider": "Trading 212",
-        "account": "Cash ISA",
-        "rate": "3.80%",
-        "rateLabel": "AER",
-        "url": "https://www.trading212.com/isa",
-        "tags": [
-          {
-            "text": "FSCS",
-            "type": "fscs"
-          },
-          {
-            "text": "Flexible ISA",
             "type": ""
           }
         ]
@@ -902,11 +902,11 @@
         ]
       },
       {
-        "provider": "Zopa",
-        "account": "Smart Easy Access ISA",
-        "rate": "3.25%",
+        "provider": "Trading 212",
+        "account": "Cash ISA",
+        "rate": "3.60%",
         "rateLabel": "AER",
-        "url": "https://www.zopa.com/smart-isa",
+        "url": "https://www.trading212.com/isa",
         "tags": [
           {
             "text": "FSCS",
@@ -919,18 +919,18 @@
         ]
       },
       {
-        "provider": "Aldermore",
-        "account": "Easy Access Cash ISA",
-        "rate": "2.75%",
+        "provider": "Zopa",
+        "account": "Smart Easy Access ISA",
+        "rate": "3.25%",
         "rateLabel": "AER",
-        "url": "https://www.aldermore.co.uk/savings-accounts/personal-savings-accounts/cash-isas/",
+        "url": "https://www.zopa.com/smart-isa",
         "tags": [
           {
             "text": "FSCS",
             "type": "fscs"
           },
           {
-            "text": "Min \u00a31,000",
+            "text": "Flexible ISA",
             "type": ""
           }
         ]
