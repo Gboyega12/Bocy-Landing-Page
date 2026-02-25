@@ -87,6 +87,27 @@
         ]
       },
       {
+        "provider": "Chip",
+        "account": "Instant Access Account",
+        "rate": "4.20%",
+        "rateLabel": "AER",
+        "url": "https://www.getchip.uk/savings-accounts/instant-access-account",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m boost",
+            "type": "bonus"
+          },
+          {
+            "text": "New customers",
+            "type": ""
+          }
+        ]
+      },
+      {
         "provider": "Manchester BS",
         "account": "Rainy Day Saver",
         "rate": "4.15%",
@@ -226,27 +247,6 @@
         ]
       },
       {
-        "provider": "Chip",
-        "account": "Instant Access Account",
-        "rate": "3.76%",
-        "rateLabel": "AER",
-        "url": "https://www.getchip.uk/savings-accounts/instant-access-account",
-        "tags": [
-          {
-            "text": "FSCS",
-            "type": "fscs"
-          },
-          {
-            "text": "12m boost",
-            "type": "bonus"
-          },
-          {
-            "text": "New customers",
-            "type": ""
-          }
-        ]
-      },
-      {
         "provider": "Marcus",
         "account": "Online Savings Account",
         "rate": "3.75%",
@@ -273,6 +273,27 @@
           {
             "text": "FSCS",
             "type": "fscs"
+          },
+          {
+            "text": "App only",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Revolut",
+        "account": "Instant Access Savings",
+        "rate": "3.00%",
+        "rateLabel": "AER",
+        "url": "https://www.revolut.com/savings/",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "Up to 4% on Ultra",
+            "type": ""
           },
           {
             "text": "App only",
