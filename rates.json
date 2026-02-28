@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25",
+  "lastUpdated": "2026-02-28",
   "savings": {
     "easyAccess": [
       {
@@ -40,6 +40,27 @@
           },
           {
             "text": "Max 3 withdrawals/yr",
+            "type": ""
+          }
+        ]
+      },
+      {
+        "provider": "Coventry BS",
+        "account": "3 Access Saver (1 Year)",
+        "rate": "4.25%",
+        "rateLabel": "AER",
+        "url": "https://www.coventrybuildingsociety.co.uk/member/product/savings/limited_access/3-access-saver-1-year.html",
+        "tags": [
+          {
+            "text": "FSCS",
+            "type": "fscs"
+          },
+          {
+            "text": "12m term",
+            "type": ""
+          },
+          {
+            "text": "Max 3 withdrawals",
             "type": ""
           }
         ]
