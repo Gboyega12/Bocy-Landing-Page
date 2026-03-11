@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BOCY — Talk to Your Money | Voice-First AI Finance</title>
-    <meta name="description" content="BOCY is the AI you talk to about your money. Ask a question, get a real answer, and only act when you say so. Voice-first financial optimisation for the UK.">
+    <title>BOCY — Your Money Has Moves | AI Financial Insights</title>
+    <meta name="description" content="BOCY scans your accounts and surfaces the mathematically optimal insights — ranked by impact, in pounds and pence. No opinions. Just the numbers.">
     <meta name="theme-color" content="#000000">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bocy.io/">
@@ -12,16 +12,16 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bocy.io/">
-    <meta property="og:title" content="BOCY — Talk to Your Money | Voice-First AI Finance">
-    <meta property="og:description" content="BOCY is the AI you talk to about your money. Ask a question, get a real answer, and only act when you say so.">
+    <meta property="og:title" content="BOCY — Your Money Has Moves | AI Financial Insights">
+    <meta property="og:description" content="BOCY scans your accounts and surfaces the mathematically optimal insights — ranked by impact, in pounds and pence.">
     <meta property="og:image" content="https://bocy.io/og-image.png">
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="BOCY">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@bocy_io">
-    <meta name="twitter:title" content="BOCY — Talk to Your Money | Voice-First AI Finance">
-    <meta name="twitter:description" content="BOCY is the AI you talk to about your money. Ask a question, get a real answer, and only act when you say so.">
+    <meta name="twitter:title" content="BOCY — Your Money Has Moves | AI Financial Insights">
+    <meta name="twitter:description" content="BOCY scans your accounts and surfaces the mathematically optimal insights — ranked by impact, in pounds and pence.">
     <meta name="twitter:image" content="https://bocy.io/og-image.png">
 
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -400,121 +400,21 @@
         .magnetic { display: inline-block; }
 
         /* ═══════════════════════════════════════
-           PHONE MOCKUP — Voice Chat Visualisation
+           HERO MOCKUP — App Screenshot
            ═══════════════════════════════════════ */
-        .phone-wrapper {
-            perspective: 1200px; margin: 0 auto;
+        .hero__mockup {
+            margin: 0 auto;
             opacity: 0; transform: translateY(60px);
+            max-width: 320px;
         }
-        .phone {
-            width: 260px; margin: 0 auto;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 36px; padding: 6px;
+        .hero__mockup-img {
+            width: 100%;
+            height: auto;
+            border-radius: 32px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 120px var(--accent-glow);
-            transform-style: preserve-3d;
-            transition: transform 0.6s var(--ease-out-expo);
         }
-        .phone__screen {
-            border-radius: 32px; overflow: hidden;
-            background: #050505;
-            height: 460px; display: flex; flex-direction: column;
-            position: relative;
-        }
-        .phone__notch {
-            width: 80px; height: 22px; margin: 0 auto;
-            background: #000; border-radius: 0 0 14px 14px;
-            position: relative; z-index: 2;
-        }
-        .phone__chat {
-            flex: 1; display: flex; flex-direction: column;
-            padding: 1rem 0.75rem 0.75rem; gap: 0.625rem;
-            overflow: hidden; position: relative;
-        }
-        .phone__chat-header {
-            text-align: center; padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 0.25rem;
-        }
-        .phone__chat-name {
-            font-family: var(--font-mono); font-size: 0.6rem;
-            color: var(--accent); letter-spacing: 0.1em;
-            text-transform: uppercase; font-weight: 600;
-        }
-        .phone__chat-status {
-            font-size: 0.5rem; color: var(--text-muted); margin-top: 2px;
-        }
-        .chat-bubble {
-            max-width: 85%; padding: 0.5rem 0.75rem;
-            border-radius: 12px; font-size: 0.625rem;
-            line-height: 1.5; opacity: 0;
-            transform: translateY(10px);
-            animation: bubble-in 0.5s var(--ease-out-expo) forwards;
-        }
-        .chat-bubble--user {
-            align-self: flex-end; margin-left: auto;
-            background: rgba(0,212,170,0.15);
-            border: 1px solid rgba(0,212,170,0.2);
-            color: var(--accent);
-            border-bottom-right-radius: 4px;
-        }
-        .chat-bubble--bocy {
-            align-self: flex-start;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: var(--text-secondary);
-            border-bottom-left-radius: 4px;
-        }
-        .chat-bubble--bocy .highlight { color: var(--accent); font-weight: 600; }
-        .chat-bubble:nth-child(2) { animation-delay: 0.8s; }
-        .chat-bubble:nth-child(3) { animation-delay: 2.2s; }
-        .chat-bubble:nth-child(4) { animation-delay: 3.8s; }
-        .chat-bubble:nth-child(5) { animation-delay: 5.2s; }
-        .chat-bubble:nth-child(6) { animation-delay: 6.8s; }
-        @keyframes bubble-in {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Voice waveform */
-        .phone__voice {
-            display: flex; align-items: center; justify-content: center;
-            gap: 3px; padding: 0.625rem; margin-top: auto;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px;
-        }
-        .voice-bar {
-            width: 3px; border-radius: 3px;
-            background: var(--accent);
-            animation: voice-wave 1.2s ease-in-out infinite;
-        }
-        .voice-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-        .voice-bar:nth-child(2) { height: 14px; animation-delay: 0.1s; }
-        .voice-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
-        .voice-bar:nth-child(4) { height: 12px; animation-delay: 0.3s; }
-        .voice-bar:nth-child(5) { height: 18px; animation-delay: 0.15s; }
-        .voice-bar:nth-child(6) { height: 10px; animation-delay: 0.25s; }
-        .voice-bar:nth-child(7) { height: 16px; animation-delay: 0.05s; }
-        .voice-bar:nth-child(8) { height: 8px; animation-delay: 0.35s; }
-        .voice-bar:nth-child(9) { height: 14px; animation-delay: 0.2s; }
-        .voice-bar:nth-child(10) { height: 6px; animation-delay: 0.1s; }
-        @keyframes voice-wave {
-            0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
-            50% { transform: scaleY(1); opacity: 1; }
-        }
-        .phone__voice-label {
-            font-family: var(--font-mono); font-size: 0.5rem;
-            color: var(--text-muted); margin-left: 8px;
-            letter-spacing: 0.05em;
-        }
-        .phone__voice-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent); margin-left: auto;
-            box-shadow: 0 0 8px var(--accent);
-            animation: pulse-dot 1.5s ease-in-out infinite;
-        }
-        @media (min-width: 640px) { .phone { width: 300px; border-radius: 42px; } .phone__screen { border-radius: 38px; height: 520px; } .chat-bubble { font-size: 0.6875rem; } }
-        @media (min-width: 1024px) { .phone { width: 320px; } .phone__screen { height: 560px; } }
+        @media (min-width: 640px) { .hero__mockup { max-width: 360px; } }
+        @media (min-width: 1024px) { .hero__mockup { max-width: 400px; } }
 
         /* ═══════════════════════════════════════
            CLOSING CTA
@@ -1042,7 +942,7 @@
             <div class="nav__links">
                 <a href="/savings-comparison.html" class="nav__link">Savings</a>
                 <a href="/isa-comparison.html" class="nav__link">ISAs</a>
-                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta magnetic">Start Talking</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta magnetic">Start Optimising</a>
             </div>
         </div>
     </nav>
@@ -1055,46 +955,23 @@
             <div class="hero__content">
                 <span class="hero__badge">
                     <span class="hero__badge-dot"></span>
-                    Voice-first AI finance
+                    Mathematically optimal insights
                 </span>
                 <h1 class="hero__title">
-                    <span class="hero__title-line">Talk to your money.</span>
-                    <span class="hero__title-line">It finally listens.</span>
+                    <span class="hero__title-line">Your money has moves.</span>
+                    <span class="hero__title-line">You just can&rsquo;t see them yet.</span>
                 </h1>
-                <p class="hero__subtitle">You're losing hundreds a year to accounts that don't keep up. BOCY is the AI you talk to about your money &mdash; it finds every opportunity, explains every option, and only moves when you say so.</p>
+                <p class="hero__subtitle">BOCY scans your accounts and surfaces the mathematically optimal insights &mdash; ranked by impact, in pounds and pence. No opinions. Just the numbers.</p>
                 <div class="hero__cta-group">
                     <div class="magnetic">
-                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Talking</span></a>
+                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Optimising</span></a>
                     </div>
                     <div class="magnetic">
                         <a href="#how-it-works" class="btn btn--glass"><span class="btn__text">See how it works</span></a>
                     </div>
                 </div>
-                <div class="phone-wrapper">
-                    <div class="phone">
-                        <div class="phone__screen">
-                            <div class="phone__notch"></div>
-                            <div class="phone__chat">
-                                <div class="phone__chat-header">
-                                    <div class="phone__chat-name">BOCY</div>
-                                    <div class="phone__chat-status">listening&hellip;</div>
-                                </div>
-                                <div class="chat-bubble chat-bubble--user">"Hey Bocy, what should I do with the &pound;800 left this month?"</div>
-                                <div class="chat-bubble chat-bubble--bocy">I've looked at your accounts. You have <span class="highlight">&pound;2,100 on a credit card at 22.9% APR</span> and savings earning just 1.2%.</div>
-                                <div class="chat-bubble chat-bubble--bocy">If you put <span class="highlight">&pound;600 toward the card</span> and keep &pound;200 as buffer, you'll save <span class="highlight">&pound;127 in interest</span> this year.</div>
-                                <div class="chat-bubble chat-bubble--user">"Do it."</div>
-                                <div class="chat-bubble chat-bubble--bocy">&check; Done. &pound;600 payment scheduled for tomorrow. I'll check again next month.</div>
-                                <div class="phone__voice">
-                                    <span class="voice-bar"></span><span class="voice-bar"></span><span class="voice-bar"></span>
-                                    <span class="voice-bar"></span><span class="voice-bar"></span><span class="voice-bar"></span>
-                                    <span class="voice-bar"></span><span class="voice-bar"></span><span class="voice-bar"></span>
-                                    <span class="voice-bar"></span>
-                                    <span class="phone__voice-label">Speak to Bocy</span>
-                                    <span class="phone__voice-dot"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero__mockup">
+                    <img src="1.png" alt="BOCY app showing ranked financial moves with pound savings" class="hero__mockup-img" />
                 </div>
             </div>
             <div class="hero__scroll-hint">
@@ -1107,7 +984,7 @@
         <section class="trust">
             <ul class="trust__list">
                 <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Bank-level encryption</li>
-                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Voice-first &mdash; just talk</li>
+                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Ranked by &pound; impact</li>
                 <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></span>Nothing moves without your say</li>
             </ul>
         </section>
@@ -1281,11 +1158,11 @@
         <section class="cta-section">
             <div class="cta-section__glow"></div>
             <div class="cta-section__content">
-                <h2 class="cta-section__title">Your money is already doing something.<br><span>Make sure it&rsquo;s the right thing.</span></h2>
-                <p class="cta-section__desc">One conversation with Bocy. That&rsquo;s all it takes to see what you&rsquo;ve been missing.</p>
+                <h2 class="cta-section__title">Your money is already doing something.<br><span>Make sure it&rsquo;s the optimal thing.</span></h2>
+                <p class="cta-section__desc">BOCY finds the moves you&rsquo;re missing &mdash; ranked by impact, backed by the maths.</p>
                 <div class="cta-section__buttons">
                     <div class="magnetic">
-                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Talking to Bocy</span></a>
+                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Optimising</span></a>
                     </div>
                     <div class="magnetic">
                         <a href="/compare.html" class="btn btn--glass"><span class="btn__text">Compare savings rates</span></a>
@@ -1305,7 +1182,7 @@
                 <div class="bocy-pet__mouth"></div>
             </div>
         </div>
-        <div class="bocy-pet__bubble">Hey! Want to talk about your money?</div>
+        <div class="bocy-pet__bubble">Hey! Want to see your best moves?</div>
     </div>
 
     <footer class="footer">
@@ -1315,7 +1192,7 @@
                 <a href="#features" class="footer__nav-link magnetic">Features</a>
                 <a href="/savings-comparison.html" class="footer__nav-link magnetic">Savings</a>
                 <a href="/isa-comparison.html" class="footer__nav-link magnetic">ISAs</a>
-                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="footer__nav-link magnetic">Start Talking</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="footer__nav-link magnetic">Start Optimising</a>
             </nav>
             <div class="footer__bottom-row">
                 <a href="/" class="footer__logo magnetic">BOCY.</a>
@@ -1485,7 +1362,7 @@
         introTL.to('.hero__badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.7')
             .to('.hero__subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.5')
             .to('.hero__cta-group', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to('.phone-wrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+            .to('.hero__mockup', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
             .to('.hero__scroll-hint', { opacity: 0.6, duration: 0.6 }, '-=0.2');
 
         // Nav items
@@ -1525,19 +1402,7 @@
         });
 
         // ═══════════════════════════════════════
-        // PHONE — 3D tilt on mouse
-        // ═══════════════════════════════════════
-        const phone = document.querySelector('.phone');
-        if (!isTouchDevice && phone) {
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 10;
-                const y = (e.clientY / window.innerHeight - 0.5) * 10;
-                gsap.to(phone, {
-                    rotateY: x, rotateX: -y,
-                    duration: 0.8, ease: 'power2.out'
-                });
-            });
-        }
+        // HERO MOCKUP — no 3D tilt needed for static image
 
         // ═══════════════════════════════════════
         // TRUST BAR — Staggered reveal
@@ -1845,11 +1710,11 @@
         const bocyPet = document.querySelector('.bocy-pet');
         const bocyBubble = document.querySelector('.bocy-pet__bubble');
         const bocyMessages = [
-            'Hey! Want to talk about your money?',
+            'Hey! Want to see your best moves?',
             'I found something interesting in your accounts',
-            'Ask me anything about your finances',
+            'Your numbers say you could be doing better',
             'Your savings could be working harder',
-            "Just say the word — I'm listening",
+            'I spotted some moves worth checking',
             'Ready when you are',
         ];
         let messageIndex = 0;
