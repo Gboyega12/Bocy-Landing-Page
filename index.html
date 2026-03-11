@@ -30,710 +30,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://app.bocy.io">
-    <link rel="prefetch" href="https://app.bocy.io" as="document">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <style>
-        /* ═══════════════════════════════════════
-           DESIGN SYSTEM — Variables
-           ═══════════════════════════════════════ */
-        :root {
-            --bg: #000; --bg-elevated: #060606; --bg-subtle: #0A0A0A;
-            --text: #FAFAFA; --text-secondary: #999; --text-muted: #555;
-            --accent: #00D4AA; --accent-dim: rgba(0,212,170,0.12); --accent-glow: rgba(0,212,170,0.06);
-            --warm: #FF9F43; --warm-dim: rgba(255,159,67,0.1);
-            --blue: #4D9FFF; --purple: #A855F7; --coral: #FF6B6B; --teal: #2DD4BF;
-            --glass-bg: rgba(255,255,255,0.03); --glass-bg-hover: rgba(255,255,255,0.06);
-            --glass-border: rgba(255,255,255,0.07); --glass-border-hover: rgba(255,255,255,0.14);
-            --font-mono: 'JetBrains Mono', monospace;
-            --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-pill: 100px;
-        }
-
-        /* ═══════════════════════════════════════
-           RESET & BASE
-           ═══════════════════════════════════════ */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 1rem; line-height: 1.6;
-            color: var(--text); background: var(--bg);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-        a { color: inherit; text-decoration: none; }
-        button { font-family: inherit; cursor: pointer; }
-        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-
-        /* ═══════════════════════════════════════
-           DOT GRID BACKGROUND (Nothing.tech style)
-           ═══════════════════════════════════════ */
-        .dot-grid {
-            position: fixed; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none; z-index: 0;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
-        }
-
-        /* Cursor glow that illuminates the dot grid */
-        .cursor-glow {
-            position: fixed; width: min(500px, 100vw); height: 500px;
-            background: radial-gradient(circle, rgba(0,212,170,0.035) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none; z-index: 0;
-            transform: translate(-50%, -50%);
-            transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s;
-            opacity: 0;
-        }
-        .cursor-glow.is-active { opacity: 1; }
-
-        /* Scan line effect (retro CRT) */
-        .scanline {
-            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(255,255,255,0.008) 2px,
-                rgba(255,255,255,0.008) 4px
-            );
-        }
-
-        /* ═══════════════════════════════════════
-           MONO LABEL — Reusable section label
-           ═══════════════════════════════════════ */
-        .mono-label {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--text-muted); letter-spacing: 0.08em;
-            text-transform: uppercase; margin-bottom: 1rem;
-        }
-
-        /* ═══════════════════════════════════════
-           GLASS CARD — Reusable glass component
-           ═══════════════════════════════════════ */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: var(--glass-border-hover);
-            background: var(--glass-bg-hover);
-        }
-
-        /* ═══════════════════════════════════════
-           BUTTONS — Glass style
-           ═══════════════════════════════════════ */
-        .btn {
-            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
-            padding: 0.875rem 1.75rem; font-size: 1rem; font-weight: 500;
-            border-radius: var(--radius-pill); border: none;
-            transition: all 0.25s ease; cursor: pointer;
-            position: relative; overflow: hidden;
-        }
-        .btn--primary {
-            background: var(--text); color: var(--bg); font-weight: 600;
-        }
-        .btn--primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(255,255,255,0.12), 0 0 60px rgba(255,255,255,0.04);
-        }
-        .btn--glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary); font-size: 0.9375rem;
-        }
-        .btn--glass:hover {
-            background: var(--glass-bg-hover);
-            border-color: var(--glass-border-hover);
-            color: var(--text);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        /* ═══════════════════════════════════════
-           NAV — Glassmorphism
-           ═══════════════════════════════════════ */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1rem 1.25rem;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .nav__inner {
-            display: flex; justify-content: space-between; align-items: center;
-            max-width: 1200px; margin: 0 auto;
-        }
-        .nav__logo {
-            font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
-            font-family: var(--font-mono);
-        }
-        .nav__logo span { color: var(--accent); }
-        .nav__cta {
-            display: none; padding: 0.5rem 1.25rem;
-            background: var(--glass-bg); color: var(--text);
-            font-size: 0.8125rem; font-weight: 500;
-            border-radius: var(--radius-pill);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            transition: all 0.2s ease;
-        }
-        .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); }
-        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
-        .nav__link {
-            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
-            border-radius: var(--radius-pill); transition: all 0.2s;
-            border: 1px solid transparent; white-space: nowrap;
-        }
-        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
-        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
-        @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.25rem; } }
-
-        /* ═══════════════════════════════════════
-           HERO
-           ═══════════════════════════════════════ */
-        .hero {
-            min-height: 100vh; min-height: 100dvh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 7rem 1.5rem 4rem; text-align: center;
-            position: relative; z-index: 1; overflow: hidden;
-        }
-        .hero__glow {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: min(700px, 100vw); height: 700px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-            filter: blur(80px); pointer-events: none;
-            animation: hero-glow-pulse 6s ease-in-out infinite;
-        }
-        @keyframes hero-glow-pulse {
-            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-        .hero__content { position: relative; z-index: 1; max-width: 680px; }
-        .hero__badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1.125rem; margin-bottom: 2.5rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-pill);
-            font-family: var(--font-mono);
-            font-size: 0.6875rem; font-weight: 500; color: var(--text-secondary);
-            letter-spacing: 0.04em; text-transform: uppercase;
-        }
-        .hero__badge-dot {
-            width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
-            50% { opacity: 0.5; box-shadow: 0 0 16px var(--accent); }
-        }
-        .hero__title {
-            font-size: 2.25rem; font-weight: 700; letter-spacing: -0.04em;
-            line-height: 1.05; margin-bottom: 1.5rem;
-        }
-        .hero__title-line { display: block; }
-        .hero__title-line:first-child { color: var(--text); }
-        .hero__title-line:last-child {
-            background: linear-gradient(135deg, var(--accent), var(--teal));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero__subtitle {
-            font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7;
-            margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto;
-            font-weight: 400;
-        }
-        .hero__cta-group {
-            display: flex; flex-direction: column; gap: 0.75rem;
-            width: 100%; max-width: 340px; margin: 0 auto 4rem;
-        }
-
-        @media (min-width: 640px) {
-            .hero { padding: 8rem 2rem 5rem; }
-            .hero__title { font-size: 3rem; }
-            .hero__subtitle { font-size: 1.125rem; }
-            .hero__cta-group { flex-direction: row; max-width: 320px; align-items: center; justify-content: center; }
-        }
-        @media (min-width: 1024px) {
-            .hero { padding: 8rem 3rem 6rem; }
-            .hero__title { font-size: 3.75rem; }
-            .hero__subtitle { max-width: 520px; }
-        }
-        @media (min-width: 1280px) { .hero__title { font-size: 4.5rem; } }
-
-        /* ═══════════════════════════════════════
-           PHONE MOCKUP — Glass style
-           ═══════════════════════════════════════ */
-        .phone {
-            width: 220px; margin: 0 auto;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 28px; padding: 6px;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 100px var(--accent-glow);
-        }
-        .phone__screen {
-            border-radius: 24px; overflow: hidden;
-            display: block;
-        }
-        .phone__screen img {
-            width: 100%; height: auto; display: block;
-            border-radius: 24px;
-        }
-
-        @media (min-width: 640px) {
-            .phone { width: 260px; border-radius: 36px; }
-            .phone__screen { border-radius: 32px; }
-            .phone__screen img { border-radius: 32px; }
-        }
-        @media (min-width: 1024px) {
-            .phone { width: 280px; border-radius: 40px; }
-            .phone__screen { border-radius: 36px; }
-            .phone__screen img { border-radius: 36px; }
-        }
-
-        /* ═══════════════════════════════════════
-           TRUST BAR — ASCII dot art icons
-           ═══════════════════════════════════════ */
-        .trust { padding: 2rem 1.25rem; position: relative; z-index: 1; }
-        .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; list-style: none; }
-        .trust__item {
-            display: flex; align-items: center; gap: 0.75rem;
-            font-size: 0.8125rem; color: var(--text-secondary);
-            padding: 0.625rem 1rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-pill);
-        }
-        .trust__icon .dot-icon { gap: 2px; grid-template-columns: repeat(3, 4px); grid-template-rows: repeat(3, 4px); }
-        .trust__icon .dot-icon span { width: 4px; height: 4px; }
-        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 1.25rem; } }
-
-        /* ═══════════════════════════════════════
-           PEOPLE SECTION — User stories
-           ═══════════════════════════════════════ */
-        .people {
-            padding: 5rem 1.25rem; position: relative; z-index: 1;
-        }
-        .people__header { text-align: center; margin-bottom: 3.5rem; }
-        .people__title {
-            font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em;
-            margin-bottom: 0.75rem;
-        }
-        .people__subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 440px; margin: 0 auto; }
-        .people__grid {
-            display: grid; gap: 1rem; max-width: 960px; margin: 0 auto;
-        }
-        .person-card {
-            padding: 1.75rem; position: relative; overflow: hidden;
-        }
-        /* Dot matrix pattern inside person cards */
-        .person-card::before {
-            content: ''; position: absolute; top: 0; right: 0;
-            width: 100px; height: 100px;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 10px 10px;
-            pointer-events: none;
-            mask-image: radial-gradient(circle at top right, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(circle at top right, black 20%, transparent 70%);
-        }
-        .person-card__top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
-        .person-card__avatar {
-            width: 44px; height: 44px; border-radius: 50%;
-            display: grid; place-items: center;
-            font-weight: 600; font-size: 1rem; color: var(--bg);
-            flex-shrink: 0;
-        }
-        .person-card__avatar--1 { background: linear-gradient(135deg, var(--accent), var(--teal)); }
-        .person-card__avatar--2 { background: linear-gradient(135deg, var(--blue), var(--purple)); }
-        .person-card__avatar--3 { background: linear-gradient(135deg, var(--warm), var(--coral)); }
-        .person-card__info { display: flex; flex-direction: column; }
-        .person-card__name { font-size: 0.9375rem; font-weight: 600; }
-        .person-card__role { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
-        .person-card__quote {
-            font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;
-            margin-bottom: 1.25rem; font-style: italic;
-        }
-        .person-card__stat {
-            display: flex; align-items: baseline; gap: 0.5rem;
-            padding-top: 1rem; border-top: 1px solid var(--glass-border);
-        }
-        .person-card__stat-value {
-            font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; color: var(--accent);
-        }
-        .person-card__stat-label { font-size: 0.75rem; color: var(--text-muted); }
-
-        @media (min-width: 768px) {
-            .people { padding: 6rem 2rem; }
-            .people__title { font-size: 2rem; }
-            .people__grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (min-width: 1024px) {
-            .people { padding: 7rem 3rem; }
-            .people__title { font-size: 2.5rem; }
-        }
-
-        /* ═══════════════════════════════════════
-           TIMELINE / HOW IT WORKS — Glass cards
-           ═══════════════════════════════════════ */
-        .timeline-section { padding: 5rem 1.25rem; position: relative; z-index: 1; }
-        .timeline-section__header { text-align: center; margin-bottom: 4rem; }
-        .timeline-section__title {
-            font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem;
-        }
-        .timeline-section__subtitle { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-muted); }
-        .timeline { max-width: 560px; margin: 0 auto; position: relative; padding-left: 2rem; }
-        .timeline::before {
-            content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
-            width: 1px;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(255,255,255,0.15) 0px,
-                rgba(255,255,255,0.15) 4px,
-                transparent 4px,
-                transparent 10px
-            );
-        }
-        .timeline__item { position: relative; padding: 0 0 2.5rem 2rem; }
-        .timeline__item:last-child { padding-bottom: 0; }
-        .timeline__dot {
-            position: absolute; left: -2rem; top: 0;
-            width: 16px; height: 16px;
-            background: var(--bg); border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50%; z-index: 2;
-            transition: all 0.4s ease;
-        }
-        .timeline__item--active .timeline__dot {
-            background: var(--accent); border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-dim), 0 0 20px var(--accent-glow);
-        }
-        .timeline__card {
-            padding: 1.5rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            transition: border-color 0.3s ease;
-        }
-        .timeline__item--active .timeline__card { border-color: var(--glass-border-hover); }
-        .timeline__step {
-            font-family: var(--font-mono); font-size: 0.625rem;
-            color: var(--accent); margin-bottom: 0.75rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-        }
-        .timeline__title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .timeline__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
-        .timeline__data {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm); overflow: hidden;
-        }
-        .timeline__row {
-            display: flex; justify-content: space-between;
-            padding: 0.625rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .timeline__row:last-child { border-bottom: none; }
-        .timeline__row-label { color: var(--text-muted); }
-        .timeline__row-value { color: var(--text-secondary); }
-        .timeline__row-value--highlight { color: var(--accent); font-weight: 500; }
-        .timeline__row-value--negative { color: var(--text-muted); }
-        .timeline__actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
-        .timeline__btn {
-            flex: 1; padding: 0.625rem; font-family: var(--font-mono);
-            font-size: 0.75rem; font-weight: 500; border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary);
-            transition: all 0.2s ease;
-        }
-        .timeline__btn:hover { border-color: var(--glass-border-hover); color: var(--text); }
-        .timeline__btn--approve {
-            background: var(--accent); border-color: var(--accent); color: var(--bg);
-        }
-        .timeline__btn--approve:hover { background: var(--teal); border-color: var(--teal); }
-        .timeline__result {
-            margin-top: 1rem; padding: 0.75rem 1rem;
-            font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);
-            border: 1px solid var(--accent-dim); border-radius: var(--radius-sm);
-            background: rgba(0,212,170,0.04);
-        }
-        @media (min-width: 768px) {
-            .timeline-section { padding: 6rem 2rem; }
-            .timeline-section__title { font-size: 2rem; }
-            .timeline__card { padding: 2rem; }
-        }
-        @media (min-width: 1024px) {
-            .timeline-section { padding: 7rem 3rem; }
-            .timeline-section__title { font-size: 2.5rem; }
-        }
-
-        /* ═══════════════════════════════════════
-           ANIMATED DOT-MATRIX ICON — Reusable
-           ═══════════════════════════════════════ */
-        .dot-icon {
-            display: inline-grid;
-            grid-template-columns: repeat(5, 6px);
-            grid-template-rows: repeat(5, 6px);
-            gap: 3px;
-            flex-shrink: 0;
-        }
-        .dot-icon span {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent);
-            opacity: 0.12;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .dot-icon span.on {
-            opacity: 1;
-            animation: dot-pulse 2.5s ease-in-out infinite;
-        }
-        .dot-icon span.on:nth-child(odd) { animation-delay: 0.15s; }
-        .dot-icon span.on:nth-child(3n) { animation-delay: 0.3s; }
-        @keyframes dot-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.15); }
-        }
-        /* Glow on hover */
-        .glass-card:hover .dot-icon span.on,
-        .trust__item:hover .dot-icon span.on,
-        .footer__social-link:hover .dot-icon span.on {
-            filter: drop-shadow(0 0 4px var(--accent));
-        }
-
-        /* ═══════════════════════════════════════
-           FEATURES — Animated dot-matrix icons
-           ═══════════════════════════════════════ */
-        .features { padding: 5rem 1.25rem; position: relative; z-index: 1; }
-        .features__header { text-align: center; margin-bottom: 3.5rem; }
-        .features__title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
-        .features__subtitle { font-size: 1rem; color: var(--text-secondary); }
-        .features__grid { display: grid; gap: 1rem; max-width: 960px; margin: 0 auto; }
-
-        .feature {
-            display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start;
-        }
-        .feature__title { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
-        .feature__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
-
-        @media (min-width: 768px) {
-            .features { padding: 6rem 2rem; }
-            .features__title { font-size: 2rem; }
-            .features__grid { grid-template-columns: repeat(3, 1fr); }
-            .feature { flex-direction: column; text-align: center; align-items: center; padding: 2rem 1.5rem; }
-        }
-        @media (min-width: 1024px) {
-            .features { padding: 7rem 3rem; }
-            .features__title { font-size: 2.5rem; }
-        }
-
-        /* ═══════════════════════════════════════
-           TAMAGOTCHI BOCY — Live character
-           ═══════════════════════════════════════ */
-        .bocy-pet {
-            position: fixed; bottom: 1.5rem; right: 1.5rem;
-            z-index: 90; cursor: pointer;
-            animation: bocy-float 3s ease-in-out infinite;
-            -webkit-tap-highlight-color: transparent;
-        }
-        @keyframes bocy-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .bocy-pet__body {
-            width: 56px; height: 56px; position: relative;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            display: grid; place-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 40px var(--accent-glow);
-        }
-        .bocy-pet:hover .bocy-pet__body {
-            border-color: var(--accent);
-            box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 60px rgba(0,212,170,0.15);
-            transform: scale(1.08);
-        }
-        .bocy-pet__face {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-            padding: 2px; position: relative;
-        }
-        .bocy-pet__eye {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 6px var(--accent);
-            animation: bocy-blink 4s ease-in-out infinite;
-            transition: all 0.2s;
-        }
-        .bocy-pet__eye:nth-child(2) { animation-delay: 0.1s; }
-        @keyframes bocy-blink {
-            0%, 42%, 46%, 100% { transform: scaleY(1); }
-            44% { transform: scaleY(0.1); }
-        }
-        .bocy-pet:hover .bocy-pet__eye {
-            background: #fff;
-            box-shadow: 0 0 10px #fff;
-            width: 7px; height: 7px;
-        }
-        /* Active/clicked state */
-        .bocy-pet.is-happy .bocy-pet__eye {
-            transform: scaleY(0.6); border-radius: 50% 50% 0 0;
-        }
-        .bocy-pet.is-happy .bocy-pet__body {
-            border-color: var(--accent);
-        }
-        /* Mouth - appears on hover */
-        .bocy-pet__mouth {
-            position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
-            width: 8px; height: 4px;
-            border-bottom: 2px solid var(--accent);
-            border-radius: 0 0 50% 50%;
-            opacity: 0; transition: opacity 0.2s;
-        }
-        .bocy-pet:hover .bocy-pet__mouth { opacity: 1; }
-        .bocy-pet.is-happy .bocy-pet__mouth { opacity: 1; height: 5px; }
-        /* Status dot ring */
-        .bocy-pet__ring {
-            position: absolute; inset: -3px; border-radius: 50%;
-            border: 1px solid transparent;
-            border-top-color: var(--accent);
-            animation: bocy-ring-spin 3s linear infinite;
-            opacity: 0.4;
-        }
-        @keyframes bocy-ring-spin {
-            to { transform: rotate(360deg); }
-        }
-        /* Speech bubble */
-        .bocy-pet__bubble {
-            position: absolute; bottom: calc(100% + 10px); right: 0;
-            padding: 0.5rem 0.75rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm);
-            font-family: var(--font-mono); font-size: 0.625rem;
-            color: var(--text-secondary); white-space: nowrap;
-            opacity: 0; transform: translateY(4px) scale(0.95);
-            transition: all 0.25s ease; pointer-events: none;
-        }
-        .bocy-pet__bubble::after {
-            content: ''; position: absolute; bottom: -5px; right: 18px;
-            width: 8px; height: 8px;
-            background: var(--glass-bg);
-            border-right: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            transform: rotate(45deg);
-        }
-        .bocy-pet:hover .bocy-pet__bubble,
-        .bocy-pet.is-speaking .bocy-pet__bubble {
-            opacity: 1; transform: translateY(0) scale(1);
-        }
-        /* Particle burst on click */
-        .bocy-particle {
-            position: fixed; width: 4px; height: 4px;
-            background: var(--accent); border-radius: 50%;
-            pointer-events: none; z-index: 89;
-        }
-        @media (min-width: 768px) {
-            .bocy-pet { bottom: 2rem; right: 2rem; }
-            .bocy-pet__body { width: 64px; height: 64px; }
-        }
-
-        /* ═══════════════════════════════════════
-           FOOTER — Nothing.tech style with dot-matrix nav
-           ═══════════════════════════════════════ */
-        .footer { padding: 4rem 1.25rem 2.5rem; position: relative; z-index: 1; }
-        .footer__inner { max-width: 1200px; margin: 0 auto; }
-
-        /* Footer navigation */
-        .footer__nav {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 0.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .footer__nav-link {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
-            border-radius: var(--radius-pill);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .footer__nav-link:hover {
-            color: var(--text); background: var(--glass-bg);
-            border-color: var(--glass-border);
-        }
-
-        .footer__bottom-row {
-            display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;
-        }
-        .footer__logo { font-size: 1rem; font-weight: 700; font-family: var(--font-mono); }
-        .footer__social { display: flex; gap: 0.75rem; }
-        .footer__social-link {
-            width: 40px; height: 40px; display: grid; place-items: center;
-            font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted);
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm); transition: all 0.2s ease;
-        }
-        .footer__social-link .dot-icon span.on { background: var(--text-muted); opacity: 1; }
-        .footer__social-link:hover {
-            color: var(--text); border-color: var(--glass-border-hover);
-            background: var(--glass-bg-hover);
-        }
-        .footer__social-link:hover .dot-icon span.on { background: var(--accent); }
-        .footer__links { display: flex; gap: 1.5rem; list-style: none; }
-        .footer__link { font-size: 0.8125rem; color: var(--text-muted); transition: color 0.2s ease; }
-        .footer__link:hover { color: var(--text-secondary); }
-        .footer__copy {
-            margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);
-            font-size: 0.6875rem; color: var(--text-muted); font-family: var(--font-mono); text-align: center;
-        }
-        @media (min-width: 768px) {
-            .footer { padding: 5rem 2rem 3rem; }
-            .footer__nav { gap: 0.5rem; }
-            .footer__nav-link { font-size: 0.9375rem; }
-            .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
-            .footer__right { display: flex; align-items: center; gap: 2rem; }
-        }
-        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } }
-
-        /* ═══════════════════════════════════════
-           SECTION DIVIDER — ASCII dot art
-           ═══════════════════════════════════════ */
-        .divider {
-            text-align: center; padding: 1.5rem 0; position: relative; z-index: 1;
-            font-family: var(--font-mono); font-size: 0.625rem;
-            color: rgba(255,255,255,0.08); letter-spacing: 0.3em;
-            user-select: none; overflow: hidden; max-width: 100%;
-        }
-
-        /* ═══════════════════════════════════════
-           ANIMATIONS & REVEALS
-           ═══════════════════════════════════════ */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.is-visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; transition: none; }
-            .hero__glow { animation: none; }
-            .hero__badge-dot { animation: none; }
-            .bocy-pet { animation: none; }
-            .bocy-pet__eye { animation: none; }
-            .bocy-pet__ring { animation: none; }
-        }
-    </style>
+    <!-- Animation Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 
     <script type="application/ld+json">
     [{
@@ -756,9 +58,7 @@
         "email": "hello@bocy.io",
         "contactType": "customer service"
       },
-      "sameAs": [
-        "https://twitter.com/bocy_io"
-      ]
+      "sameAs": ["https://twitter.com/bocy_io"]
     },
     {
       "@context": "https://schema.org",
@@ -783,20 +83,778 @@
       }
     }]
     </script>
+    <style>
+        /* ═══════════════════════════════════════
+           DESIGN SYSTEM
+           ═══════════════════════════════════════ */
+        :root {
+            --bg: #000; --bg-elevated: #060606; --bg-subtle: #0A0A0A;
+            --text: #FAFAFA; --text-secondary: #999; --text-muted: #555;
+            --accent: #00D4AA; --accent-dim: rgba(0,212,170,0.12); --accent-glow: rgba(0,212,170,0.06);
+            --warm: #FF9F43; --warm-dim: rgba(255,159,67,0.1);
+            --blue: #4D9FFF; --purple: #A855F7; --coral: #FF6B6B; --teal: #2DD4BF;
+            --glass-bg: rgba(255,255,255,0.03); --glass-bg-hover: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.07); --glass-border-hover: rgba(255,255,255,0.14);
+            --font-mono: 'JetBrains Mono', monospace;
+            --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-pill: 100px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* RESET */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1rem; line-height: 1.6;
+            color: var(--text); background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; cursor: none;
+        }
+        a { color: inherit; text-decoration: none; cursor: none; }
+        button { font-family: inherit; cursor: none; }
+        img { display: block; max-width: 100%; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+        /* ═══════════════════════════════════════
+           PRELOADER
+           ═══════════════════════════════════════ */
+        .preloader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--bg);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s;
+        }
+        .preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+        .preloader__logo {
+            font-family: var(--font-mono); font-size: 2rem; font-weight: 700;
+            letter-spacing: -0.02em; opacity: 0;
+        }
+        .preloader__logo span { color: var(--accent); }
+        .preloader__bar {
+            width: 120px; height: 2px; margin-top: 2rem;
+            background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
+        }
+        .preloader__fill {
+            width: 0%; height: 100%; background: var(--accent); border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════
+           CUSTOM CURSOR
+           ═══════════════════════════════════════ */
+        .cursor {
+            position: fixed; top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none; z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
+                        background 0.3s, border-color 0.3s, opacity 0.3s;
+            mix-blend-mode: difference;
+            opacity: 0;
+        }
+        .cursor.is-active { opacity: 1; }
+        .cursor.is-hover {
+            width: 60px; height: 60px;
+            background: rgba(0,212,170,0.1);
+            border-color: var(--accent);
+        }
+        .cursor.is-text {
+            width: 4px; height: 40px;
+            border-radius: 2px; border: none;
+            background: var(--accent);
+            mix-blend-mode: normal;
+        }
+        .cursor__dot {
+            position: fixed; top: 0; left: 0;
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none; z-index: 10001;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        .cursor__dot.is-active { opacity: 1; }
+
+        /* ═══════════════════════════════════════
+           GRAIN OVERLAY
+           ═══════════════════════════════════════ */
+        .grain {
+            position: fixed; inset: -50%; z-index: 9998;
+            width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            animation: grain-shift 0.5s steps(1) infinite;
+        }
+        @keyframes grain-shift {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-5%, 5%); }
+            50% { transform: translate(5%, -5%); }
+            75% { transform: translate(-3%, -3%); }
+        }
+
+        /* ═══════════════════════════════════════
+           DOT GRID BACKGROUND
+           ═══════════════════════════════════════ */
+        .dot-grid {
+            position: fixed; inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none; z-index: 0;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 100%);
+        }
+
+        .cursor-glow {
+            position: fixed; width: min(600px, 100vw); height: 600px;
+            background: radial-gradient(circle, rgba(0,212,170,0.03) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+            transform: translate(-50%, -50%);
+            opacity: 0; will-change: transform;
+        }
+        .cursor-glow.is-active { opacity: 1; }
+
+        /* ═══════════════════════════════════════
+           NAV
+           ═══════════════════════════════════════ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.25rem 1.5rem;
+            background: rgba(0,0,0,0);
+            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+        }
+        .nav.is-scrolled {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom-color: var(--glass-border);
+        }
+        .nav__inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .nav__logo {
+            font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em;
+            font-family: var(--font-mono);
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__logo span { color: var(--accent); }
+        .nav__cta {
+            display: none; padding: 0.5rem 1.25rem;
+            background: var(--glass-bg); color: var(--text);
+            font-size: 0.8125rem; font-weight: 500;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s var(--ease-out-expo);
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); transform: translateY(-2px); }
+        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
+        .nav__link {
+            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+            border-radius: var(--radius-pill); transition: all 0.3s var(--ease-out-expo);
+            border: 1px solid transparent; white-space: nowrap;
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
+        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
+        @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.375rem; } }
+
+        /* ═══════════════════════════════════════
+           HERO — Full viewport immersive
+           ═══════════════════════════════════════ */
+        .hero {
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 7rem 1.5rem 4rem; text-align: center;
+            position: relative; z-index: 1; overflow: hidden;
+        }
+        .hero__canvas {
+            position: absolute; inset: 0; z-index: 0;
+            pointer-events: none;
+        }
+        .hero__canvas canvas { width: 100%; height: 100%; display: block; }
+        .hero__glow {
+            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            width: min(900px, 140vw); height: 900px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+            filter: blur(100px); pointer-events: none; z-index: 0;
+            opacity: 0;
+        }
+        .hero__content { position: relative; z-index: 2; max-width: 800px; }
+        .hero__badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.125rem; margin-bottom: 2.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-mono);
+            font-size: 0.6875rem; font-weight: 500; color: var(--text-secondary);
+            letter-spacing: 0.06em; text-transform: uppercase;
+            opacity: 0; transform: translateY(20px);
+        }
+        .hero__badge-dot {
+            width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+            50% { opacity: 0.5; box-shadow: 0 0 16px var(--accent); }
+        }
+        .hero__title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.05em;
+            line-height: 1.0; margin-bottom: 1.75rem;
+        }
+        .hero__title .word {
+            display: inline-block; overflow: hidden; vertical-align: top;
+        }
+        .hero__title .word-inner {
+            display: inline-block; transform: translateY(110%);
+        }
+        .hero__title-line { display: block; }
+        .hero__title-line:last-child {
+            background: linear-gradient(135deg, var(--accent), var(--teal), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero__subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-secondary); line-height: 1.7;
+            margin-bottom: 3rem; max-width: 520px; margin-left: auto; margin-right: auto;
+            font-weight: 400; opacity: 0; transform: translateY(30px);
+        }
+        .hero__cta-group {
+            display: flex; flex-direction: column; gap: 0.75rem;
+            width: 100%; max-width: 340px; margin: 0 auto 5rem;
+            opacity: 0; transform: translateY(30px);
+        }
+        .hero__scroll-hint {
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            opacity: 0;
+        }
+        .hero__scroll-text {
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase;
+        }
+        .hero__scroll-line {
+            width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scroll-line 2s ease-in-out infinite;
+        }
+        @keyframes scroll-line {
+            0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+            50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            50.01% { transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════
+           BUTTONS — Magnetic + Glass
+           ═══════════════════════════════════════ */
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
+            padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
+            border-radius: var(--radius-pill); border: none;
+            transition: all 0.4s var(--ease-out-expo);
+            position: relative; overflow: hidden;
+        }
+        .btn--primary {
+            background: var(--text); color: var(--bg);
+        }
+        .btn--primary::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent), var(--teal));
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .btn--primary:hover::before { opacity: 1; }
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,212,170,0.3), 0 0 80px rgba(0,212,170,0.08);
+            color: var(--bg);
+        }
+        .btn__text { position: relative; z-index: 1; }
+        .btn--glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary); font-weight: 500;
+        }
+        .btn--glass:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Magnetic wrapper */
+        .magnetic { display: inline-block; }
+
+        /* ═══════════════════════════════════════
+           PHONE MOCKUP
+           ═══════════════════════════════════════ */
+        .phone-wrapper {
+            perspective: 1200px; margin: 0 auto;
+            opacity: 0; transform: translateY(60px);
+        }
+        .phone {
+            width: 240px; margin: 0 auto;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 32px; padding: 6px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 120px var(--accent-glow);
+            transform-style: preserve-3d;
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+        .phone__screen { border-radius: 28px; overflow: hidden; display: block; }
+        .phone__screen img { width: 100%; height: auto; display: block; border-radius: 28px; }
+        @media (min-width: 640px) { .phone { width: 280px; border-radius: 40px; } .phone__screen, .phone__screen img { border-radius: 36px; } }
+        @media (min-width: 1024px) { .phone { width: 300px; } }
+
+        /* ═══════════════════════════════════════
+           TRUST BAR
+           ═══════════════════════════════════════ */
+        .trust { padding: 3rem 1.25rem; position: relative; z-index: 1; overflow: hidden; }
+        .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; list-style: none; }
+        .trust__item {
+            display: flex; align-items: center; gap: 0.75rem;
+            font-size: 0.8125rem; color: var(--text-secondary);
+            padding: 0.625rem 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            opacity: 0; transform: translateY(20px);
+        }
+        .trust__icon .dot-icon { gap: 2px; grid-template-columns: repeat(3, 4px); grid-template-rows: repeat(3, 4px); }
+        .trust__icon .dot-icon span { width: 4px; height: 4px; }
+        @media (min-width: 768px) { .trust { padding: 4rem 2rem; } .trust__list { gap: 1.25rem; } }
+
+        /* ═══════════════════════════════════════
+           SECTION TITLE — Reusable
+           ═══════════════════════════════════════ */
+        .section-label {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 3.5rem); font-weight: 800;
+            letter-spacing: -0.04em; line-height: 1.1;
+        }
+        .section-title .word { display: inline-block; overflow: hidden; vertical-align: top; }
+        .section-title .word-inner { display: inline-block; transform: translateY(110%); }
+
+        /* ═══════════════════════════════════════
+           TIMELINE / HOW IT WORKS — Pinned scroll
+           ═══════════════════════════════════════ */
+        .timeline-section {
+            position: relative; z-index: 1;
+            padding: 0;
+        }
+        .timeline-pin {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 2rem 1.25rem;
+        }
+        .timeline-pin__inner {
+            max-width: 1100px; width: 100%; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr;
+            gap: 3rem; align-items: center;
+        }
+        .timeline__header { margin-bottom: 2rem; }
+        .timeline__header .section-label, .timeline__header .section-title { opacity: 0; }
+        .timeline__progress {
+            display: flex; flex-direction: column; gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .timeline__progress-step {
+            display: flex; align-items: center; gap: 1rem;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); transition: color 0.4s;
+            padding: 0.5rem 0;
+        }
+        .timeline__progress-step.is-active { color: var(--accent); }
+        .timeline__progress-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            border: 1.5px solid var(--text-muted);
+            transition: all 0.4s var(--ease-out-expo);
+            flex-shrink: 0;
+        }
+        .timeline__progress-step.is-active .timeline__progress-dot {
+            background: var(--accent); border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-dim);
+        }
+        .timeline__progress-line {
+            width: 1px; height: 0; background: var(--accent);
+            margin-left: 3.5px; transition: height 0.6s var(--ease-out-expo);
+        }
+        .timeline__cards { position: relative; min-height: 320px; }
+        .timeline__card {
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            position: absolute; inset: 0;
+            opacity: 0; transform: translateY(20px) scale(0.97);
+            transition: all 0.5s var(--ease-out-expo);
+        }
+        .timeline__card.is-active {
+            opacity: 1; transform: translateY(0) scale(1);
+            border-color: var(--glass-border-hover);
+        }
+        .timeline__step {
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--accent); margin-bottom: 0.75rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        .timeline__title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.625rem; letter-spacing: -0.02em; }
+        .timeline__desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
+        .timeline__data {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm); overflow: hidden;
+        }
+        .timeline__row {
+            display: flex; justify-content: space-between;
+            padding: 0.625rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .timeline__row:last-child { border-bottom: none; }
+        .timeline__row-label { color: var(--text-muted); }
+        .timeline__row-value { color: var(--text-secondary); }
+        .timeline__row-value--highlight { color: var(--accent); font-weight: 500; }
+        .timeline__row-value--negative { color: var(--text-muted); }
+        .timeline__actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .timeline__btn {
+            flex: 1; padding: 0.625rem; font-family: var(--font-mono);
+            font-size: 0.75rem; font-weight: 500; border-radius: var(--radius-sm);
+            border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .timeline__btn:hover { border-color: var(--glass-border-hover); color: var(--text); }
+        .timeline__btn--approve {
+            background: var(--accent); border-color: var(--accent); color: var(--bg);
+        }
+        .timeline__btn--approve:hover { background: var(--teal); border-color: var(--teal); }
+        .timeline__result {
+            margin-top: 1rem; padding: 0.75rem 1rem;
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);
+            border: 1px solid var(--accent-dim); border-radius: var(--radius-sm);
+            background: rgba(0,212,170,0.04);
+        }
+        @media (min-width: 768px) {
+            .timeline-pin { padding: 2rem 2rem; }
+            .timeline-pin__inner { grid-template-columns: 1fr 1.2fr; gap: 4rem; }
+            .timeline__card { padding: 2.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .timeline-pin { padding: 2rem 3rem; }
+            .timeline-pin__inner { gap: 5rem; }
+        }
+
+        /* ═══════════════════════════════════════
+           PEOPLE — Horizontal scroll
+           ═══════════════════════════════════════ */
+        .people { padding: 6rem 0; position: relative; z-index: 1; overflow: hidden; }
+        .people__header { text-align: center; margin-bottom: 4rem; padding: 0 1.5rem; }
+        .people__subtitle {
+            font-size: 1.0625rem; color: var(--text-secondary);
+            max-width: 440px; margin: 1rem auto 0;
+        }
+        .people__track {
+            display: flex; gap: 1.25rem;
+            padding: 0 1.5rem; width: max-content;
+            will-change: transform;
+        }
+        .person-card {
+            width: 340px; flex-shrink: 0;
+            padding: 2rem; position: relative; overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: border-color 0.3s, transform 0.4s var(--ease-out-expo);
+        }
+        .person-card:hover { border-color: var(--glass-border-hover); transform: translateY(-4px); }
+        .person-card::before {
+            content: ""; position: absolute; top: 0; right: 0;
+            width: 120px; height: 120px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 10px 10px;
+            pointer-events: none;
+            mask-image: radial-gradient(circle at top right, black 20%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle at top right, black 20%, transparent 70%);
+        }
+        .person-card__top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+        .person-card__avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            display: grid; place-items: center;
+            font-weight: 600; font-size: 1.125rem; color: var(--bg);
+            flex-shrink: 0;
+        }
+        .person-card__avatar--1 { background: linear-gradient(135deg, var(--accent), var(--teal)); }
+        .person-card__avatar--2 { background: linear-gradient(135deg, var(--blue), var(--purple)); }
+        .person-card__avatar--3 { background: linear-gradient(135deg, var(--warm), var(--coral)); }
+        .person-card__info { display: flex; flex-direction: column; }
+        .person-card__name { font-size: 1rem; font-weight: 600; }
+        .person-card__role { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+        .person-card__quote { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+        .person-card__stat {
+            display: flex; align-items: baseline; gap: 0.5rem;
+            padding-top: 1.25rem; border-top: 1px solid var(--glass-border);
+        }
+        .person-card__stat-value {
+            font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent);
+        }
+        .person-card__stat-label { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* ═══════════════════════════════════════
+           FEATURES — Staggered grid
+           ═══════════════════════════════════════ */
+        .features { padding: 6rem 1.25rem; position: relative; z-index: 1; }
+        .features__header { text-align: center; margin-bottom: 4rem; }
+        .features__subtitle { font-size: 1.0625rem; color: var(--text-secondary); margin-top: 1rem; }
+        .features__grid { display: grid; gap: 1.25rem; max-width: 960px; margin: 0 auto; }
+        .feature {
+            display: flex; gap: 1.5rem; padding: 2rem; align-items: flex-start;
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0; transform: translateY(40px);
+        }
+        .feature:hover {
+            border-color: var(--glass-border-hover);
+            background: var(--glass-bg-hover);
+            transform: translateY(-2px) !important;
+        }
+        .feature__title { font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+        .feature__desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
+        @media (min-width: 768px) {
+            .features { padding: 8rem 2rem; }
+            .features__grid { grid-template-columns: repeat(3, 1fr); }
+            .feature { flex-direction: column; text-align: center; align-items: center; padding: 2.5rem 2rem; }
+        }
+        @media (min-width: 1024px) { .features { padding: 10rem 3rem; } }
+
+        /* ═══════════════════════════════════════
+           DOT-MATRIX ICON
+           ═══════════════════════════════════════ */
+        .dot-icon {
+            display: inline-grid;
+            grid-template-columns: repeat(5, 6px);
+            grid-template-rows: repeat(5, 6px);
+            gap: 3px; flex-shrink: 0;
+        }
+        .dot-icon span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); opacity: 0.12;
+            transition: opacity 0.4s, transform 0.4s, filter 0.4s;
+        }
+        .dot-icon span.on { opacity: 1; }
+        .feature:hover .dot-icon span.on,
+        .trust__item:hover .dot-icon span.on,
+        .footer__social-link:hover .dot-icon span.on {
+            filter: drop-shadow(0 0 4px var(--accent));
+        }
+
+        /* ═══════════════════════════════════════
+           TAMAGOTCHI BOCY
+           ═══════════════════════════════════════ */
+        .bocy-pet {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            z-index: 90; cursor: none;
+            animation: bocy-float 3s ease-in-out infinite;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @keyframes bocy-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .bocy-pet__body {
+            width: 56px; height: 56px; position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: grid; place-items: center;
+            transition: all 0.3s var(--ease-out-expo);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 40px var(--accent-glow);
+        }
+        .bocy-pet:hover .bocy-pet__body {
+            border-color: var(--accent);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 60px rgba(0,212,170,0.15);
+            transform: scale(1.08);
+        }
+        .bocy-pet__face { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px; position: relative; }
+        .bocy-pet__eye {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); box-shadow: 0 0 6px var(--accent);
+            animation: bocy-blink 4s ease-in-out infinite; transition: all 0.2s;
+        }
+        .bocy-pet__eye:nth-child(2) { animation-delay: 0.1s; }
+        @keyframes bocy-blink {
+            0%, 42%, 46%, 100% { transform: scaleY(1); }
+            44% { transform: scaleY(0.1); }
+        }
+        .bocy-pet:hover .bocy-pet__eye { background: #fff; box-shadow: 0 0 10px #fff; width: 7px; height: 7px; }
+        .bocy-pet.is-happy .bocy-pet__eye { transform: scaleY(0.6); border-radius: 50% 50% 0 0; }
+        .bocy-pet.is-happy .bocy-pet__body { border-color: var(--accent); }
+        .bocy-pet__mouth {
+            position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            width: 8px; height: 4px; border-bottom: 2px solid var(--accent);
+            border-radius: 0 0 50% 50%; opacity: 0; transition: opacity 0.2s;
+        }
+        .bocy-pet:hover .bocy-pet__mouth { opacity: 1; }
+        .bocy-pet.is-happy .bocy-pet__mouth { opacity: 1; height: 5px; }
+        .bocy-pet__ring {
+            position: absolute; inset: -3px; border-radius: 50%;
+            border: 1px solid transparent; border-top-color: var(--accent);
+            animation: bocy-ring-spin 3s linear infinite; opacity: 0.4;
+        }
+        @keyframes bocy-ring-spin { to { transform: rotate(360deg); } }
+        .bocy-pet__bubble {
+            position: absolute; bottom: calc(100% + 10px); right: 0;
+            padding: 0.5rem 0.75rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--text-secondary); white-space: nowrap;
+            opacity: 0; transform: translateY(4px) scale(0.95);
+            transition: all 0.25s var(--ease-out-expo); pointer-events: none;
+        }
+        .bocy-pet__bubble::after {
+            content: ""; position: absolute; bottom: -5px; right: 18px;
+            width: 8px; height: 8px;
+            background: var(--glass-bg);
+            border-right: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            transform: rotate(45deg);
+        }
+        .bocy-pet:hover .bocy-pet__bubble,
+        .bocy-pet.is-speaking .bocy-pet__bubble { opacity: 1; transform: translateY(0) scale(1); }
+        .bocy-particle {
+            position: fixed; width: 4px; height: 4px;
+            background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 89;
+        }
+        @media (min-width: 768px) {
+            .bocy-pet { bottom: 2rem; right: 2rem; }
+            .bocy-pet__body { width: 64px; height: 64px; }
+        }
+
+        /* ═══════════════════════════════════════
+           DIVIDER — Animated
+           ═══════════════════════════════════════ */
+        .divider {
+            text-align: center; padding: 2rem 0; position: relative; z-index: 1;
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: rgba(255,255,255,0.06); letter-spacing: 0.3em;
+            user-select: none; overflow: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer { padding: 5rem 1.25rem 2.5rem; position: relative; z-index: 1; }
+        .footer__inner { max-width: 1200px; margin: 0 auto; }
+        .footer__nav {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .footer__nav-link {
+            padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500;
+            color: var(--text-secondary); border-radius: var(--radius-pill);
+            border: 1px solid transparent; transition: all 0.3s var(--ease-out-expo);
+        }
+        .footer__nav-link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
+        .footer__bottom-row {
+            display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;
+        }
+        .footer__logo { font-size: 1.125rem; font-weight: 700; font-family: var(--font-mono); }
+        .footer__social { display: flex; gap: 0.75rem; }
+        .footer__social-link {
+            width: 40px; height: 40px; display: grid; place-items: center;
+            font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted);
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm); transition: all 0.3s var(--ease-out-expo);
+        }
+        .footer__social-link .dot-icon span.on { background: var(--text-muted); opacity: 1; }
+        .footer__social-link:hover { color: var(--text); border-color: var(--glass-border-hover); background: var(--glass-bg-hover); }
+        .footer__social-link:hover .dot-icon span.on { background: var(--accent); }
+        .footer__links { display: flex; gap: 1.5rem; list-style: none; }
+        .footer__link { font-size: 0.8125rem; color: var(--text-muted); transition: color 0.2s; }
+        .footer__link:hover { color: var(--text-secondary); }
+        .footer__copy {
+            margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);
+            font-size: 0.6875rem; color: var(--text-muted); font-family: var(--font-mono); text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer { padding: 6rem 2rem 3rem; }
+            .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
+            .footer__right { display: flex; align-items: center; gap: 2rem; }
+        }
+        @media (min-width: 1024px) { .footer { padding: 8rem 3rem 3rem; } }
+
+        /* ═══════════════════════════════════════
+           REDUCED MOTION
+           ═══════════════════════════════════════ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .cursor, .cursor__dot { display: none; }
+            body { cursor: auto; }
+            a, button { cursor: pointer; }
+            .grain { display: none; }
+        }
+
+        /* ═══════════════════════════════════════
+           MOBILE CURSOR OVERRIDE
+           ═══════════════════════════════════════ */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor, .cursor__dot { display: none !important; }
+            body, a, button { cursor: auto !important; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Structured dot grid background -->
+    <!-- Preloader -->
+    <div class="preloader" aria-hidden="true">
+        <div class="preloader__logo">BOCY<span>.</span></div>
+        <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor__dot" aria-hidden="true"></div>
+
+    <!-- Grain Overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Dot Grid -->
     <div class="dot-grid" aria-hidden="true"></div>
     <div class="cursor-glow" aria-hidden="true"></div>
-    <div class="scanline" aria-hidden="true"></div>
 
     <nav class="nav">
         <div class="nav__inner">
-            <a href="/" class="nav__logo">BOCY<span>.</span></a>
+            <a href="/" class="nav__logo magnetic">BOCY<span>.</span></a>
             <div class="nav__links">
                 <a href="/savings-comparison.html" class="nav__link">Savings</a>
                 <a href="/isa-comparison.html" class="nav__link">ISAs</a>
-                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta">Start Optimising</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta magnetic">Start Optimising</a>
             </div>
         </div>
     </nav>
@@ -805,6 +863,7 @@
         <!-- ═══ HERO ═══ -->
         <section class="hero">
             <div class="hero__glow"></div>
+            <div class="hero__canvas" id="hero-canvas"></div>
             <div class="hero__content">
                 <span class="hero__badge">
                     <span class="hero__badge-dot"></span>
@@ -816,13 +875,21 @@
                 </h1>
                 <p class="hero__subtitle">Your AI-powered financial companion that sees the full picture, breaks down every option, and only acts when you say so.</p>
                 <div class="hero__cta-group">
-                    <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Start Optimising →</a>
-                </div>
-                <div class="phone">
-                    <div class="phone__screen">
-                        <img src="IMG_0818.png" alt="BOCY app showing financial overview with income, bills, credit, debt and savings" loading="lazy">
+                    <div class="magnetic">
+                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Optimising</span></a>
                     </div>
                 </div>
+                <div class="phone-wrapper">
+                    <div class="phone">
+                        <div class="phone__screen">
+                            <img src="IMG_0818.png" alt="BOCY app showing financial overview with income, bills, credit, debt and savings" loading="eager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__scroll-hint">
+                <span class="hero__scroll-text">Scroll</span>
+                <div class="hero__scroll-line"></div>
             </div>
         </section>
 
@@ -835,166 +902,176 @@
             </ul>
         </section>
 
-        <!-- ═══ HOW IT WORKS — Timeline ═══ -->
+        <!-- ═══ HOW IT WORKS — Pinned Timeline ═══ -->
         <section id="how-it-works" class="timeline-section">
-            <header class="timeline-section__header reveal">
-                <p class="mono-label">// how it works</p>
-                <h2 class="timeline-section__title">See exactly what Bocy does</h2>
-                <p class="timeline-section__subtitle">real example · £847 monthly surplus</p>
-            </header>
-            <div class="timeline">
-                <article class="timeline__item timeline__item--active reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">01 · Analyse</p>
-                        <h3 class="timeline__title">Bocy scans your finances</h3>
-                        <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time — no spreadsheets needed.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">£3,200</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">£1,850</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">£503</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">£847</span></div>
+            <div class="timeline-pin">
+                <div class="timeline-pin__inner">
+                    <div class="timeline__left">
+                        <header class="timeline__header">
+                            <p class="section-label">// how it works</p>
+                            <h2 class="section-title">See exactly what<br>Bocy does</h2>
+                        </header>
+                        <div class="timeline__progress">
+                            <div class="timeline__progress-step is-active" data-step="0">
+                                <span class="timeline__progress-dot"></span>
+                                <span>01 &middot; Analyse</span>
+                            </div>
+                            <div class="timeline__progress-line" style="height: 16px;"></div>
+                            <div class="timeline__progress-step" data-step="1">
+                                <span class="timeline__progress-dot"></span>
+                                <span>02 &middot; Compare</span>
+                            </div>
+                            <div class="timeline__progress-line"></div>
+                            <div class="timeline__progress-step" data-step="2">
+                                <span class="timeline__progress-dot"></span>
+                                <span>03 &middot; Insight</span>
+                            </div>
+                            <div class="timeline__progress-line"></div>
+                            <div class="timeline__progress-step" data-step="3">
+                                <span class="timeline__progress-dot"></span>
+                                <span>04 &middot; Execute</span>
+                            </div>
                         </div>
                     </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">02 · Compare</p>
-                        <h3 class="timeline__title">What should you do with £847?</h3>
-                        <p class="timeline__desc">Bocy calculates the real impact of each option — so you can see which one actually benefits you.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves £127/yr</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns £38/yr</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">£0</span></div>
+                    <div class="timeline__cards">
+                        <div class="timeline__card is-active" data-card="0">
+                            <p class="timeline__step">01 &middot; Analyse</p>
+                            <h3 class="timeline__title">Bocy scans your finances</h3>
+                            <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time &mdash; no spreadsheets needed.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">&pound;3,200</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">&pound;1,850</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">&pound;503</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">&pound;847</span></div>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="1">
+                            <p class="timeline__step">02 &middot; Compare</p>
+                            <h3 class="timeline__title">What should you do with &pound;847?</h3>
+                            <p class="timeline__desc">Bocy calculates the real impact of each option &mdash; so you can see which one actually benefits you.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves &pound;127/yr</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns &pound;38/yr</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">&pound;0</span></div>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="2">
+                            <p class="timeline__step">03 &middot; Insight</p>
+                            <h3 class="timeline__title">Clear insight, clear reasoning</h3>
+                            <p class="timeline__desc">Bocy shows you the best option and explains why in plain English. You always see the full picture.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay &pound;600 to card</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">&pound;247</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+&pound;94</span></div>
+                            </div>
+                            <div class="timeline__actions">
+                                <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
+                                <button class="timeline__btn" type="button">modify</button>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="3">
+                            <p class="timeline__step">04 &middot; Execute</p>
+                            <h3 class="timeline__title">Only when you say so</h3>
+                            <p class="timeline__desc">Bocy never moves your money without permission. One tap to approve, or set your own automation rules.</p>
+                            <div class="timeline__result">&check; &pound;600 payment scheduled for tomorrow</div>
                         </div>
                     </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">03 · Insight</p>
-                        <h3 class="timeline__title">Clear insight, clear reasoning</h3>
-                        <p class="timeline__desc">Bocy shows you the best option and explains why in plain English. You always see the full picture.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay £600 to card</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">£247</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+£94</span></div>
-                        </div>
-                        <div class="timeline__actions">
-                            <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
-                            <button class="timeline__btn" type="button">modify</button>
-                        </div>
-                    </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">04 · Execute</p>
-                        <h3 class="timeline__title">Only when you say so</h3>
-                        <p class="timeline__desc">Bocy never moves your money without permission. One tap to approve, or set your own automation rules.</p>
-                        <div class="timeline__result">✓ £600 payment scheduled for tomorrow</div>
-                    </div>
-                </article>
+                </div>
             </div>
         </section>
 
-        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+        <div class="divider" aria-hidden="true">&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</div>
 
-        <!-- ═══ PEOPLE — User stories ═══ -->
+        <!-- ═══ PEOPLE — Horizontal scroll ═══ -->
         <section class="people">
-            <header class="people__header reveal">
-                <p class="mono-label">// built for real people</p>
-                <h2 class="people__title">Your money story, understood</h2>
-                <p class="people__subtitle">Bocy works for every kind of financial life — not just spreadsheet people.</p>
+            <header class="people__header">
+                <p class="section-label">// built for real people</p>
+                <h2 class="section-title">Your money story,<br>understood</h2>
+                <p class="people__subtitle">Bocy works for every kind of financial life &mdash; not just spreadsheet people.</p>
             </header>
-            <div class="people__grid">
-                <article class="person-card glass-card reveal reveal-delay-1">
+            <div class="people__track">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--1">S</div>
                         <div class="person-card__info">
                             <span class="person-card__name">Sarah</span>
-                            <span class="person-card__role">freelancer · 28</span>
+                            <span class="person-card__role">freelancer &middot; 28</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"My income is unpredictable. Bocy sees patterns I can't and helps me prepare for the quiet months."</p>
+                    <p class="person-card__quote">&ldquo;My income is unpredictable. Bocy sees patterns I can&rsquo;t and helps me prepare for the quiet months.&rdquo;</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£3,200</span>
+                        <span class="person-card__stat-value">&pound;3,200</span>
                         <span class="person-card__stat-label">emergency fund built</span>
                     </div>
                 </article>
-                <article class="person-card glass-card reveal reveal-delay-2">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--2">J</div>
                         <div class="person-card__info">
                             <span class="person-card__name">James</span>
-                            <span class="person-card__role">dad of two · 34</span>
+                            <span class="person-card__role">dad of two &middot; 34</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"Between the mortgage, the kids, and the car — I never knew where my money went. Now I do."</p>
+                    <p class="person-card__quote">&ldquo;Between the mortgage, the kids, and the car &mdash; I never knew where my money went. Now I do.&rdquo;</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£2,400</span>
+                        <span class="person-card__stat-value">&pound;2,400</span>
                         <span class="person-card__stat-label">saved per year on bills</span>
                     </div>
                 </article>
-                <article class="person-card glass-card reveal reveal-delay-3">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--3">M</div>
                         <div class="person-card__info">
                             <span class="person-card__name">Maya</span>
-                            <span class="person-card__role">recent grad · 24</span>
+                            <span class="person-card__role">recent grad &middot; 24</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"I was drowning in credit card debt and too embarrassed to ask for help. Bocy just showed me a plan."</p>
+                    <p class="person-card__quote">&ldquo;I was drowning in credit card debt and too embarrassed to ask for help. Bocy just showed me a plan.&rdquo;</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£0</span>
+                        <span class="person-card__stat-value">&pound;0</span>
                         <span class="person-card__stat-label">credit card debt remaining</span>
                     </div>
                 </article>
             </div>
         </section>
 
-        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+        <div class="divider" aria-hidden="true">&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</div>
 
-        <!-- ═══ FEATURES — ASCII dot-art icons ═══ -->
+        <!-- ═══ FEATURES ═══ -->
         <section id="features" class="features">
-            <header class="features__header reveal">
-                <p class="mono-label">// built on trust</p>
-                <h2 class="features__title">Your money. Your rules. Always.</h2>
+            <header class="features__header">
+                <p class="section-label">// built on trust</p>
+                <h2 class="section-title">Your money. Your rules.<br>Always.</h2>
                 <p class="features__subtitle">No hidden logic. No surprises. Just clarity.</p>
             </header>
             <div class="features__grid">
-                <article class="feature glass-card reveal reveal-delay-1">
-                    <!-- Eye icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
                     <div class="feature__content">
                         <h3 class="feature__title">See the full picture</h3>
-                        <p class="feature__desc">Every calculation, every trade-off, every reason — laid out so you actually understand your money.</p>
+                        <p class="feature__desc">Every calculation, every trade-off, every reason &mdash; laid out so you actually understand your money.</p>
                     </div>
                 </article>
-                <article class="feature glass-card reveal reveal-delay-2">
-                    <!-- Shield icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></span>
                     <div class="feature__content">
                         <h3 class="feature__title">Your rules, always</h3>
                         <p class="feature__desc">Nothing happens without your approval. Set your own limits, override any suggestion, stay in control.</p>
                     </div>
                 </article>
-                <article class="feature glass-card reveal reveal-delay-3">
-                    <!-- Lock icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
                     <div class="feature__content">
                         <h3 class="feature__title">Bank-grade security</h3>
-                        <p class="feature__desc">256-bit encryption. Open Banking regulated. Your data stays yours — it's never sold, ever.</p>
+                        <p class="feature__desc">256-bit encryption. Open Banking regulated. Your data stays yours &mdash; it&rsquo;s never sold, ever.</p>
                     </div>
                 </article>
             </div>
         </section>
-
     </main>
 
-    <!-- ═══ TAMAGOTCHI BOCY — Live character ═══ -->
-    <div class="bocy-pet" role="button" aria-label="BOCY — click to start optimising" tabindex="0">
+    <!-- BOCY Pet -->
+    <div class="bocy-pet" role="button" aria-label="BOCY &mdash; click to start optimising" tabindex="0">
         <div class="bocy-pet__body">
             <div class="bocy-pet__ring"></div>
             <div class="bocy-pet__face">
@@ -1009,19 +1086,18 @@
     <footer class="footer">
         <div class="footer__inner">
             <nav class="footer__nav" aria-label="Footer navigation">
-                <a href="#how-it-works" class="footer__nav-link">How It Works</a>
-                <a href="#features" class="footer__nav-link">Features</a>
-                <a href="/savings-comparison.html" class="footer__nav-link">Savings</a>
-                <a href="/isa-comparison.html" class="footer__nav-link">ISAs</a>
-                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="footer__nav-link">Start Optimising</a>
+                <a href="#how-it-works" class="footer__nav-link magnetic">How It Works</a>
+                <a href="#features" class="footer__nav-link magnetic">Features</a>
+                <a href="/savings-comparison.html" class="footer__nav-link magnetic">Savings</a>
+                <a href="/isa-comparison.html" class="footer__nav-link magnetic">ISAs</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="footer__nav-link magnetic">Start Optimising</a>
             </nav>
-
             <div class="footer__bottom-row">
-                <a href="/" class="footer__logo">BOCY.</a>
+                <a href="/" class="footer__logo magnetic">BOCY.</a>
                 <div class="footer__right">
                     <div class="footer__social">
-                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
-                        <a href="https://x.com/bocy_io" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
+                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
+                        <a href="https://x.com/bocy_io" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
                     </div>
                     <nav>
                         <ul class="footer__links">
@@ -1032,57 +1108,472 @@
                     </nav>
                 </div>
             </div>
-            <p class="footer__copy">© 2026 BOCY. All rights reserved.</p>
+            <p class="footer__copy">&copy; 2026 BOCY. All rights reserved.</p>
         </div>
     </footer>
-
     <script>
-        // ═══ Cursor glow effect ═══
-        const cursorGlow = document.querySelector('.cursor-glow');
-        let glowActive = false;
-        document.addEventListener('mousemove', e => {
-            if (!glowActive) { cursorGlow.classList.add('is-active'); glowActive = true; }
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-        document.addEventListener('mouseleave', () => {
-            cursorGlow.classList.remove('is-active'); glowActive = false;
+    // Wait for all libraries to load
+    function initSite() {
+        // ═══════════════════════════════════════
+        // LENIS — Smooth scrolling
+        // ═══════════════════════════════════════
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            smoothWheel: true,
         });
 
-        // ═══ Reveal on scroll (staggered) ═══
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect Lenis to GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        // ═══════════════════════════════════════
+        // CUSTOM CURSOR
+        // ═══════════════════════════════════════
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor__dot');
+        const cursorGlow = document.querySelector('.cursor-glow');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!cursor.classList.contains('is-active')) {
+                    cursor.classList.add('is-active');
+                    cursorDot.classList.add('is-active');
+                    cursorGlow.classList.add('is-active');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
+            document.addEventListener('mouseleave', () => {
+                cursor.classList.remove('is-active');
+                cursorDot.classList.remove('is-active');
+                cursorGlow.classList.remove('is-active');
+            });
 
-        // ═══ Smooth scroll (skip external links) ═══
+            function updateCursor() {
+                const ease = 0.15;
+                const dotEase = 0.5;
+                cursorX += (mouseX - cursorX) * ease;
+                cursorY += (mouseY - cursorY) * ease;
+                dotX += (mouseX - dotX) * dotEase;
+                dotY += (mouseY - dotY) * dotEase;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                cursorDot.style.left = dotX + 'px';
+                cursorDot.style.top = dotY + 'px';
+                cursorGlow.style.left = mouseX + 'px';
+                cursorGlow.style.top = mouseY + 'px';
+                cursorGlow.style.transform = 'translate(-50%, -50%)';
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+
+            // Hover states for cursor
+            document.querySelectorAll('a, button, .magnetic, [role="button"]').forEach((el) => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
+            });
+            document.querySelectorAll('h1, h2, h3, p').forEach((el) => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('is-text'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('is-text'));
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // MAGNETIC BUTTONS
+        // ═══════════════════════════════════════
+        if (!isTouchDevice) {
+            document.querySelectorAll('.magnetic').forEach((el) => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // NAV — Scroll-aware
+        // ═══════════════════════════════════════
+        const nav = document.querySelector('.nav');
+        ScrollTrigger.create({
+            start: 100,
+            onUpdate: (self) => {
+                if (self.scroll() > 100) nav.classList.add('is-scrolled');
+                else nav.classList.remove('is-scrolled');
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // PRELOADER + INTRO SEQUENCE
+        // ═══════════════════════════════════════
+        const preloader = document.querySelector('.preloader');
+        const preloaderLogo = document.querySelector('.preloader__logo');
+        const preloaderFill = document.querySelector('.preloader__fill');
+
+        const introTL = gsap.timeline({ delay: 0.2 });
+
+        // Preloader animation
+        introTL.to(preloaderLogo, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+            .to(preloaderFill, { width: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.3)
+            .to(preloader, { opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => {
+                preloader.classList.add('is-done');
+            }}, '+=0.2');
+
+        // Hero entrance after preloader
+        introTL.to('.hero__glow', { opacity: 0.7, duration: 1.5, ease: 'power2.out' }, '-=0.3');
+
+        // Split text animation for hero title
+        const titleLines = document.querySelectorAll('.hero__title-line');
+        titleLines.forEach((line) => {
+            const text = line.textContent;
+            const words = text.split(' ');
+            line.innerHTML = words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+        });
+
+        introTL.to('.hero__title .word-inner', {
+            y: 0, duration: 1, stagger: 0.08,
+            ease: 'power4.out'
+        }, '-=1');
+
+        introTL.to('.hero__badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.7')
+            .to('.hero__subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.5')
+            .to('.hero__cta-group', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+            .to('.phone-wrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+            .to('.hero__scroll-hint', { opacity: 0.6, duration: 0.6 }, '-=0.2');
+
+        // Nav items
+        introTL.to(['.nav__logo', '.nav__link', '.nav__cta'], {
+            opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out'
+        }, '-=0.8');
+
+        // ═══════════════════════════════════════
+        // HERO — Parallax on scroll
+        // ═══════════════════════════════════════
+        gsap.to('.hero__content', {
+            y: -100, opacity: 0.3,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+        gsap.to('.hero__glow', {
+            scale: 1.5, opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'center top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+        gsap.to('.hero__scroll-hint', {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: '10% top',
+                end: '20% top',
+                scrub: true
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // PHONE — 3D tilt on mouse
+        // ═══════════════════════════════════════
+        const phone = document.querySelector('.phone');
+        if (!isTouchDevice && phone) {
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 10;
+                const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                gsap.to(phone, {
+                    rotateY: x, rotateX: -y,
+                    duration: 0.8, ease: 'power2.out'
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // TRUST BAR — Staggered reveal
+        // ═══════════════════════════════════════
+        gsap.to('.trust__item', {
+            opacity: 1, y: 0, stagger: 0.1, duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.trust',
+                start: 'top 80%'
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // TIMELINE — Pinned scroll with step progress
+        // ═══════════════════════════════════════
+        const timelineCards = document.querySelectorAll('.timeline__card');
+        const timelineSteps = document.querySelectorAll('.timeline__progress-step');
+        const timelineLines = document.querySelectorAll('.timeline__progress-line');
+        let activeStep = 0;
+
+        function setTimelineStep(index) {
+            if (index === activeStep) return;
+            activeStep = index;
+            timelineCards.forEach((c, i) => c.classList.toggle('is-active', i === index));
+            timelineSteps.forEach((s, i) => s.classList.toggle('is-active', i <= index));
+            timelineLines.forEach((l, i) => {
+                l.style.height = i < index ? '16px' : '0px';
+            });
+        }
+
+        // Section title reveal
+        gsap.from('.timeline__header .section-label', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.timeline-section', start: 'top 70%' }
+        });
+
+        // Split text for timeline title
+        const tlTitle = document.querySelector('.timeline__header .section-title');
+        if (tlTitle) {
+            const text = tlTitle.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            tlTitle.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.timeline__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.timeline-section', start: 'top 65%' }
+            });
+        }
+
+        // Pinned scroll for cards
+        ScrollTrigger.create({
+            trigger: '.timeline-section',
+            start: 'top 20%',
+            end: 'bottom 80%',
+            onUpdate: (self) => {
+                const progress = self.progress;
+                const step = Math.min(3, Math.floor(progress * 4));
+                setTimelineStep(step);
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // PEOPLE — Horizontal scroll
+        // ═══════════════════════════════════════
+        const peopleHeader = document.querySelector('.people__header');
+        const peopleTitleEl = peopleHeader.querySelector('.section-title');
+        if (peopleTitleEl) {
+            const text = peopleTitleEl.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            peopleTitleEl.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.people__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.people', start: 'top 70%' }
+            });
+        }
+
+        gsap.from('.people__header .section-label', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.people', start: 'top 75%' }
+        });
+        gsap.from('.people__subtitle', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.people', start: 'top 70%' }
+        });
+
+        // Horizontal scroll animation
+        const track = document.querySelector('.people__track');
+        if (track) {
+            const trackWidth = track.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            gsap.to(track, {
+                x: -(trackWidth - viewportWidth + 40),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.people',
+                    start: 'top top',
+                    end: () => '+=' + (trackWidth - viewportWidth + 200),
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // FEATURES — Staggered reveal
+        // ═══════════════════════════════════════
+        const featuresHeader = document.querySelector('.features__header');
+        const featuresTitleEl = featuresHeader.querySelector('.section-title');
+        if (featuresTitleEl) {
+            const text = featuresTitleEl.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            featuresTitleEl.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.features__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.features', start: 'top 70%' }
+            });
+        }
+
+        gsap.from('.features__header .section-label', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.features', start: 'top 75%' }
+        });
+        gsap.from('.features__subtitle', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.features', start: 'top 70%' }
+        });
+
+        gsap.to('.feature', {
+            opacity: 1, y: 0, stagger: 0.12, duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.features__grid', start: 'top 80%' }
+        });
+
+        // ═══════════════════════════════════════
+        // FOOTER — Reveal
+        // ═══════════════════════════════════════
+        gsap.from('.footer__nav-link', {
+            opacity: 0, y: 20, stagger: 0.06, duration: 0.5,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.footer', start: 'top 85%' }
+        });
+
+        // ═══════════════════════════════════════
+        // SMOOTH SCROLL for anchor links
+        // ═══════════════════════════════════════
         document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
+            a.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(a.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (target) lenis.scrollTo(target, { offset: -80 });
             });
         });
 
-        // ═══ Timeline active state on scroll ═══
-        const timelineItems = document.querySelectorAll('.timeline__item');
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    timelineItems.forEach(item => item.classList.remove('timeline__item--active'));
-                    entry.target.classList.add('timeline__item--active');
-                }
-            });
-        }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
-        timelineItems.forEach(item => timelineObserver.observe(item));
+        // ═══════════════════════════════════════
+        // HERO PARTICLE SYSTEM — Canvas-based
+        // ═══════════════════════════════════════
+        const heroCanvasContainer = document.getElementById('hero-canvas');
+        if (heroCanvasContainer) {
+            const canvas = document.createElement('canvas');
+            heroCanvasContainer.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let heroW, heroH;
+            let hMouseX = 0, hMouseY = 0;
 
-        // ═══ Tamagotchi BOCY ═══
+            function resizeCanvas() {
+                heroW = heroCanvasContainer.offsetWidth;
+                heroH = heroCanvasContainer.offsetHeight;
+                canvas.width = heroW * window.devicePixelRatio;
+                canvas.height = heroH * window.devicePixelRatio;
+                canvas.style.width = heroW + 'px';
+                canvas.style.height = heroH + 'px';
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particleCount = Math.min(80, Math.floor(window.innerWidth / 15));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * heroW,
+                    y: Math.random() * heroH,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: Math.random() * 2 + 0.5,
+                    alpha: Math.random() * 0.4 + 0.1,
+                });
+            }
+
+            document.addEventListener('mousemove', (e) => {
+                const rect = heroCanvasContainer.getBoundingClientRect();
+                hMouseX = e.clientX - rect.left;
+                hMouseY = e.clientY - rect.top;
+            });
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, heroW, heroH);
+
+                particles.forEach((p) => {
+                    // Mouse repulsion
+                    const dx = p.x - hMouseX;
+                    const dy = p.y - hMouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150;
+                        p.vx += (dx / dist) * force * 0.2;
+                        p.vy += (dy / dist) * force * 0.2;
+                    }
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vx *= 0.99;
+                    p.vy *= 0.99;
+
+                    // Wrap
+                    if (p.x < 0) p.x = heroW;
+                    if (p.x > heroW) p.x = 0;
+                    if (p.y < 0) p.y = heroH;
+                    if (p.y > heroH) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 212, 170, ' + p.alpha + ')';
+                    ctx.fill();
+                });
+
+                // Draw connections
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = 'rgba(0, 212, 170, ' + (0.06 * (1 - dist / 120)) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        }
+
+        // ═══════════════════════════════════════
+        // TAMAGOTCHI BOCY
+        // ═══════════════════════════════════════
         const bocyPet = document.querySelector('.bocy-pet');
         const bocyBubble = document.querySelector('.bocy-pet__bubble');
         const bocyMessages = [
@@ -1090,15 +1581,13 @@
             'Your money deserves better',
             'Tap to start optimising',
             'I see opportunities for you',
-            'Let\'s make your money work harder',
+            "Let's make your money work harder",
             'Ready when you are',
         ];
         let messageIndex = 0;
 
-        // Click handler — happy expression + particle burst + navigate
-        bocyPet.addEventListener('click', (e) => {
+        bocyPet.addEventListener('click', () => {
             bocyPet.classList.add('is-happy');
-            // Particle burst
             for (let i = 0; i < 6; i++) {
                 const p = document.createElement('div');
                 p.className = 'bocy-particle';
@@ -1110,27 +1599,42 @@
                 const dist = 30 + Math.random() * 20;
                 p.animate([
                     { transform: 'translate(0,0) scale(1)', opacity: 1 },
-                    { transform: `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px) scale(0)`, opacity: 0 }
+                    { transform: 'translate(' + Math.cos(angle)*dist + 'px, ' + Math.sin(angle)*dist + 'px) scale(0)', opacity: 0 }
                 ], { duration: 500, easing: 'ease-out' });
                 setTimeout(() => p.remove(), 500);
             }
             setTimeout(() => bocyPet.classList.remove('is-happy'), 800);
-            // Navigate on second click
-            setTimeout(() => {
-                window.open('https://app.bocy.io', '_blank');
-            }, 400);
+            setTimeout(() => window.open('https://app.bocy.io', '_blank'), 400);
         });
 
-        // Cycle messages periodically
         function cycleMessage() {
             bocyBubble.textContent = bocyMessages[messageIndex];
             bocyPet.classList.add('is-speaking');
             setTimeout(() => bocyPet.classList.remove('is-speaking'), 3000);
             messageIndex = (messageIndex + 1) % bocyMessages.length;
         }
-        // Show first message after 5s, then every 15s
         setTimeout(cycleMessage, 5000);
         setInterval(cycleMessage, 15000);
+
+        // ═══════════════════════════════════════
+        // HERO GLOW — Ambient pulse
+        // ═══════════════════════════════════════
+        gsap.to('.hero__glow', {
+            scale: 1.1, opacity: 0.9,
+            duration: 4, repeat: -1, yoyo: true,
+            ease: 'sine.inOut'
+        });
+    }
+
+    // Initialize when DOM + libs are ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait a tick for deferred scripts
+            setTimeout(initSite, 100);
+        });
+    } else {
+        setTimeout(initSite, 100);
+    }
     </script>
 </body>
 </html>
