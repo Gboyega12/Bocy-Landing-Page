@@ -112,10 +112,10 @@
             font-size: 1rem; line-height: 1.6;
             color: var(--text); background: var(--bg);
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; cursor: none;
+            overflow-x: hidden;
         }
-        a { color: inherit; text-decoration: none; cursor: none; }
-        button { font-family: inherit; cursor: none; }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; }
         img { display: block; max-width: 100%; }
         .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
@@ -148,38 +148,21 @@
            ═══════════════════════════════════════ */
         .cursor {
             position: fixed; top: 0; left: 0;
-            width: 20px; height: 20px;
-            border: 1.5px solid var(--accent);
+            width: 8px; height: 8px;
+            background: var(--accent);
             border-radius: 50%;
             pointer-events: none; z-index: 10000;
             transform: translate(-50%, -50%);
-            transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
-                        background 0.3s, border-color 0.3s, opacity 0.3s;
-            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
             opacity: 0;
         }
-        .cursor.is-active { opacity: 1; }
+        .cursor.is-active { opacity: 0.7; }
         .cursor.is-hover {
-            width: 60px; height: 60px;
-            background: rgba(0,212,170,0.1);
-            border-color: var(--accent);
+            width: 40px; height: 40px;
+            background: rgba(0,212,170,0.12);
+            opacity: 1;
         }
-        .cursor.is-text {
-            width: 4px; height: 40px;
-            border-radius: 2px; border: none;
-            background: var(--accent);
-            mix-blend-mode: normal;
-        }
-        .cursor__dot {
-            position: fixed; top: 0; left: 0;
-            width: 5px; height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none; z-index: 10001;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-        .cursor__dot.is-active { opacity: 1; }
+        .cursor__dot { display: none; }
 
         /* ═══════════════════════════════════════
            GRAIN OVERLAY
@@ -190,7 +173,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             opacity: 0.03;
             pointer-events: none;
-            animation: grain-shift 0.5s steps(1) infinite;
+            animation: grain-shift 2s steps(1) infinite;
         }
         @keyframes grain-shift {
             0%, 100% { transform: translate(0, 0); }
@@ -289,7 +272,7 @@
             filter: blur(100px); pointer-events: none; z-index: 0;
             opacity: 0;
         }
-        .hero__content { position: relative; z-index: 2; max-width: 800px; }
+        .hero__content { position: relative; z-index: 2; max-width: 800px; will-change: transform, opacity; }
         .hero__badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.5rem 1.125rem; margin-bottom: 2.5rem;
@@ -766,7 +749,7 @@
            ═══════════════════════════════════════ */
         .bocy-pet {
             position: fixed; bottom: 1.5rem; right: 1.5rem;
-            z-index: 90; cursor: none;
+            z-index: 90;
             animation: bocy-float 3s ease-in-out infinite;
             -webkit-tap-highlight-color: transparent;
         }
@@ -907,9 +890,7 @@
            ═══════════════════════════════════════ */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            .cursor, .cursor__dot { display: none; }
-            body { cursor: auto; }
-            a, button { cursor: pointer; }
+            .cursor { display: none; }
             .grain { display: none; }
         }
 
@@ -917,8 +898,29 @@
            MOBILE CURSOR OVERRIDE
            ═══════════════════════════════════════ */
         @media (hover: none) and (pointer: coarse) {
-            .cursor, .cursor__dot { display: none !important; }
-            body, a, button { cursor: auto !important; }
+            .cursor { display: none !important; }
+            .grain { display: none; }
+            .dot-grid { display: none; }
+            .cursor-glow { display: none; }
+            .hero__canvas { display: none; }
+        }
+
+        /* Mobile layout fixes */
+        @media (max-width: 639px) {
+            .hero { padding: 6rem 1.25rem 3rem; }
+            .hero__title { font-size: clamp(2rem, 9vw, 3.5rem); }
+            .hero__subtitle { font-size: 0.9375rem; margin-bottom: 1.5rem; }
+            .hero__cta-group { max-width: 100%; margin-bottom: 2rem; }
+            .hero__cta-group .btn { width: 100%; padding: 0.875rem 1.5rem; font-size: 0.9375rem; }
+            .hero__mockup { max-width: 280px; }
+            .hero__mockup-img { border-radius: 24px; }
+            .features__mockup img { border-radius: 20px; }
+            .cta-section { padding: 5rem 1.25rem; }
+            .cta-section__buttons { max-width: 100%; }
+            .cta-section__buttons .btn { width: 100%; }
+            .timeline__card { padding: 1.5rem; }
+            .timeline__cards { min-height: 340px; }
+            .person-card { width: 280px; padding: 1.5rem; }
         }
     </style>
 </head>
@@ -931,7 +933,6 @@
 
     <!-- Custom Cursor -->
     <div class="cursor" aria-hidden="true"></div>
-    <div class="cursor__dot" aria-hidden="true"></div>
 
     <!-- Grain Overlay -->
     <div class="grain" aria-hidden="true"></div>
@@ -969,12 +970,9 @@
                     <div class="magnetic">
                         <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">See Your Moves Free</span></a>
                     </div>
-                    <div class="magnetic">
-                        <a href="#how-it-works" class="btn btn--glass"><span class="btn__text">See how it works</span></a>
-                    </div>
                 </div>
                 <div class="hero__mockup">
-                    <img src="1.png" alt="BOCY app showing ranked financial moves with pound savings" class="hero__mockup-img" />
+                    <img src="IMG_1665.PNG" alt="BOCY app showing ranked financial moves with pound savings" class="hero__mockup-img" />
                 </div>
             </div>
             <div class="hero__scroll-hint">
@@ -1134,7 +1132,7 @@
                 <p class="features__subtitle">The difference is how it feels.</p>
             </header>
             <div class="features__mockup">
-                <img src="IMG_0818.png" alt="BOCY chat — conversational AI finance assistant" />
+                <img src="bocy listening.gif" alt="BOCY chat — conversational AI finance assistant" />
             </div>
             <div class="features__grid">
                 <article class="feature">
@@ -1169,9 +1167,6 @@
                 <div class="cta-section__buttons">
                     <div class="magnetic">
                         <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Optimising</span></a>
-                    </div>
-                    <div class="magnetic">
-                        <a href="/compare.html" class="btn btn--glass"><span class="btn__text">Compare savings rates</span></a>
                     </div>
                 </div>
             </div>
@@ -1226,36 +1221,28 @@
         // LENIS — Smooth scrolling
         // ═══════════════════════════════════════
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.0,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 0.7,
-            touchMultiplier: 1.8,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
             infinite: false,
         });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Connect Lenis to GSAP ScrollTrigger
+        // Single raf source via GSAP ticker — avoids double-update jank
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(500, 33);
+        gsap.ticker.lagSmoothing(0);
 
         // ═══════════════════════════════════════
         // CUSTOM CURSOR
         // ═══════════════════════════════════════
         const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor__dot');
         const cursorGlow = document.querySelector('.cursor-glow');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
-        let dotX = 0, dotY = 0;
 
         const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
@@ -1265,27 +1252,19 @@
                 mouseY = e.clientY;
                 if (!cursor.classList.contains('is-active')) {
                     cursor.classList.add('is-active');
-                    cursorDot.classList.add('is-active');
                     cursorGlow.classList.add('is-active');
                 }
             });
             document.addEventListener('mouseleave', () => {
                 cursor.classList.remove('is-active');
-                cursorDot.classList.remove('is-active');
                 cursorGlow.classList.remove('is-active');
             });
 
             function updateCursor() {
-                const ease = 0.15;
-                const dotEase = 0.5;
-                cursorX += (mouseX - cursorX) * ease;
-                cursorY += (mouseY - cursorY) * ease;
-                dotX += (mouseX - dotX) * dotEase;
-                dotY += (mouseY - dotY) * dotEase;
+                cursorX += (mouseX - cursorX) * 0.25;
+                cursorY += (mouseY - cursorY) * 0.25;
                 cursor.style.left = cursorX + 'px';
                 cursor.style.top = cursorY + 'px';
-                cursorDot.style.left = dotX + 'px';
-                cursorDot.style.top = dotY + 'px';
                 cursorGlow.style.left = mouseX + 'px';
                 cursorGlow.style.top = mouseY + 'px';
                 cursorGlow.style.transform = 'translate(-50%, -50%)';
@@ -1297,10 +1276,6 @@
             document.querySelectorAll('a, button, .magnetic, [role="button"]').forEach((el) => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
                 el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
-            });
-            document.querySelectorAll('h1, h2, h3, p').forEach((el) => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('is-text'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('is-text'));
             });
         }
 
@@ -1385,7 +1360,7 @@
                 trigger: '.hero',
                 start: 'top top',
                 end: 'bottom top',
-                scrub: 1.5
+                scrub: 0.6
             }
         });
         gsap.to('.hero__glow', {
@@ -1394,7 +1369,7 @@
                 trigger: '.hero',
                 start: 'center top',
                 end: 'bottom top',
-                scrub: 1.5
+                scrub: 0.6
             }
         });
         gsap.to('.hero__scroll-hint', {
@@ -1484,7 +1459,7 @@
             end: '+=300%',
             pin: '.timeline-pin',
             pinSpacing: true,
-            scrub: 1.2,
+            scrub: 0.5,
             onUpdate: (self) => {
                 const progress = self.progress;
                 // Divide into 4 equal segments
@@ -1533,7 +1508,7 @@
                     trigger: '.people',
                     start: 'top top',
                     end: () => '+=' + (trackWidth - viewportWidth + 200),
-                    scrub: 1.5,
+                    scrub: 0.6,
                     pin: true,
                     anticipatePin: 1,
                     invalidateOnRefresh: true
@@ -1643,7 +1618,7 @@
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
 
-            const particleCount = Math.min(80, Math.floor(window.innerWidth / 15));
+            const particleCount = Math.min(40, Math.floor(window.innerWidth / 25));
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
                     x: Math.random() * heroW,
@@ -1698,11 +1673,11 @@
                         const dx = particles[i].x - particles[j].x;
                         const dy = particles[i].y - particles[j].y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 120) {
+                        if (dist < 90) {
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = 'rgba(0, 212, 170, ' + (0.06 * (1 - dist / 120)) + ')';
+                            ctx.strokeStyle = 'rgba(0, 212, 170, ' + (0.05 * (1 - dist / 90)) + ')';
                             ctx.lineWidth = 0.5;
                             ctx.stroke();
                         }
