@@ -248,7 +248,85 @@
             opacity: 0; transform: translateY(-10px);
         }
         .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
-        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
+        /* Hamburger toggle */
+        .nav__hamburger {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            width: 40px; height: 40px; background: none; border: none;
+            cursor: pointer; z-index: 110; position: relative;
+            gap: 5px; padding: 0;
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__hamburger-line {
+            display: block; width: 20px; height: 2px;
+            background: var(--text); border-radius: 2px;
+            transition: all 0.3s var(--ease-out-expo);
+            transform-origin: center;
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(2) {
+            opacity: 0; transform: scaleX(0);
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile drawer */
+        .nav__drawer {
+            position: fixed; inset: 0; z-index: 99;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 1rem;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.4s var(--ease-out-expo), visibility 0.4s;
+        }
+        .nav__drawer.is-open {
+            opacity: 1; visibility: visible;
+        }
+        .nav__drawer-link {
+            font-size: 1.5rem; font-weight: 600; color: var(--text-secondary);
+            padding: 1rem 2rem; border-radius: var(--radius-pill);
+            transition: all 0.3s var(--ease-out-expo);
+            opacity: 0; transform: translateY(20px);
+            letter-spacing: -0.02em;
+        }
+        .nav__drawer.is-open .nav__drawer-link {
+            opacity: 1; transform: translateY(0);
+        }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(1) { transition-delay: 0.1s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(2) { transition-delay: 0.15s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(3) { transition-delay: 0.2s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(4) { transition-delay: 0.25s; }
+        .nav__drawer-link:hover, .nav__drawer-link:active { color: var(--text); }
+        .nav__drawer-cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-top: 1rem; padding: 1rem 2.5rem;
+            background: var(--text); color: var(--bg);
+            font-size: 1.125rem; font-weight: 600;
+            border-radius: var(--radius-pill); border: none;
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .nav__drawer.is-open .nav__drawer-cta {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        /* Hide hamburger + drawer on desktop, show inline nav */
+        @media (min-width: 768px) {
+            .nav { padding: 1.25rem 2rem; }
+            .nav__hamburger { display: none; }
+            .nav__drawer { display: none; }
+            .nav__links { display: flex; }
+            .nav__cta { display: inline-flex; }
+            .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; }
+        }
+        /* Hide inline links on mobile, show hamburger */
+        @media (max-width: 767px) {
+            .nav__links { display: none; }
+        }
         @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.375rem; } }
 
         /* ═══════════════════════════════════════
@@ -905,19 +983,85 @@
 
         /* Mobile layout fixes */
         @media (max-width: 639px) {
-            .hero { padding: 6rem 1.25rem 3rem; }
-            .hero__title { font-size: clamp(2rem, 9vw, 3.5rem); }
-            .hero__subtitle { font-size: 0.9375rem; margin-bottom: 1.5rem; }
-            .hero__cta-group { max-width: 100%; margin-bottom: 2rem; }
-            .hero__cta-group .btn { width: 100%; padding: 0.875rem 1.5rem; font-size: 0.9375rem; }
-            .hero__mockup { max-width: 280px; }
-            .features__mockup { max-width: 280px; }
-            .cta-section { padding: 5rem 1.25rem; }
+            /* Hero — generous spacing, bigger image */
+            .hero { padding: 6.5rem 1.5rem 3rem; }
+            .hero__title { font-size: clamp(2.25rem, 10vw, 3.5rem); margin-bottom: 0.5rem; }
+            .hero__subtitle { font-size: 1rem; margin-bottom: 2rem; line-height: 1.65; }
+            .hero__cta-group { max-width: 100%; margin-bottom: 2.5rem; }
+            .hero__cta-group .btn { width: 100%; padding: 1rem 1.5rem; font-size: 1rem; }
+            .hero__mockup { max-width: 92vw; }
+            .hero__badge { font-size: 0.625rem; padding: 0.4rem 0.875rem; margin-bottom: 2rem; }
+
+            /* Trust bar — stack nicely */
+            .trust { padding: 2.5rem 1.25rem; }
+            .trust__list { gap: 0.625rem; }
+            .trust__item { font-size: 0.75rem; padding: 0.5rem 0.875rem; }
+
+            /* Timeline — scrollable cards instead of pinned */
+            .timeline-section { padding: 0; }
+            .timeline-pin {
+                height: auto; min-height: auto;
+                padding: 4rem 1.5rem;
+                align-items: flex-start;
+            }
+            .timeline-pin__inner { gap: 2rem; }
+            .timeline__header { margin-bottom: 1.25rem; }
+            .timeline__header .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+            .timeline__progress { display: none; }
+            .timeline__cards {
+                position: relative; min-height: auto;
+                display: flex; flex-direction: column; gap: 1rem;
+            }
+            .timeline__card {
+                position: relative; top: auto; left: auto; right: auto;
+                opacity: 1; transform: none; pointer-events: auto;
+                padding: 1.5rem;
+                border-color: rgba(255,255,255,0.08);
+            }
+            .timeline__card.is-prev { opacity: 1; transform: none; }
+            .timeline__step { font-size: 0.625rem; margin-bottom: 0.75rem; }
+            .timeline__title { font-size: 1.0625rem; }
+            .timeline__desc { font-size: 0.875rem; margin-bottom: 1.25rem; }
+            .timeline__data { font-size: 0.75rem; }
+            .timeline__row { padding: 0.625rem 1rem; }
+            .timeline__actions { gap: 0.625rem; margin-top: 1rem; }
+            .timeline__btn { padding: 0.625rem; font-size: 0.75rem; }
+            .timeline__result { font-size: 0.75rem; margin-top: 1rem; padding: 0.75rem 1rem; }
+
+            /* People cards — wider */
+            .person-card { width: 300px; padding: 1.75rem; }
+            .person-card__quote { font-size: 0.9375rem; }
+
+            /* Features — bigger image, better spacing */
+            .features { padding: 5rem 1.5rem; }
+            .features__mockup { max-width: 92vw; margin-bottom: 3rem; }
+            .features__header { margin-bottom: 3rem; }
+            .features__subtitle { font-size: 1rem; }
+            .features__grid { gap: 1rem; }
+            .feature { padding: 1.5rem; gap: 1.25rem; }
+            .feature__title { font-size: 1rem; }
+            .feature__desc { font-size: 0.875rem; }
+
+            /* CTA */
+            .cta-section { padding: 5rem 1.5rem; }
+            .cta-section__title { font-size: clamp(1.75rem, 7vw, 2.5rem); margin-bottom: 1.25rem; }
+            .cta-section__desc { font-size: 1rem; margin-bottom: 2.5rem; }
             .cta-section__buttons { max-width: 100%; }
-            .cta-section__buttons .btn { width: 100%; }
-            .timeline__card { padding: 1.5rem; }
-            .timeline__cards { min-height: 340px; }
-            .person-card { width: 280px; padding: 1.5rem; }
+            .cta-section__buttons .btn { width: 100%; padding: 1rem 1.5rem; }
+
+            /* Footer — breathe */
+            .footer { padding: 4rem 1.5rem 2rem; }
+            .footer__nav { gap: 0.375rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
+            .footer__nav-link { font-size: 0.8125rem; padding: 0.5rem 0.75rem; }
+
+            /* Section labels/titles — hierarchy */
+            .section-label { font-size: 0.6875rem; margin-bottom: 1rem; }
+            .section-title { font-size: clamp(1.625rem, 7vw, 2.5rem); }
+
+            /* People section spacing */
+            .people { padding: 4rem 0; }
+            .people__header { margin-bottom: 3rem; padding: 0 1.5rem; }
+            .people__subtitle { font-size: 1rem; margin-top: 0.75rem; }
         }
     </style>
 </head>
@@ -946,8 +1090,22 @@
                 <a href="/isa-comparison.html" class="nav__link">ISAs</a>
                 <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta magnetic">Start Optimising</a>
             </div>
+            <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="nav__drawer" aria-hidden="true">
+        <a href="#how-it-works" class="nav__drawer-link">How It Works</a>
+        <a href="#features" class="nav__drawer-link">Features</a>
+        <a href="/savings-comparison.html" class="nav__drawer-link">Savings</a>
+        <a href="/isa-comparison.html" class="nav__drawer-link">ISAs</a>
+        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__drawer-cta">Start Optimising</a>
+    </div>
 
     <main>
         <!-- ═══ HERO ═══ -->
@@ -1306,6 +1464,30 @@
         });
 
         // ═══════════════════════════════════════
+        // HAMBURGER MENU
+        // ═══════════════════════════════════════
+        const hamburger = document.querySelector('.nav__hamburger');
+        const drawer = document.querySelector('.nav__drawer');
+        if (hamburger && drawer) {
+            hamburger.addEventListener('click', () => {
+                const isOpen = hamburger.classList.toggle('is-open');
+                drawer.classList.toggle('is-open', isOpen);
+                hamburger.setAttribute('aria-expanded', isOpen);
+                drawer.setAttribute('aria-hidden', !isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            drawer.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('is-open');
+                    drawer.classList.remove('is-open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    drawer.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════
         // PRELOADER + INTRO SEQUENCE
         // ═══════════════════════════════════════
         const preloader = document.querySelector('.preloader');
@@ -1344,7 +1526,7 @@
             .to('.hero__scroll-hint', { opacity: 0.6, duration: 0.6 }, '-=0.2');
 
         // Nav items
-        introTL.to(['.nav__logo', '.nav__link', '.nav__cta'], {
+        introTL.to(['.nav__logo', '.nav__link', '.nav__cta', '.nav__hamburger'], {
             opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out'
         }, '-=0.8');
 
@@ -1447,23 +1629,31 @@
             });
         }
 
-        // Pinned scroll — pins the section and steps through cards
+        // Pinned scroll — pins the section and steps through cards (desktop only)
         setTimelineStep(0);
 
-        ScrollTrigger.create({
-            trigger: '.timeline-section',
-            start: 'top top',
-            end: '+=300%',
-            pin: '.timeline-pin',
-            pinSpacing: true,
-            scrub: 0.5,
-            onUpdate: (self) => {
-                const progress = self.progress;
-                // Divide into 4 equal segments
-                const step = Math.min(3, Math.floor(progress * 4));
-                setTimelineStep(step);
-            }
-        });
+        const isMobileTimeline = window.innerWidth < 768;
+        if (!isMobileTimeline) {
+            ScrollTrigger.create({
+                trigger: '.timeline-section',
+                start: 'top top',
+                end: '+=300%',
+                pin: '.timeline-pin',
+                pinSpacing: true,
+                scrub: 0.5,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    const step = Math.min(3, Math.floor(progress * 4));
+                    setTimelineStep(step);
+                }
+            });
+        } else {
+            // On mobile, show all cards stacked — reveal on scroll
+            document.querySelectorAll('.timeline__card').forEach(card => {
+                card.classList.add('is-active');
+                card.classList.remove('is-prev');
+            });
+        }
 
         // ═══════════════════════════════════════
         // PEOPLE — Horizontal scroll
@@ -1587,7 +1777,17 @@
             a.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(a.getAttribute('href'));
-                if (target) lenis.scrollTo(target, { offset: -80 });
+                if (target) {
+                    // Close drawer if open
+                    if (drawer && drawer.classList.contains('is-open')) {
+                        hamburger.classList.remove('is-open');
+                        drawer.classList.remove('is-open');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        drawer.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    }
+                    lenis.scrollTo(target, { offset: -80 });
+                }
             });
         });
 
