@@ -313,7 +313,7 @@
         }
         .hero__title {
             font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.05em;
-            line-height: 1.08; margin-bottom: 1.5rem;
+            line-height: 1.08; margin-bottom: 0.75rem;
         }
         .hero__title .word {
             display: inline-block; overflow: hidden; vertical-align: top;
@@ -323,11 +323,6 @@
             display: inline-block; transform: translateY(110%);
         }
         .hero__title-line { display: block; }
-        .hero__title-line:last-child .word-inner {
-            background: linear-gradient(135deg, var(--accent), var(--teal), var(--blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         .hero__subtitle {
             font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-secondary); line-height: 1.7;
             margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto;
@@ -406,7 +401,7 @@
         .hero__mockup {
             margin: 0 auto;
             opacity: 0; transform: translateY(60px);
-            max-width: 320px;
+            max-width: 500px;
         }
         .hero__mockup-img {
             width: 100%;
@@ -414,8 +409,8 @@
             border-radius: 32px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 120px var(--accent-glow);
         }
-        @media (min-width: 640px) { .hero__mockup { max-width: 360px; } }
-        @media (min-width: 1024px) { .hero__mockup { max-width: 400px; } }
+        @media (min-width: 640px) { .hero__mockup { max-width: 560px; } }
+        @media (min-width: 1024px) { .hero__mockup { max-width: 640px; } }
 
         /* ═══════════════════════════════════════
            CLOSING CTA
@@ -960,7 +955,6 @@
                 </span>
                 <h1 class="hero__title">
                     <span class="hero__title-line">Your money has moves.</span>
-                    <span class="hero__title-line">You just can&rsquo;t see them yet.</span>
                 </h1>
                 <p class="hero__subtitle">BOCY connects to your accounts, finds what you&rsquo;re overpaying, and ranks every saving by real pound impact.</p>
                 <div class="hero__cta-group">
