@@ -431,8 +431,7 @@
             letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.5rem;
         }
         .cta-section__title span {
-            background: linear-gradient(135deg, var(--accent), var(--teal), var(--blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            color: var(--accent);
         }
         .cta-section__desc {
             font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-secondary);
@@ -708,6 +707,15 @@
         .features { padding: 6rem 1.25rem; position: relative; z-index: 1; }
         .features__header { text-align: center; margin-bottom: 4rem; }
         .features__subtitle { font-size: 1.0625rem; color: var(--text-secondary); margin-top: 1rem; }
+        .features__mockup {
+            max-width: 280px; margin: 0 auto 4rem; opacity: 0; transform: translateY(40px);
+        }
+        .features__mockup img {
+            width: 100%; height: auto; border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 80px var(--accent-glow);
+        }
+        @media (min-width: 640px) { .features__mockup { max-width: 320px; } }
+        @media (min-width: 1024px) { .features__mockup { max-width: 360px; } }
         .features__grid { display: grid; gap: 1.25rem; max-width: 960px; margin: 0 auto; }
         .feature {
             display: flex; gap: 1.5rem; padding: 2rem; align-items: flex-start;
@@ -1125,6 +1133,9 @@
                 <h2 class="section-title">Not another app.<br>A conversation.</h2>
                 <p class="features__subtitle">The difference is how it feels.</p>
             </header>
+            <div class="features__mockup">
+                <img src="IMG_0818.png" alt="BOCY chat — conversational AI finance assistant" />
+            </div>
             <div class="features__grid">
                 <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
@@ -1556,6 +1567,10 @@
         gsap.from('.features__subtitle', {
             opacity: 0, y: 20, duration: 0.6,
             scrollTrigger: { trigger: '.features', start: 'top 70%' }
+        });
+        gsap.to('.features__mockup', {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: '.features__mockup', start: 'top 80%' }
         });
 
         gsap.to('.feature', {
