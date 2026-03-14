@@ -101,6 +101,29 @@
             --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        /* ═══ TIMELINE MICRO-ANIMATIONS ═══ */
+        @keyframes timeline-dot-pulse {
+            0%, 100% { box-shadow: 0 0 12px rgba(0,212,170,0.4), 0 0 3px rgba(0,212,170,0.7); }
+            50% { box-shadow: 0 0 20px rgba(0,212,170,0.6), 0 0 6px rgba(0,212,170,0.9); }
+        }
+        @keyframes timeline-card-glow {
+            0%, 100% { box-shadow: 0 12px 48px rgba(0,0,0,0.35), 0 0 40px rgba(0,212,170,0.04), inset 0 0 0 1px rgba(0,212,170,0.06); }
+            50% { box-shadow: 0 12px 48px rgba(0,0,0,0.35), 0 0 50px rgba(0,212,170,0.08), inset 0 0 0 1px rgba(0,212,170,0.1); }
+        }
+        @keyframes timeline-data-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* ═══ WCAG: Reduced motion ═══ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* RESET */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { overflow-x: hidden; }
@@ -582,6 +605,9 @@
             cursor: pointer;
             opacity: 0.4;
         }
+        .timeline__progress-step:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px;
+        }
         .timeline__progress-step.is-active { color: var(--accent); opacity: 1; }
         .timeline__progress-step.is-past { color: var(--text-secondary); opacity: 0.7; }
         .timeline__progress-dot {
@@ -594,6 +620,7 @@
         .timeline__progress-step.is-active .timeline__progress-dot {
             background: var(--accent); border-color: var(--accent);
             box-shadow: 0 0 16px rgba(0,212,170,0.4), 0 0 4px rgba(0,212,170,0.6);
+            animation: timeline-dot-pulse 2.5s ease-in-out infinite;
         }
         .timeline__progress-step.is-past .timeline__progress-dot {
             background: var(--accent); border-color: var(--accent);
@@ -619,26 +646,29 @@
         }
         .timeline__card {
             padding: 2rem;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.025);
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: var(--radius-lg);
             position: absolute; top: 0; left: 0; right: 0;
             opacity: 0;
-            transform: translateY(30px) scale(0.96);
+            transform: translateY(40px) scale(0.88);
             pointer-events: none;
-            transition: opacity 0.8s var(--ease-out-expo),
-                        transform 0.8s var(--ease-out-expo),
-                        border-color 0.8s;
+            transition: opacity 0.9s var(--ease-out-expo),
+                        transform 0.9s var(--ease-out-expo),
+                        border-color 0.6s var(--ease-out-expo),
+                        background 0.6s var(--ease-out-expo),
+                        box-shadow 0.6s var(--ease-out-expo);
         }
         .timeline__card.is-active {
             opacity: 1; transform: translateY(0) scale(1);
-            border-color: rgba(255,255,255,0.1);
+            border-color: rgba(0,212,170,0.3);
+            background: rgba(0,212,170,0.025);
             pointer-events: auto;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05) inset;
+            animation: timeline-card-glow 3s ease-in-out infinite;
         }
         .timeline__card.is-prev {
-            opacity: 0; transform: translateY(-20px) scale(1.02);
+            opacity: 0; transform: translateY(-30px) scale(1.04);
         }
         .timeline__step {
             font-family: var(--font-mono); font-size: 0.6875rem;
@@ -657,18 +687,18 @@
         }
         .timeline__data {
             font-family: var(--font-mono); font-size: 0.8125rem;
-            background: rgba(0,0,0,0.35);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.4);
+            border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: var(--radius-md); overflow: hidden;
         }
         .timeline__row {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0.75rem 1.125rem;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 0.85rem 1.125rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .timeline__row:last-child { border-bottom: none; }
-        .timeline__row-label { color: var(--text-muted); }
-        .timeline__row-value { color: var(--text-secondary); }
+        .timeline__row-label { color: var(--text-secondary); }
+        .timeline__row-value { color: var(--text); }
         .timeline__row-value--highlight { color: var(--accent); font-weight: 600; }
         .timeline__row-value--negative { color: var(--text-muted); }
         .timeline__actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
@@ -679,6 +709,9 @@
             transition: all 0.3s var(--ease-out-expo);
         }
         .timeline__btn:hover { border-color: rgba(255,255,255,0.16); color: var(--text); }
+        .timeline__btn:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 2px;
+        }
         .timeline__btn--approve {
             background: var(--accent); border-color: var(--accent); color: var(--bg);
             font-weight: 600;
@@ -1073,7 +1106,7 @@
                 padding-left: 2.5rem;
             }
 
-            /* Dotted vertical line — white, Nothing-style */
+            /* Dotted vertical line — accent-tinted */
             .timeline__flow-line {
                 display: block;
                 position: absolute;
@@ -1081,7 +1114,7 @@
                 top: 0;
                 bottom: 0;
                 width: 0;
-                border-left: 2px dotted rgba(255,255,255,0.2);
+                border-left: 2px dotted rgba(0,212,170,0.25);
                 background: none;
                 z-index: 0;
             }
@@ -1089,20 +1122,22 @@
                 display: none;
             }
 
-            /* Cards — clean, minimal borders */
+            /* Cards — visible, prominent borders */
             .timeline__card {
                 position: relative; top: auto; left: auto; right: auto;
-                opacity: 0; transform: translateY(20px);
+                opacity: 0; transform: translateY(40px) scale(0.92);
                 pointer-events: auto;
-                padding: 1.75rem;
-                margin-bottom: 2rem;
-                border: 1px solid rgba(255,255,255,0.08);
-                background: transparent;
+                padding: 2rem;
+                margin-bottom: 3.5rem;
+                border: 1.5px solid rgba(255,255,255,0.14);
+                background: rgba(255,255,255,0.03);
                 backdrop-filter: none; -webkit-backdrop-filter: none;
-                border-radius: var(--radius-md);
-                transition: opacity 0.7s var(--ease-out-expo),
-                            transform 0.7s var(--ease-out-expo),
-                            border-color 0.5s;
+                border-radius: var(--radius-lg);
+                transition: opacity 0.8s var(--ease-out-expo),
+                            transform 0.8s var(--ease-out-expo),
+                            border-color 0.6s var(--ease-out-expo),
+                            background 0.6s var(--ease-out-expo),
+                            box-shadow 0.6s var(--ease-out-expo);
             }
             /* Dot on the rail */
             .timeline__card::before {
@@ -1114,9 +1149,9 @@
                 height: 14px;
                 border-radius: 50%;
                 background: var(--bg);
-                border: 2px solid rgba(255,255,255,0.25);
+                border: 2px solid rgba(0,212,170,0.3);
                 z-index: 2;
-                transition: all 0.5s var(--ease-out-expo);
+                transition: all 0.6s var(--ease-out-expo);
             }
             /* Connector arm from dot to card */
             .timeline__card::after {
@@ -1126,53 +1161,69 @@
                 top: calc(2rem + 5.5px);
                 width: calc(2.5rem - 15px);
                 height: 1px;
-                background: rgba(255,255,255,0.1);
+                background: rgba(0,212,170,0.12);
                 z-index: 1;
-                transition: background 0.5s;
+                transition: background 0.6s var(--ease-out-expo);
             }
-            /* Active card — blue dot (Nothing's accent moment) */
+            /* Active card — accent dot */
             .timeline__card.is-active {
-                opacity: 1; transform: translateY(0);
-                border-color: rgba(255,255,255,0.15);
+                opacity: 1; transform: translateY(0) scale(1);
+                border-color: rgba(0,212,170,0.35);
+                background: rgba(0,212,170,0.03);
+                animation: timeline-card-glow 3s ease-in-out infinite;
             }
             .timeline__card.is-active::before {
-                background: var(--blue);
-                border-color: var(--blue);
-                box-shadow: 0 0 12px rgba(77,159,255,0.5), 0 0 3px rgba(77,159,255,0.8);
+                background: var(--accent);
+                border-color: var(--accent);
+                box-shadow: 0 0 12px rgba(0,212,170,0.5), 0 0 3px rgba(0,212,170,0.8);
+                animation: timeline-dot-pulse 2.5s ease-in-out infinite;
             }
             .timeline__card.is-active::after {
-                background: rgba(77,159,255,0.4);
+                background: rgba(0,212,170,0.4);
             }
-            /* Past cards — subdued */
+            /* Past cards — subdued but still readable */
             .timeline__card.is-prev {
-                opacity: 0.6; transform: none;
-                border-color: rgba(255,255,255,0.06);
+                opacity: 0.5; transform: scale(0.96);
+                border-color: rgba(255,255,255,0.08);
+                background: rgba(255,255,255,0.015);
             }
             .timeline__card.is-prev::before {
-                background: rgba(255,255,255,0.3);
-                border-color: rgba(255,255,255,0.3);
+                background: var(--accent);
+                border-color: var(--accent);
+                opacity: 0.35;
                 box-shadow: none;
             }
             .timeline__card.is-prev::after {
-                background: rgba(255,255,255,0.08);
+                background: rgba(0,212,170,0.15);
             }
             .timeline__card:last-child { margin-bottom: 0; }
             .timeline__step {
-                font-size: 0.6875rem; margin-bottom: 0.875rem;
-                color: var(--text-secondary);
+                font-size: 0.75rem; margin-bottom: 0.875rem;
+                color: var(--accent);
                 letter-spacing: 0.12em;
+                font-weight: 600;
             }
-            .timeline__title { font-size: 1.125rem; font-weight: 700; }
+            .timeline__title {
+                font-size: 1.175rem; font-weight: 700;
+                color: var(--text);
+                line-height: 1.35;
+            }
             .timeline__desc {
                 font-size: 0.9375rem; margin-bottom: 1.25rem;
                 line-height: 1.75; color: var(--text-secondary);
             }
             .timeline__data {
                 font-size: 0.8125rem;
-                background: rgba(255,255,255,0.02);
-                border: 1px solid rgba(255,255,255,0.08);
+                background: rgba(0,0,0,0.3);
+                border: 1.5px solid rgba(255,255,255,0.12);
+                border-radius: var(--radius-md);
             }
-            .timeline__row { padding: 0.75rem 1rem; }
+            .timeline__row {
+                padding: 0.85rem 1.125rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .timeline__row-label { color: var(--text-secondary); }
+            .timeline__row-value { color: var(--text); }
             .timeline__actions { gap: 0.75rem; margin-top: 1.25rem; }
             .timeline__btn { padding: 0.75rem; font-size: 0.8125rem; }
             .timeline__result { font-size: 0.8125rem; margin-top: 1.25rem; padding: 0.875rem 1rem; }
@@ -1319,7 +1370,7 @@
         </section>
 
         <!-- ═══ HOW IT WORKS — Pinned Timeline ═══ -->
-        <section id="how-it-works" class="timeline-section">
+        <section id="how-it-works" class="timeline-section" aria-label="How it works - step by step">
             <div class="timeline-pin">
                 <div class="timeline-pin__inner">
                     <div class="timeline__left">
@@ -1327,30 +1378,30 @@
                             <p class="section-label">// how a conversation works</p>
                             <h2 class="section-title">Ask Bocy anything<br>about your money</h2>
                         </header>
-                        <div class="timeline__progress">
-                            <div class="timeline__progress-step is-active" data-step="0">
-                                <span class="timeline__progress-dot"></span>
+                        <nav class="timeline__progress" aria-label="Timeline steps">
+                            <div class="timeline__progress-step is-active" data-step="0" tabindex="0" role="button" aria-label="Step 1: You ask" aria-current="step">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
                                 <span>01 &middot; You ask</span>
                             </div>
-                            <div class="timeline__progress-line"><span class="timeline__progress-line-fill"></span></div>
-                            <div class="timeline__progress-step" data-step="1">
-                                <span class="timeline__progress-dot"></span>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="1" tabindex="0" role="button" aria-label="Step 2: Bocy digs">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
                                 <span>02 &middot; Bocy digs</span>
                             </div>
-                            <div class="timeline__progress-line"><span class="timeline__progress-line-fill"></span></div>
-                            <div class="timeline__progress-step" data-step="2">
-                                <span class="timeline__progress-dot"></span>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="2" tabindex="0" role="button" aria-label="Step 3: You decide">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
                                 <span>03 &middot; You decide</span>
                             </div>
-                            <div class="timeline__progress-line"><span class="timeline__progress-line-fill"></span></div>
-                            <div class="timeline__progress-step" data-step="3">
-                                <span class="timeline__progress-dot"></span>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="3" tabindex="0" role="button" aria-label="Step 4: Done">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
                                 <span>04 &middot; Done</span>
                             </div>
-                        </div>
+                        </nav>
                     </div>
-                    <div class="timeline__cards">
-                        <div class="timeline__flow-line"><div class="timeline__flow-line-fill"></div></div>
+                    <div class="timeline__cards" role="region" aria-label="Timeline card content" aria-live="polite">
+                        <div class="timeline__flow-line" aria-hidden="true"><div class="timeline__flow-line-fill"></div></div>
                         <div class="timeline__card is-active" data-card="0">
                             <p class="timeline__step">01 &middot; You ask</p>
                             <h3 class="timeline__title">&ldquo;Bocy, what should I do with the money left this month?&rdquo;</h3>
@@ -1765,13 +1816,27 @@
 
             timelineCards.forEach((c, i) => {
                 c.classList.remove('is-active', 'is-prev');
-                if (i === index) c.classList.add('is-active');
+                if (i === index) {
+                    c.classList.add('is-active');
+                    // Micro-animation: stagger data rows into view
+                    const rows = c.querySelectorAll('.timeline__row');
+                    rows.forEach((row, ri) => {
+                        row.style.opacity = '0';
+                        row.style.transform = 'translateX(-8px)';
+                        setTimeout(() => {
+                            row.style.transition = 'opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo)';
+                            row.style.opacity = '1';
+                            row.style.transform = 'translateX(0)';
+                        }, 200 + ri * 100);
+                    });
+                }
                 else if (i < index) c.classList.add('is-prev');
             });
 
             timelineSteps.forEach((s, i) => {
                 s.classList.remove('is-active', 'is-past');
-                if (i === index) s.classList.add('is-active');
+                s.removeAttribute('aria-current');
+                if (i === index) { s.classList.add('is-active'); s.setAttribute('aria-current', 'step'); }
                 else if (i < index) s.classList.add('is-past');
             });
 
@@ -1779,6 +1844,17 @@
                 l.classList.toggle('is-filled', i < index);
             });
         }
+
+        // Keyboard support for timeline progress steps
+        timelineSteps.forEach((step, i) => {
+            step.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setTimelineStep(i);
+                }
+            });
+            step.addEventListener('click', () => setTimelineStep(i));
+        });
 
         // Section heading reveal — animate opacity directly
         gsap.from('.timeline__header .section-label', {
