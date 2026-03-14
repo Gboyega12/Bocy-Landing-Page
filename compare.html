@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BOCY vs Monarch Money, Cleo AI &amp; ChatGPT — UK Finance Comparison</title>
+    <meta name="description" content="See how BOCY compares to Monarch Money, Cleo AI, and ChatGPT for money management. Built for UK finances with Open Banking, real-time insights, and automated actions.">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bocy.io/compare.html">
+    <link rel="alternate" hreflang="en-gb" href="https://bocy.io/compare.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bocy.io/compare.html">
+    <meta property="og:title" content="BOCY vs Monarch Money, Cleo AI &amp; ChatGPT">
+    <meta property="og:description" content="See how BOCY compares to Monarch Money, Cleo AI, and ChatGPT for money management. Built for UK finances with Open Banking.">
+    <meta property="og:image" content="https://bocy.io/og-image.png">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:site_name" content="BOCY">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bocy_io">
+    <meta name="twitter:title" content="BOCY vs Monarch Money, Cleo AI &amp; ChatGPT">
+    <meta name="twitter:description" content="See how BOCY compares to Monarch Money, Cleo AI, and ChatGPT for UK money management.">
+    <meta name="twitter:image" content="https://bocy.io/og-image.png">
+
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "BOCY vs Monarch Money, Cleo AI & ChatGPT",
+            "description": "See how BOCY compares to Monarch Money, Cleo AI, and ChatGPT for money management. Built for UK finances with Open Banking, real-time insights, and automated actions.",
+            "url": "https://bocy.io/compare.html",
+            "inLanguage": "en-GB",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "BOCY",
+                "url": "https://bocy.io"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bocy.io/" },
+                { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://bocy.io/compare.html" }
+            ]
+        }
+    ]
+    </script>
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000; --bg-elevated: #060606; --bg-subtle: #0A0A0A;
+            --text: #FAFAFA; --text-secondary: #999; --text-muted: #555;
+            --accent: #00D4AA; --accent-dim: rgba(0,212,170,0.12); --accent-glow: rgba(0,212,170,0.06);
+            --warm: #FF9F43; --warm-dim: rgba(255,159,67,0.1);
+            --blue: #4D9FFF; --purple: #A855F7; --coral: #FF6B6B; --teal: #2DD4BF;
+            --glass-bg: rgba(255,255,255,0.03); --glass-bg-hover: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.07); --glass-border-hover: rgba(255,255,255,0.14);
+            --font-mono: 'JetBrains Mono', monospace;
+            --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-pill: 100px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1rem; line-height: 1.6;
+            color: var(--text); background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        /* ═══ Dot grid background ═══ */
+        .dot-grid {
+            position: fixed; inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none; z-index: 0;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
+        }
+
+        /* ═══ Nav ═══ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 1.25rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav__inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .nav__logo {
+            font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
+            font-family: var(--font-mono);
+        }
+        .nav__logo span { color: var(--accent); }
+        .nav__cta {
+            display: none; padding: 0.5rem 1.25rem;
+            background: var(--glass-bg); color: var(--text);
+            font-size: 0.8125rem; font-weight: 500;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+        .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); }
+        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
+        .nav__link {
+            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+            border-radius: var(--radius-pill); transition: all 0.2s;
+            border: 1px solid transparent; white-space: nowrap;
+        }
+        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
+        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; } }
+
+        /* ═══ Mono label ═══ */
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+
+        /* ═══ Hero ═══ */
+        .compare-hero {
+            padding: 8rem 1.25rem 4rem; text-align: center;
+            position: relative; z-index: 1;
+        }
+        .compare-hero__title {
+            font-size: 2rem; font-weight: 700; letter-spacing: -0.04em;
+            line-height: 1.1; margin-bottom: 1rem;
+        }
+        .compare-hero__subtitle {
+            font-size: 1.0625rem; color: var(--text-secondary);
+            max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+        }
+        @media (min-width: 768px) { .compare-hero { padding: 9rem 2rem 5rem; } .compare-hero__title { font-size: 3rem; } }
+        @media (min-width: 1024px) { .compare-hero__title { font-size: 3.5rem; } }
+
+        /* ═══ Comparison table ═══ */
+        .compare-section { padding: 0 1.25rem 5rem; position: relative; z-index: 1; }
+        .compare-table-wrap {
+            max-width: 1000px; margin: 0 auto;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .compare-table {
+            width: 100%; min-width: 700px;
+            border-collapse: separate; border-spacing: 0;
+            font-size: 0.875rem;
+        }
+        .compare-table thead th {
+            padding: 1.25rem 1rem;
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-muted); font-weight: 500;
+            text-align: left; border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; background: var(--bg);
+        }
+        .compare-table thead th:first-child { color: var(--text-secondary); }
+        .compare-table thead th.th--bocy {
+            color: var(--accent);
+            background: rgba(0,212,170,0.03);
+            border-bottom-color: var(--accent-dim);
+        }
+        .compare-table tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-secondary); line-height: 1.6;
+            vertical-align: top;
+        }
+        .compare-table tbody td:first-child {
+            font-weight: 600; color: var(--text);
+            font-size: 0.8125rem;
+        }
+        .compare-table tbody td.td--bocy {
+            background: rgba(0,212,170,0.02);
+            color: var(--text);
+        }
+        .compare-table tbody tr:hover td { background: var(--glass-bg); }
+        .compare-table tbody tr:hover td.td--bocy { background: rgba(0,212,170,0.05); }
+        .compare-table .check { color: var(--accent); font-weight: 600; }
+        .compare-table .cross { color: var(--text-muted); }
+        .compare-table .partial { color: var(--warm); }
+
+        @media (min-width: 768px) {
+            .compare-section { padding: 0 2rem 6rem; }
+            .compare-table { font-size: 0.9375rem; }
+        }
+
+        /* ═══ Detail cards ═══ */
+        .details { padding: 0 1.25rem 5rem; position: relative; z-index: 1; }
+        .details__grid {
+            display: grid; gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+        }
+        .detail-card {
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: border-color 0.3s ease;
+        }
+        .detail-card:hover { border-color: var(--glass-border-hover); }
+        .detail-card__header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+        }
+        .detail-card__icon {
+            width: 40px; height: 40px; border-radius: var(--radius-sm);
+            display: grid; place-items: center;
+            font-family: var(--font-mono); font-size: 0.875rem; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .detail-card__icon--monarch { background: rgba(79,70,229,0.15); color: #7C6FF7; }
+        .detail-card__icon--cleo { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .detail-card__icon--llm { background: rgba(255,159,67,0.15); color: var(--warm); }
+        .detail-card__name {
+            font-size: 1.125rem; font-weight: 600;
+        }
+        .detail-card__versus {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+        }
+        .detail-card__body { margin-bottom: 1.5rem; }
+        .detail-card__body p {
+            font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;
+        }
+        .detail-card__body p:last-child { margin-bottom: 0; }
+        .detail-card__punchline {
+            padding: 0.875rem 1rem;
+            font-family: var(--font-mono); font-size: 0.8125rem;
+            color: var(--accent); line-height: 1.5;
+            border: 1px solid var(--accent-dim); border-radius: var(--radius-sm);
+            background: rgba(0,212,170,0.04);
+        }
+
+        @media (min-width: 768px) { .details { padding: 0 2rem 6rem; } }
+
+        /* ═══ One-liner CTA ═══ */
+        .oneliner {
+            padding: 4rem 1.25rem 5rem; text-align: center;
+            position: relative; z-index: 1;
+        }
+        .oneliner__text {
+            font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;
+            max-width: 640px; margin: 0 auto 2rem; line-height: 1.5;
+        }
+        .oneliner__text em {
+            font-style: normal; color: var(--accent);
+        }
+        .oneliner__cta {
+            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
+            padding: 0.875rem 1.75rem; font-size: 1rem; font-weight: 600;
+            border-radius: var(--radius-pill); border: none;
+            background: var(--text); color: var(--bg);
+            transition: all 0.25s ease; cursor: pointer;
+        }
+        .oneliner__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255,255,255,0.12);
+        }
+        @media (min-width: 768px) { .oneliner { padding: 5rem 2rem 6rem; } .oneliner__text { font-size: 1.5rem; } }
+
+        /* ═══ Divider ═══ */
+        .divider {
+            text-align: center; padding: 1.5rem 0; position: relative; z-index: 1;
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: rgba(255,255,255,0.08); letter-spacing: 0.3em;
+            user-select: none; overflow: hidden; max-width: 100%;
+        }
+
+        /* ═══ Footer ═══ */
+        .footer { padding: 4rem 1.25rem 2.5rem; position: relative; z-index: 1; }
+        .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+        .footer__logo { font-size: 1rem; font-weight: 700; font-family: var(--font-mono); }
+        .footer__copy { font-size: 0.6875rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+        /* ═══ Reveal ═══ */
+        .reveal {
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    </style>
+</head>
+<body>
+    <div class="dot-grid" aria-hidden="true"></div>
+
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="/" class="nav__logo">BOCY<span>.</span></a>
+            <div class="nav__links">
+                <a href="/savings-comparison.html" class="nav__link">Savings</a>
+                <a href="/isa-comparison.html" class="nav__link">ISAs</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta">Start Optimising</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="compare-hero reveal">
+            <p class="mono-label">// bocy vs the rest</p>
+            <h1 class="compare-hero__title">Not another budgeting app</h1>
+            <p class="compare-hero__subtitle">Monarch tracks where your money is. Cleo judges your spending. LLMs guess at rates. BOCY actually optimises where your savings sit.</p>
+        </section>
+
+        <!-- ═══ Comparison table ═══ -->
+        <section class="compare-section reveal">
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="th--bocy">BOCY</th>
+                            <th>Monarch Money</th>
+                            <th>Cleo AI</th>
+                            <th>ChatGPT / LLMs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UK-focused</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — built for UK banks, ISAs, FSCS</td>
+                            <td><span class="cross">No</span> — US only</td>
+                            <td><span class="partial">Partial</span> — US-first, limited UK</td>
+                            <td><span class="partial">Generic</span> — no locale awareness</td>
+                        </tr>
+                        <tr>
+                            <td>Optimises savings placement</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — finds best rates, shows you the moves</td>
+                            <td><span class="cross">No</span> — tracks balances only</td>
+                            <td><span class="cross">No</span> — focused on spending</td>
+                            <td><span class="cross">No</span> — can suggest, can't act</td>
+                        </tr>
+                        <tr>
+                            <td>Live rate data</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — verified against provider websites</td>
+                            <td><span class="cross">No</span></td>
+                            <td><span class="cross">No</span></td>
+                            <td><span class="cross">No</span> — hallucinated or stale</td>
+                        </tr>
+                        <tr>
+                            <td>Knows your full picture</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — income, bills, debts, savings</td>
+                            <td><span class="check">Yes</span> — via Plaid</td>
+                            <td><span class="partial">Partial</span> — spending focus</td>
+                            <td><span class="cross">No</span> — no persistent memory</td>
+                        </tr>
+                        <tr>
+                            <td>Actionable insights</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — specific £ figures with clear reasoning</td>
+                            <td><span class="cross">No</span> — dashboards only</td>
+                            <td><span class="partial">Basic</span> — "stop buying coffee"</td>
+                            <td><span class="partial">Generic</span> — no personal context</td>
+                        </tr>
+                        <tr>
+                            <td>Executes with your approval</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — approve-then-act model</td>
+                            <td><span class="cross">No</span></td>
+                            <td><span class="partial">Limited</span> — auto-save only</td>
+                            <td><span class="cross">No</span> — text only</td>
+                        </tr>
+                        <tr>
+                            <td>Explains every decision</td>
+                            <td class="td--bocy"><span class="check">Yes</span> — full transparency on trade-offs</td>
+                            <td><span class="cross">No</span></td>
+                            <td><span class="cross">No</span></td>
+                            <td><span class="partial">Verbose</span> — but lacks real data</td>
+                        </tr>
+                        <tr>
+                            <td>Open Banking (UK)</td>
+                            <td class="td--bocy"><span class="check">Yes</span></td>
+                            <td><span class="cross">No</span> — uses Plaid (US)</td>
+                            <td><span class="partial">Limited</span></td>
+                            <td><span class="cross">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td class="td--bocy"><span class="check">Free</span></td>
+                            <td>$14.99/mo</td>
+                            <td>£5.99/mo (Cleo+)</td>
+                            <td>$20/mo (ChatGPT Plus)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+
+        <!-- ═══ Detail cards ═══ -->
+        <section class="details">
+            <div class="details__grid">
+                <article class="detail-card reveal">
+                    <div class="detail-card__header">
+                        <div class="detail-card__icon detail-card__icon--monarch">M</div>
+                        <div>
+                            <h2 class="detail-card__name">Monarch Money</h2>
+                            <p class="detail-card__versus">vs BOCY</p>
+                        </div>
+                    </div>
+                    <div class="detail-card__body">
+                        <p>Monarch is a well-designed personal finance dashboard — for Americans. It connects to US bank accounts via Plaid, categorises transactions, and gives you a clean view of your net worth and spending.</p>
+                        <p>But that's where it stops. Monarch tells you <strong>where your money is</strong>. It doesn't tell you <strong>where it should be</strong>. There's no rate comparison, no savings optimisation, no actionable insights based on your surplus. It's a rear-view mirror, not a GPS.</p>
+                        <p>And it doesn't work with UK banks at all.</p>
+                    </div>
+                    <div class="detail-card__punchline">Monarch watches your money. BOCY puts it to work.</div>
+                </article>
+
+                <article class="detail-card reveal">
+                    <div class="detail-card__header">
+                        <div class="detail-card__icon detail-card__icon--cleo">C</div>
+                        <div>
+                            <h2 class="detail-card__name">Cleo AI</h2>
+                            <p class="detail-card__versus">vs BOCY</p>
+                        </div>
+                    </div>
+                    <div class="detail-card__body">
+                        <p>Cleo is a chatbot that roasts you about your spending habits. It's fun, Gen-Z-flavoured, and decent at giving you a nudge when you overspend. The auto-save feature can help you build a buffer.</p>
+                        <p>But Cleo is a <strong>spending cop</strong>, not an <strong>earning optimiser</strong>. It doesn't know what interest rate your savings account pays. It can't tell you that moving £5,000 from a 1.5% account to a 4.39% account earns you an extra £144/year. It was built primarily for the US market, with limited UK support.</p>
+                    </div>
+                    <div class="detail-card__punchline">Cleo judges your spending. BOCY grows your savings.</div>
+                </article>
+
+                <article class="detail-card reveal">
+                    <div class="detail-card__header">
+                        <div class="detail-card__icon detail-card__icon--llm">AI</div>
+                        <div>
+                            <h2 class="detail-card__name">ChatGPT &amp; LLMs</h2>
+                            <p class="detail-card__versus">vs BOCY</p>
+                        </div>
+                    </div>
+                    <div class="detail-card__body">
+                        <p>You can ask ChatGPT "where should I put my savings?" and get a reasonable-sounding answer. The problem? It will confidently tell you a savings account pays 4.50% when it actually pays 2.05%. LLMs don't have access to live rate data — they hallucinate numbers.</p>
+                        <p>They also don't know your financial situation. They can't see your income, your bills, your existing accounts. Every answer is generic. And they can't act — they can't move money, set up transfers, or monitor rate changes over time.</p>
+                        <p>BOCY uses AI where it helps (analysis, explanation, insights) but grounds everything in <strong>verified, real-time data</strong> from your actual accounts.</p>
+                    </div>
+                    <div class="detail-card__punchline">LLMs guess at rates. BOCY knows them — and acts on them.</div>
+                </article>
+            </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+
+        <!-- ═══ CTA ═══ -->
+        <section class="oneliner reveal">
+            <p class="oneliner__text">Monarch watches your money. Cleo judges your spending. LLMs guess at rates. <em>BOCY actually optimises where your savings sit.</em></p>
+            <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="oneliner__cta">Start Optimising →</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <a href="/" class="footer__logo">BOCY.</a>
+            <p class="footer__copy">&copy; 2026 BOCY. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

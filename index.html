@@ -3,31 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BOCY — Beyond Budgeting, Start Optimising</title>
-    <meta name="description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    <title>BOCY | Your Money Has Moves | AI-Powered Finance</title>
+    <meta name="description" content="BOCY connects to your accounts, finds what you're overpaying, and ranks every saving by real pound impact.">
     <meta name="theme-color" content="#000000">
-    <link rel="canonical" href="https://bocy.io">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bocy.io/">
+    <link rel="alternate" hreflang="en-gb" href="https://bocy.io/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bocy.io/">
-    <meta property="og:title" content="BOCY — Beyond Budgeting, Start Optimising">
-    <meta property="og:description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    <meta property="og:title" content="BOCY | Your Money Has Moves | AI-Powered Finance">
+    <meta property="og:description" content="BOCY connects to your accounts, finds what you're overpaying, and ranks every saving by real pound impact.">
     <meta property="og:image" content="https://bocy.io/og-image.png">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:site_name" content="BOCY">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@bocy_io">
-    <meta name="twitter:title" content="BOCY — Beyond Budgeting, Start Optimising">
-    <meta name="twitter:description" content="Your AI financial manager that sees everything, explains every decision, and only acts when you approve.">
+    <meta name="twitter:title" content="BOCY | Your Money Has Moves | AI-Powered Finance">
+    <meta name="twitter:description" content="BOCY connects to your accounts, finds what you're overpaying, and ranks every saving by real pound impact.">
+    <meta name="twitter:image" content="https://bocy.io/og-image.png">
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://app.bocy.io">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Animation Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BOCY AI LIMITED",
+      "url": "https://bocy.io",
+      "logo": "https://bocy.io/favicon.png",
+      "description": "AI-powered financial companion for the UK. Compare savings rates, get clear insights on your money.",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Apartment 15 Adlay Apartments, 3 Millet Place",
+        "addressLocality": "London",
+        "postalCode": "E16 2YE",
+        "addressCountry": "GB"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@bocy.io",
+        "contactType": "customer service"
+      },
+      "sameAs": ["https://twitter.com/bocy_io"]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BOCY",
+      "url": "https://bocy.io",
+      "description": "AI-powered financial companion for the UK",
+      "inLanguage": "en-GB"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "BOCY",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "url": "https://app.bocy.io",
+      "description": "AI financial companion that scans your accounts, shows insights, and helps you optimise your savings.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      }
+    }]
+    </script>
     <style>
         /* ═══════════════════════════════════════
-           DESIGN SYSTEM — Variables
+           DESIGN SYSTEM
            ═══════════════════════════════════════ */
         :root {
             --bg: #000; --bg-elevated: #060606; --bg-subtle: #0A0A0A;
@@ -37,15 +95,41 @@
             --blue: #4D9FFF; --purple: #A855F7; --coral: #FF6B6B; --teal: #2DD4BF;
             --glass-bg: rgba(255,255,255,0.03); --glass-bg-hover: rgba(255,255,255,0.06);
             --glass-border: rgba(255,255,255,0.07); --glass-border-hover: rgba(255,255,255,0.14);
-            --font-mono: 'JetBrains Mono', monospace;
+            --font-mono: 'Space Mono', monospace;
             --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-pill: 100px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* ═══════════════════════════════════════
-           RESET & BASE
-           ═══════════════════════════════════════ */
+        /* ═══ TIMELINE MICRO-ANIMATIONS ═══ */
+        @keyframes timeline-dot-pulse {
+            0%, 100% { box-shadow: 0 0 12px rgba(0,212,170,0.4), 0 0 3px rgba(0,212,170,0.7); }
+            50% { box-shadow: 0 0 20px rgba(0,212,170,0.6), 0 0 6px rgba(0,212,170,0.9); }
+        }
+        @keyframes timeline-card-glow {
+            0%, 100% { box-shadow: 0 12px 48px rgba(0,0,0,0.35), 0 0 40px rgba(0,212,170,0.04), inset 0 0 0 1px rgba(0,212,170,0.06); }
+            50% { box-shadow: 0 12px 48px rgba(0,0,0,0.35), 0 0 50px rgba(0,212,170,0.08), inset 0 0 0 1px rgba(0,212,170,0.1); }
+        }
+        @keyframes timeline-data-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* ═══ WCAG: Reduced motion ═══ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* RESET */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        html { overflow-x: hidden; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             font-size: 1rem; line-height: 1.6;
@@ -55,115 +139,117 @@
         }
         a { color: inherit; text-decoration: none; }
         button { font-family: inherit; cursor: pointer; }
+        img { display: block; max-width: 100%; }
         .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
         /* ═══════════════════════════════════════
-           DOT GRID BACKGROUND (Nothing.tech style)
+           PRELOADER
+           ═══════════════════════════════════════ */
+        .preloader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--bg);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s;
+        }
+        .preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+        .preloader__logo {
+            font-family: var(--font-mono); font-size: 2rem; font-weight: 700;
+            letter-spacing: -0.02em; opacity: 0;
+        }
+        .preloader__logo span { color: var(--accent); }
+        .preloader__bar {
+            width: 120px; height: 2px; margin-top: 2rem;
+            background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
+        }
+        .preloader__fill {
+            width: 0%; height: 100%; background: var(--accent); border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════
+           CUSTOM CURSOR
+           ═══════════════════════════════════════ */
+        .cursor {
+            position: fixed; top: 0; left: 0;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none; z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+            opacity: 0;
+        }
+        .cursor.is-active { opacity: 0.7; }
+        .cursor.is-hover {
+            width: 40px; height: 40px;
+            background: rgba(0,212,170,0.12);
+            opacity: 1;
+        }
+        .cursor__dot { display: none; }
+
+        /* ═══════════════════════════════════════
+           GRAIN OVERLAY
+           ═══════════════════════════════════════ */
+        .grain {
+            position: fixed; inset: -50%; z-index: 9998;
+            width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            animation: grain-shift 2s steps(1) infinite;
+        }
+        @keyframes grain-shift {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-5%, 5%); }
+            50% { transform: translate(5%, -5%); }
+            75% { transform: translate(-3%, -3%); }
+        }
+
+        /* ═══════════════════════════════════════
+           DOT GRID BACKGROUND
            ═══════════════════════════════════════ */
         .dot-grid {
             position: fixed; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-            background-size: 28px 28px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
             pointer-events: none; z-index: 0;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.5) 0%, transparent 100%);
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 100%);
         }
 
-        /* Cursor glow that illuminates the dot grid */
         .cursor-glow {
-            position: fixed; width: min(500px, 100vw); height: 500px;
-            background: radial-gradient(circle, rgba(0,212,170,0.035) 0%, transparent 70%);
+            position: fixed; width: min(600px, 100vw); height: 600px;
+            background: radial-gradient(circle, rgba(0,212,170,0.03) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; z-index: 0;
             transform: translate(-50%, -50%);
-            transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s;
-            opacity: 0;
+            opacity: 0; will-change: transform;
         }
         .cursor-glow.is-active { opacity: 1; }
 
-        /* Scan line effect (retro CRT) */
-        .scanline {
-            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(255,255,255,0.008) 2px,
-                rgba(255,255,255,0.008) 4px
-            );
-        }
-
         /* ═══════════════════════════════════════
-           MONO LABEL — Reusable section label
-           ═══════════════════════════════════════ */
-        .mono-label {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--text-muted); letter-spacing: 0.08em;
-            text-transform: uppercase; margin-bottom: 1rem;
-        }
-
-        /* ═══════════════════════════════════════
-           GLASS CARD — Reusable glass component
-           ═══════════════════════════════════════ */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: var(--glass-border-hover);
-            background: var(--glass-bg-hover);
-        }
-
-        /* ═══════════════════════════════════════
-           BUTTONS — Glass style
-           ═══════════════════════════════════════ */
-        .btn {
-            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
-            padding: 0.875rem 1.75rem; font-size: 1rem; font-weight: 500;
-            border-radius: var(--radius-pill); border: none;
-            transition: all 0.25s ease; cursor: pointer;
-            position: relative; overflow: hidden;
-        }
-        .btn--primary {
-            background: var(--text); color: var(--bg); font-weight: 600;
-        }
-        .btn--primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(255,255,255,0.12), 0 0 60px rgba(255,255,255,0.04);
-        }
-        .btn--glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary); font-size: 0.9375rem;
-        }
-        .btn--glass:hover {
-            background: var(--glass-bg-hover);
-            border-color: var(--glass-border-hover);
-            color: var(--text);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        /* ═══════════════════════════════════════
-           NAV — Glassmorphism
+           NAV
            ═══════════════════════════════════════ */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1rem 1.25rem;
-            background: rgba(0,0,0,0.7);
+            padding: 1.25rem 1.5rem;
+            background: rgba(0,0,0,0);
+            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+        }
+        .nav.is-scrolled {
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom-color: var(--glass-border);
         }
         .nav__inner {
             display: flex; justify-content: space-between; align-items: center;
             max-width: 1200px; margin: 0 auto;
         }
         .nav__logo {
-            font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
+            font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em;
             font-family: var(--font-mono);
+            opacity: 0; transform: translateY(-10px);
         }
         .nav__logo span { color: var(--accent); }
         .nav__cta {
@@ -173,14 +259,101 @@
             border-radius: var(--radius-pill);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            transition: all 0.2s ease;
+            transition: all 0.3s var(--ease-out-expo);
+            opacity: 0; transform: translateY(-10px);
         }
-        .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); }
-        @media (min-width: 768px) { .nav { padding: 1.25rem 2rem; } .nav__cta { display: inline-flex; } }
-        @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.25rem; } }
+        .nav__cta:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); transform: translateY(-2px); }
+        .nav__links { display: flex; gap: 0.375rem; align-items: center; }
+        .nav__link {
+            padding: 0.4rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+            border-radius: var(--radius-pill); transition: all 0.3s var(--ease-out-expo);
+            border: 1px solid transparent; white-space: nowrap;
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
+        /* Hamburger toggle */
+        .nav__hamburger {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            width: 40px; height: 40px; background: none; border: none;
+            cursor: pointer; z-index: 110; position: relative;
+            gap: 5px; padding: 0;
+            opacity: 0; transform: translateY(-10px);
+        }
+        .nav__hamburger-line {
+            display: block; width: 20px; height: 2px;
+            background: var(--text); border-radius: 2px;
+            transition: all 0.3s var(--ease-out-expo);
+            transform-origin: center;
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(2) {
+            opacity: 0; transform: scaleX(0);
+        }
+        .nav__hamburger.is-open .nav__hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile drawer */
+        .nav__drawer {
+            position: fixed; inset: 0; z-index: 99;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 1rem;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.4s var(--ease-out-expo), visibility 0.4s;
+        }
+        .nav__drawer.is-open {
+            opacity: 1; visibility: visible;
+        }
+        .nav__drawer-link {
+            font-size: 1.5rem; font-weight: 600; color: var(--text-secondary);
+            padding: 1rem 2rem; border-radius: var(--radius-pill);
+            transition: all 0.3s var(--ease-out-expo);
+            opacity: 0; transform: translateY(20px);
+            letter-spacing: -0.02em;
+        }
+        .nav__drawer.is-open .nav__drawer-link {
+            opacity: 1; transform: translateY(0);
+        }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(1) { transition-delay: 0.1s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(2) { transition-delay: 0.15s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(3) { transition-delay: 0.2s; }
+        .nav__drawer.is-open .nav__drawer-link:nth-child(4) { transition-delay: 0.25s; }
+        .nav__drawer-link:hover, .nav__drawer-link:active { color: var(--text); }
+        .nav__drawer-cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-top: 1rem; padding: 1rem 2.5rem;
+            background: var(--text); color: var(--bg);
+            font-size: 1.125rem; font-weight: 600;
+            border-radius: var(--radius-pill); border: none;
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .nav__drawer.is-open .nav__drawer-cta {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        /* Hide hamburger + drawer on desktop, show inline nav */
+        @media (min-width: 768px) {
+            .nav { padding: 1.25rem 2rem; }
+            .nav__hamburger { display: none; }
+            .nav__drawer { display: none; }
+            .nav__links { display: flex; }
+            .nav__cta { display: inline-flex; }
+            .nav__link { font-size: 0.8125rem; padding: 0.4rem 0.875rem; }
+        }
+        /* Hide inline links on mobile, show hamburger */
+        @media (max-width: 767px) {
+            .nav__links { display: none; }
+        }
+        @media (min-width: 1024px) { .nav { padding: 1.25rem 3rem; } .nav__logo { font-size: 1.375rem; } }
 
         /* ═══════════════════════════════════════
-           HERO
+           HERO — Full viewport immersive
            ═══════════════════════════════════════ */
         .hero {
             min-height: 100vh; min-height: 100dvh;
@@ -188,18 +361,19 @@
             padding: 7rem 1.5rem 4rem; text-align: center;
             position: relative; z-index: 1; overflow: hidden;
         }
+        .hero__canvas {
+            position: absolute; inset: 0; z-index: 0;
+            pointer-events: none;
+        }
+        .hero__canvas canvas { width: 100%; height: 100%; display: block; }
         .hero__glow {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: min(700px, 100vw); height: 700px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-            filter: blur(80px); pointer-events: none;
-            animation: hero-glow-pulse 6s ease-in-out infinite;
+            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            width: min(900px, 140vw); height: 900px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+            filter: blur(100px); pointer-events: none; z-index: 0;
+            opacity: 0;
         }
-        @keyframes hero-glow-pulse {
-            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-        .hero__content { position: relative; z-index: 1; max-width: 680px; }
+        .hero__content { position: relative; z-index: 2; max-width: 800px; will-change: transform, opacity; }
         .hero__badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.5rem 1.125rem; margin-bottom: 2.5rem;
@@ -209,7 +383,8 @@
             border-radius: var(--radius-pill);
             font-family: var(--font-mono);
             font-size: 0.6875rem; font-weight: 500; color: var(--text-secondary);
-            letter-spacing: 0.04em; text-transform: uppercase;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            opacity: 0; transform: translateY(20px);
         }
         .hero__badge-dot {
             width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
@@ -221,114 +396,176 @@
             50% { opacity: 0.5; box-shadow: 0 0 16px var(--accent); }
         }
         .hero__title {
-            font-size: 2.25rem; font-weight: 700; letter-spacing: -0.04em;
-            line-height: 1.05; margin-bottom: 1.5rem;
+            font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.05em;
+            line-height: 1.08; margin-bottom: 0.75rem;
+        }
+        .hero__title .word {
+            display: inline-block; overflow: hidden; vertical-align: top;
+            padding-bottom: 0.08em;
+        }
+        .hero__title .word-inner {
+            display: inline-block; transform: translateY(110%);
         }
         .hero__title-line { display: block; }
-        .hero__title-line:first-child { color: var(--text); }
-        .hero__title-line:last-child {
-            background: linear-gradient(135deg, var(--accent), var(--teal));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         .hero__subtitle {
-            font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7;
-            margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto;
-            font-weight: 400;
+            font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-secondary); line-height: 1.7;
+            margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto;
+            font-weight: 400; opacity: 0; transform: translateY(30px);
         }
         .hero__cta-group {
             display: flex; flex-direction: column; gap: 0.75rem;
-            width: 100%; max-width: 340px; margin: 0 auto 4rem;
+            width: 100%; max-width: 400px; margin: 0 auto 3rem;
+            opacity: 0; transform: translateY(30px);
         }
-
-        @media (min-width: 640px) {
-            .hero { padding: 8rem 2rem 5rem; }
-            .hero__title { font-size: 3rem; }
-            .hero__subtitle { font-size: 1.125rem; }
-            .hero__cta-group { flex-direction: row; max-width: 420px; align-items: center; }
-            .btn--primary { flex: 1; }
-            .btn--glass { flex: 0 0 auto; }
+        .hero__scroll-hint {
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            opacity: 0;
         }
-        @media (min-width: 1024px) {
-            .hero { padding: 8rem 3rem 6rem; }
-            .hero__title { font-size: 3.75rem; }
-            .hero__subtitle { max-width: 520px; }
+        .hero__scroll-text {
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase;
         }
-        @media (min-width: 1280px) { .hero__title { font-size: 4.5rem; } }
+        .hero__scroll-line {
+            width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scroll-line 2s ease-in-out infinite;
+        }
+        @keyframes scroll-line {
+            0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+            50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            50.01% { transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 1; }
+        }
 
         /* ═══════════════════════════════════════
-           PHONE MOCKUP — Glass style
+           BUTTONS — Magnetic + Glass
            ═══════════════════════════════════════ */
-        .phone {
-            width: 220px; margin: 0 auto;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 28px; padding: 6px;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 100px var(--accent-glow);
-        }
-        .phone__screen {
-            background: var(--bg); border-radius: 24px;
-            padding: 1.25rem 1rem 1.5rem;
-            aspect-ratio: 9/19; display: flex; flex-direction: column;
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
+            padding: 1.125rem 2.5rem; font-size: 1.0625rem; font-weight: 700;
+            border-radius: var(--radius-pill); border: none;
+            transition: all 0.4s var(--ease-out-expo);
             position: relative; overflow: hidden;
+            letter-spacing: 0.01em;
         }
-        /* Dot grid inside phone screen */
-        .phone__screen::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 16px 16px;
-            pointer-events: none;
+        .btn--primary {
+            background: linear-gradient(135deg, var(--accent), #00E8B8, var(--teal));
+            background-size: 200% 200%;
+            color: var(--bg);
+            box-shadow: 0 4px 24px rgba(0,212,170,0.35), 0 0 60px rgba(0,212,170,0.12), inset 0 1px 0 rgba(255,255,255,0.2);
+            animation: btn-gradient-shift 4s ease infinite, btn-glow-pulse 2.5s ease-in-out infinite;
         }
-        .phone__header { margin-bottom: 1rem; text-align: left; position: relative; z-index: 1; }
-        .phone__greeting { font-size: 0.875rem; font-weight: 500; }
-        .phone__status { text-align: center; padding: 0.75rem 0; position: relative; z-index: 1; }
-        .phone__status-label { font-size: 0.6875rem; color: var(--text-muted); margin-bottom: 0.25rem; font-family: var(--font-mono); }
-        .phone__status-value {
-            font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em;
-            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        @keyframes btn-gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
-        .phone__status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 16px var(--accent); }
-        .orbs { flex: 1; display: flex; justify-content: center; align-items: center; padding-top: 1rem; position: relative; z-index: 1; }
-        .orbs__container { position: relative; width: 150px; height: 145px; }
-        .orb {
-            position: absolute; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.5rem; font-weight: 600; color: var(--text);
-            text-transform: uppercase; letter-spacing: 0.02em;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        @keyframes btn-glow-pulse {
+            0%, 100% { box-shadow: 0 4px 24px rgba(0,212,170,0.35), 0 0 60px rgba(0,212,170,0.12), inset 0 1px 0 rgba(255,255,255,0.2); }
+            50% { box-shadow: 0 6px 32px rgba(0,212,170,0.5), 0 0 80px rgba(0,212,170,0.2), inset 0 1px 0 rgba(255,255,255,0.25); }
         }
-        .orb--income { width: 50px; height: 50px; background: linear-gradient(135deg, rgba(77,159,255,0.7), rgba(45,212,191,0.7)); top: 0; left: 50%; transform: translateX(-50%); animation: float-c 3.5s ease-in-out infinite; }
-        .orb--bills { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(102,102,102,0.7), rgba(153,153,153,0.5)); top: 40px; left: 0; animation: float 3.5s ease-in-out infinite 0.2s; }
-        .orb--credit { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(168,85,247,0.7), rgba(124,58,237,0.5)); top: 40px; right: 0; animation: float 3.5s ease-in-out infinite 0.4s; }
-        .orb--debt { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(255,107,107,0.7), rgba(249,115,22,0.5)); bottom: 0; left: 12px; animation: float 3.5s ease-in-out infinite 0.6s; }
-        .orb--savings { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(45,212,191,0.7), rgba(168,85,247,0.5)); bottom: 0; right: 12px; animation: float 3.5s ease-in-out infinite 0.8s; }
-        .orbs__center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.875rem; color: rgba(255,255,255,0.15); }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-        @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
+        .btn--primary::before {
+            content: ""; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(
+                115deg,
+                transparent 20%,
+                rgba(255,255,255,0.15) 40%,
+                rgba(255,255,255,0.3) 50%,
+                rgba(255,255,255,0.15) 60%,
+                transparent 80%
+            );
+            transform: translateX(-100%);
+            animation: btn-shimmer 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+        @keyframes btn-shimmer {
+            0% { transform: translateX(-100%); }
+            40%, 100% { transform: translateX(100%); }
+        }
+        .btn--primary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 48px rgba(0,212,170,0.5), 0 0 100px rgba(0,212,170,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+            color: var(--bg);
+        }
+        .btn--primary:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 4px;
+        }
+        .btn__text { position: relative; z-index: 1; }
+        .btn--glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary); font-weight: 500;
+        }
+        .btn--glass:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
 
-        @media (min-width: 640px) {
-            .phone { width: 260px; border-radius: 36px; }
-            .phone__screen { border-radius: 32px; padding: 1.5rem 1.25rem; }
-            .phone__status-value { font-size: 1.875rem; }
-            .orbs__container { width: 175px; height: 170px; }
-            .orb--income { width: 58px; height: 58px; font-size: 0.55rem; }
-            .orb--bills, .orb--credit { width: 52px; height: 52px; top: 46px; font-size: 0.55rem; }
-            .orb--debt, .orb--savings { width: 52px; height: 52px; font-size: 0.55rem; }
-        }
-        @media (min-width: 1024px) {
-            .phone { width: 280px; border-radius: 40px; }
-            .phone__screen { border-radius: 36px; }
-            .orbs__container { width: 190px; height: 185px; }
-            .orb--income { width: 64px; height: 64px; }
-            .orb--bills, .orb--credit { width: 56px; height: 56px; top: 52px; }
-            .orb--debt, .orb--savings { width: 56px; height: 56px; }
-        }
+        /* Magnetic wrapper */
+        .magnetic { display: inline-block; }
 
         /* ═══════════════════════════════════════
-           TRUST BAR — ASCII dot art icons
+           HERO MOCKUP — App Screenshot
            ═══════════════════════════════════════ */
-        .trust { padding: 2rem 1.25rem; position: relative; z-index: 1; }
+        .hero__mockup {
+            position: relative; z-index: 2;
+            margin: 0 auto;
+            opacity: 0; transform: translateY(60px);
+            max-width: 780px;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            will-change: transform, opacity;
+        }
+        .hero__mockup-img {
+            width: 100%;
+            height: auto;
+            background: transparent;
+            transform: scale(1.4);
+            transform-origin: top center;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+        @media (min-width: 640px) { .hero__mockup { max-width: 860px; } }
+        @media (min-width: 1024px) { .hero__mockup { max-width: 960px; } }
+
+        /* ═══════════════════════════════════════
+           CLOSING CTA
+           ═══════════════════════════════════════ */
+        .cta-section {
+            padding: 8rem 1.5rem; text-align: center;
+            position: relative; z-index: 1; overflow: hidden;
+        }
+        .cta-section__glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: min(800px, 140vw); height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+            filter: blur(80px); pointer-events: none; opacity: 0;
+        }
+        .cta-section__content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+        .cta-section__title {
+            font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800;
+            letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.5rem;
+        }
+        .cta-section__title span {
+            color: var(--accent);
+        }
+        .cta-section__desc {
+            font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 3rem; max-width: 480px; margin-left: auto; margin-right: auto;
+        }
+        .cta-section__buttons {
+            display: flex; flex-direction: column; gap: 0.75rem;
+            max-width: 320px; margin: 0 auto;
+        }
+        @media (min-width: 768px) { .cta-section { padding: 10rem 2rem; } }
+
+        /* ═══════════════════════════════════════
+           TRUST BAR
+           ═══════════════════════════════════════ */
+        .trust { padding: 3rem 1.25rem; position: relative; z-index: 1; overflow: hidden; }
         .trust__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; list-style: none; }
         .trust__item {
             display: flex; align-items: center; gap: 0.75rem;
@@ -338,33 +575,232 @@
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-pill);
+            opacity: 0; transform: translateY(20px);
         }
         .trust__icon .dot-icon { gap: 2px; grid-template-columns: repeat(3, 4px); grid-template-rows: repeat(3, 4px); }
         .trust__icon .dot-icon span { width: 4px; height: 4px; }
-        @media (min-width: 768px) { .trust { padding: 3rem 2rem; } .trust__list { gap: 1.25rem; } }
+        @media (min-width: 768px) { .trust { padding: 4rem 2rem; } .trust__list { gap: 1.25rem; } }
 
         /* ═══════════════════════════════════════
-           PEOPLE SECTION — User stories
+           SECTION TITLE — Reusable
            ═══════════════════════════════════════ */
-        .people {
-            padding: 5rem 1.25rem; position: relative; z-index: 1;
+        .section-label {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1.25rem;
         }
-        .people__header { text-align: center; margin-bottom: 3.5rem; }
-        .people__title {
-            font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em;
-            margin-bottom: 0.75rem;
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 3.5rem); font-weight: 800;
+            letter-spacing: -0.04em; line-height: 1.1;
         }
-        .people__subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 440px; margin: 0 auto; }
-        .people__grid {
-            display: grid; gap: 1rem; max-width: 960px; margin: 0 auto;
+        .section-title .word { display: inline-block; overflow: hidden; vertical-align: top; }
+        .section-title .word-inner { display: inline-block; transform: translateY(110%); }
+
+        /* ═══════════════════════════════════════
+           TIMELINE / HOW IT WORKS — Pinned scroll
+           ═══════════════════════════════════════ */
+        .timeline-section {
+            position: relative; z-index: 1;
+            padding: 0;
+        }
+        .timeline-pin {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 2rem 1.25rem;
+            overflow: hidden;
+        }
+        .timeline-pin__inner {
+            max-width: 1120px; width: 100%; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr;
+            gap: 2.5rem; align-items: start;
+        }
+        .timeline__header {
+            margin-bottom: 1.5rem;
+        }
+        .timeline__header .section-label {
+            opacity: 0;
+        }
+        .timeline__header .section-title {
+            opacity: 0;
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+        .timeline__left {
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .timeline__progress {
+            display: flex; flex-direction: column; gap: 0;
+        }
+        .timeline__progress-step {
+            display: flex; align-items: center; gap: 1rem;
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: color 0.5s var(--ease-out-expo), opacity 0.5s;
+            padding: 0.75rem 0;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+        .timeline__progress-step:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px;
+        }
+        .timeline__progress-step.is-active { color: var(--accent); opacity: 1; }
+        .timeline__progress-step.is-past { color: var(--text-secondary); opacity: 0.7; }
+        .timeline__progress-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            border: 1.5px solid var(--text-muted);
+            transition: all 0.5s var(--ease-out-expo);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .timeline__progress-step.is-active .timeline__progress-dot {
+            background: var(--accent); border-color: var(--accent);
+            box-shadow: 0 0 16px rgba(0,212,170,0.4), 0 0 4px rgba(0,212,170,0.6);
+            animation: timeline-dot-pulse 2.5s ease-in-out infinite;
+        }
+        .timeline__progress-step.is-past .timeline__progress-dot {
+            background: var(--accent); border-color: var(--accent);
+            opacity: 0.5;
+        }
+        .timeline__progress-line {
+            width: 1.5px; height: 24px; background: rgba(255,255,255,0.06);
+            margin-left: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline__progress-line-fill {
+            position: absolute; top: 0; left: 0; width: 100%; height: 0%;
+            background: var(--accent);
+            transition: height 0.6s var(--ease-out-expo);
+        }
+        .timeline__progress-line.is-filled .timeline__progress-line-fill {
+            height: 100%;
+        }
+        .timeline__cards {
+            position: relative;
+            min-height: 380px;
+        }
+        .timeline__card {
+            padding: 2rem;
+            background: rgba(255,255,255,0.025);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            position: absolute; top: 0; left: 0; right: 0;
+            opacity: 0;
+            transform: translateY(40px) scale(0.88);
+            pointer-events: none;
+            transition: opacity 0.9s var(--ease-out-expo),
+                        transform 0.9s var(--ease-out-expo),
+                        border-color 0.6s var(--ease-out-expo),
+                        background 0.6s var(--ease-out-expo),
+                        box-shadow 0.6s var(--ease-out-expo);
+        }
+        .timeline__card.is-active {
+            opacity: 1; transform: translateY(0) scale(1);
+            border-color: rgba(0,212,170,0.3);
+            background: rgba(0,212,170,0.025);
+            pointer-events: auto;
+            animation: timeline-card-glow 3s ease-in-out infinite;
+        }
+        .timeline__card.is-prev {
+            opacity: 0; transform: translateY(-30px) scale(1.04);
+        }
+        .timeline__step {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            color: var(--accent); margin-bottom: 1rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+        }
+        .timeline__title {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            font-weight: 700; margin-bottom: 0.75rem;
+            letter-spacing: -0.02em; line-height: 1.3;
+        }
+        .timeline__desc {
+            font-size: 0.9375rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 1.5rem;
+            max-width: 440px;
+        }
+        .timeline__data {
+            font-family: var(--font-mono); font-size: 0.8125rem;
+            background: rgba(0,0,0,0.4);
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-md); overflow: hidden;
+        }
+        .timeline__row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.85rem 1.125rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .timeline__row:last-child { border-bottom: none; }
+        .timeline__row-label { color: var(--text-secondary); }
+        .timeline__row-value { color: var(--text); }
+        .timeline__row-value--highlight { color: var(--accent); font-weight: 600; }
+        .timeline__row-value--negative { color: var(--text-muted); }
+        .timeline__actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+        .timeline__btn {
+            flex: 1; padding: 0.75rem; font-family: var(--font-mono);
+            font-size: 0.8125rem; font-weight: 500; border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.08); background: transparent; color: var(--text-secondary);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .timeline__btn:hover { border-color: rgba(255,255,255,0.16); color: var(--text); }
+        .timeline__btn:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 2px;
+        }
+        .timeline__btn--approve {
+            background: var(--accent); border-color: var(--accent); color: var(--bg);
+            font-weight: 600;
+        }
+        .timeline__btn--approve:hover { background: #00e8b8; border-color: #00e8b8; }
+        .timeline__result {
+            margin-top: 1.25rem; padding: 0.875rem 1.125rem;
+            font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent);
+            border: 1px solid rgba(0,212,170,0.15); border-radius: var(--radius-md);
+            background: rgba(0,212,170,0.04);
+        }
+        @media (min-width: 768px) {
+            .timeline-pin { padding: 0 2.5rem; }
+            .timeline-pin__inner {
+                grid-template-columns: 280px 1fr; gap: 4rem;
+                align-items: center;
+            }
+            .timeline__cards { min-height: 400px; }
+            .timeline__card { padding: 2.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .timeline-pin { padding: 0 3.5rem; }
+            .timeline-pin__inner { grid-template-columns: 300px 1fr; gap: 6rem; }
+            .timeline__cards { min-height: 420px; }
+        }
+
+        /* ═══════════════════════════════════════
+           PEOPLE — Horizontal scroll
+           ═══════════════════════════════════════ */
+        .people { padding: 6rem 0; position: relative; z-index: 1; overflow: hidden; }
+        .people__header { text-align: center; margin-bottom: 4rem; padding: 0 1.5rem; }
+        .people__subtitle {
+            font-size: 1.0625rem; color: var(--text-secondary);
+            max-width: 440px; margin: 1rem auto 0;
+        }
+        .people__track {
+            display: flex; gap: 1.25rem;
+            width: max-content;
+            will-change: transform;
         }
         .person-card {
-            padding: 1.75rem; position: relative; overflow: hidden;
+            width: 340px; flex-shrink: 0;
+            padding: 2rem; position: relative; overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: border-color 0.3s, transform 0.4s var(--ease-out-expo);
         }
-        /* Dot matrix pattern inside person cards */
+        .person-card:hover { border-color: var(--glass-border-hover); transform: translateY(-4px); }
         .person-card::before {
-            content: ''; position: absolute; top: 0; right: 0;
-            width: 100px; height: 100px;
+            content: ""; position: absolute; top: 0; right: 0;
+            width: 120px; height: 120px;
             background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 10px 10px;
             pointer-events: none;
@@ -373,385 +809,608 @@
         }
         .person-card__top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
         .person-card__avatar {
-            width: 44px; height: 44px; border-radius: 50%;
+            width: 48px; height: 48px; border-radius: 50%;
             display: grid; place-items: center;
-            font-weight: 600; font-size: 1rem; color: var(--bg);
+            font-weight: 600; font-size: 1.125rem; color: var(--bg);
             flex-shrink: 0;
         }
         .person-card__avatar--1 { background: linear-gradient(135deg, var(--accent), var(--teal)); }
         .person-card__avatar--2 { background: linear-gradient(135deg, var(--blue), var(--purple)); }
         .person-card__avatar--3 { background: linear-gradient(135deg, var(--warm), var(--coral)); }
         .person-card__info { display: flex; flex-direction: column; }
-        .person-card__name { font-size: 0.9375rem; font-weight: 600; }
+        .person-card__name { font-size: 1rem; font-weight: 600; }
         .person-card__role { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
-        .person-card__quote {
-            font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;
-            margin-bottom: 1.25rem; font-style: italic;
-        }
+        .person-card__quote { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
         .person-card__stat {
             display: flex; align-items: baseline; gap: 0.5rem;
-            padding-top: 1rem; border-top: 1px solid var(--glass-border);
+            padding-top: 1.25rem; border-top: 1px solid var(--glass-border);
         }
         .person-card__stat-value {
-            font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; color: var(--accent);
+            font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent);
         }
         .person-card__stat-label { font-size: 0.75rem; color: var(--text-muted); }
 
-        @media (min-width: 768px) {
-            .people { padding: 6rem 2rem; }
-            .people__title { font-size: 2rem; }
-            .people__grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (min-width: 1024px) {
-            .people { padding: 7rem 3rem; }
-            .people__title { font-size: 2.5rem; }
-        }
-
         /* ═══════════════════════════════════════
-           TIMELINE / HOW IT WORKS — Glass cards
+           FEATURES — Staggered grid
            ═══════════════════════════════════════ */
-        .timeline-section { padding: 5rem 1.25rem; position: relative; z-index: 1; }
-        .timeline-section__header { text-align: center; margin-bottom: 4rem; }
-        .timeline-section__title {
-            font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem;
+        .features { padding: 6rem 1.25rem; position: relative; z-index: 1; }
+        .features__header { text-align: center; margin-bottom: 4rem; }
+        .features__subtitle { font-size: 1.0625rem; color: var(--text-secondary); margin-top: 1rem; }
+        .features__mockup {
+            max-width: 780px; margin: 0 auto 4rem; opacity: 0; transform: translateY(40px);
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            position: relative;
         }
-        .timeline-section__subtitle { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-muted); }
-        .timeline { max-width: 560px; margin: 0 auto; position: relative; padding-left: 2rem; }
-        .timeline::before {
-            content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
-            width: 1px;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(255,255,255,0.15) 0px,
-                rgba(255,255,255,0.15) 4px,
-                transparent 4px,
-                transparent 10px
-            );
+        .features__mockup img {
+            width: 100%; height: auto; background: transparent;
+            transform: scale(1.4);
+            transform-origin: top center;
+            transition: transform 0.8s var(--ease-out-expo);
         }
-        .timeline__item { position: relative; padding: 0 0 2.5rem 2rem; }
-        .timeline__item:last-child { padding-bottom: 0; }
-        .timeline__dot {
-            position: absolute; left: -2rem; top: 0;
-            width: 16px; height: 16px;
-            background: var(--bg); border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50%; z-index: 2;
-            transition: all 0.4s ease;
-        }
-        .timeline__item--active .timeline__dot {
-            background: var(--accent); border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-dim), 0 0 20px var(--accent-glow);
-        }
-        .timeline__card {
-            padding: 1.5rem;
+        @media (min-width: 640px) { .features__mockup { max-width: 860px; } }
+        @media (min-width: 1024px) { .features__mockup { max-width: 960px; } }
+        .features__grid { display: grid; gap: 1.25rem; max-width: 960px; margin: 0 auto; }
+        .feature {
+            display: flex; gap: 1.5rem; padding: 2rem; align-items: flex-start;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            transition: border-color 0.3s ease;
+            border-radius: var(--radius-lg);
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0; transform: translateY(40px);
         }
-        .timeline__item--active .timeline__card { border-color: var(--glass-border-hover); }
-        .timeline__step {
-            font-family: var(--font-mono); font-size: 0.625rem;
-            color: var(--accent); margin-bottom: 0.75rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
+        .feature:hover {
+            border-color: var(--glass-border-hover);
+            background: var(--glass-bg-hover);
+            transform: translateY(-2px) !important;
         }
-        .timeline__title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .timeline__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
-        .timeline__data {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm); overflow: hidden;
-        }
-        .timeline__row {
-            display: flex; justify-content: space-between;
-            padding: 0.625rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .timeline__row:last-child { border-bottom: none; }
-        .timeline__row-label { color: var(--text-muted); }
-        .timeline__row-value { color: var(--text-secondary); }
-        .timeline__row-value--highlight { color: var(--accent); font-weight: 500; }
-        .timeline__row-value--negative { color: var(--text-muted); }
-        .timeline__actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
-        .timeline__btn {
-            flex: 1; padding: 0.625rem; font-family: var(--font-mono);
-            font-size: 0.75rem; font-weight: 500; border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary);
-            transition: all 0.2s ease;
-        }
-        .timeline__btn:hover { border-color: var(--glass-border-hover); color: var(--text); }
-        .timeline__btn--approve {
-            background: var(--accent); border-color: var(--accent); color: var(--bg);
-        }
-        .timeline__btn--approve:hover { background: var(--teal); border-color: var(--teal); }
-        .timeline__result {
-            margin-top: 1rem; padding: 0.75rem 1rem;
-            font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);
-            border: 1px solid var(--accent-dim); border-radius: var(--radius-sm);
-            background: rgba(0,212,170,0.04);
-        }
+        .feature__title { font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+        .feature__desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
         @media (min-width: 768px) {
-            .timeline-section { padding: 6rem 2rem; }
-            .timeline-section__title { font-size: 2rem; }
-            .timeline__card { padding: 2rem; }
+            .features { padding: 8rem 2rem; }
+            .features__grid { grid-template-columns: repeat(3, 1fr); }
+            .feature { flex-direction: column; text-align: center; align-items: center; padding: 2.5rem 2rem; }
         }
-        @media (min-width: 1024px) {
-            .timeline-section { padding: 7rem 3rem; }
-            .timeline-section__title { font-size: 2.5rem; }
-        }
+        @media (min-width: 1024px) { .features { padding: 10rem 3rem; } }
 
         /* ═══════════════════════════════════════
-           ANIMATED DOT-MATRIX ICON — Reusable
+           DOT-MATRIX ICON
            ═══════════════════════════════════════ */
         .dot-icon {
             display: inline-grid;
             grid-template-columns: repeat(5, 6px);
             grid-template-rows: repeat(5, 6px);
-            gap: 3px;
-            flex-shrink: 0;
+            gap: 3px; flex-shrink: 0;
         }
         .dot-icon span {
             width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent);
-            opacity: 0.12;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            background: var(--accent); opacity: 0.12;
+            transition: opacity 0.4s, transform 0.4s, filter 0.4s;
         }
-        .dot-icon span.on {
-            opacity: 1;
-            animation: dot-pulse 2.5s ease-in-out infinite;
-        }
-        .dot-icon span.on:nth-child(odd) { animation-delay: 0.15s; }
-        .dot-icon span.on:nth-child(3n) { animation-delay: 0.3s; }
-        @keyframes dot-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.15); }
-        }
-        /* Glow on hover */
-        .glass-card:hover .dot-icon span.on,
+        .dot-icon span.on { opacity: 1; }
+        .feature:hover .dot-icon span.on,
         .trust__item:hover .dot-icon span.on,
         .footer__social-link:hover .dot-icon span.on {
             filter: drop-shadow(0 0 4px var(--accent));
         }
 
         /* ═══════════════════════════════════════
-           FEATURES — Animated dot-matrix icons
+           TAMAGOTCHI BOCY
            ═══════════════════════════════════════ */
-        .features { padding: 5rem 1.25rem; position: relative; z-index: 1; }
-        .features__header { text-align: center; margin-bottom: 3.5rem; }
-        .features__title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
-        .features__subtitle { font-size: 1rem; color: var(--text-secondary); }
-        .features__grid { display: grid; gap: 1rem; max-width: 960px; margin: 0 auto; }
-
-        .feature {
-            display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start;
+        .bocy-pet {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            z-index: 90;
+            animation: bocy-float 3s ease-in-out infinite;
+            -webkit-tap-highlight-color: transparent;
         }
-        .feature__title { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
-        .feature__desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
-
-        @media (min-width: 768px) {
-            .features { padding: 6rem 2rem; }
-            .features__title { font-size: 2rem; }
-            .features__grid { grid-template-columns: repeat(3, 1fr); }
-            .feature { flex-direction: column; text-align: center; align-items: center; padding: 2rem 1.5rem; }
+        @keyframes bocy-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
-        @media (min-width: 1024px) {
-            .features { padding: 7rem 3rem; }
-            .features__title { font-size: 2.5rem; }
-        }
-
-        /* ═══════════════════════════════════════
-           CTA / WAITLIST — Glass treatment
-           ═══════════════════════════════════════ */
-        .cta {
-            padding: 5rem 1.25rem; text-align: center; position: relative; z-index: 1;
-        }
-        .cta__container {
-            max-width: 600px; margin: 0 auto;
-            padding: 3rem 1.5rem;
+        .bocy-pet__body {
+            width: 56px; height: 56px; position: relative;
             background: var(--glass-bg);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            position: relative; overflow: hidden;
+            border-radius: 50%;
+            display: grid; place-items: center;
+            transition: all 0.3s var(--ease-out-expo);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 40px var(--accent-glow);
         }
-        /* Dot grid decoration in CTA */
-        .cta__container::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 20px 20px; pointer-events: none;
+        .bocy-pet:hover .bocy-pet__body {
+            border-color: var(--accent);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 60px rgba(0,212,170,0.15);
+            transform: scale(1.08);
         }
-        .cta__title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; position: relative; }
-        .cta__subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; position: relative; }
-        .cta__form {
-            display: flex; flex-direction: column; gap: 0.75rem;
-            max-width: 420px; margin: 0 auto; position: relative;
+        .bocy-pet__face { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px; position: relative; }
+        .bocy-pet__eye {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); box-shadow: 0 0 6px var(--accent);
+            animation: bocy-blink 4s ease-in-out infinite; transition: all 0.2s;
         }
-        .cta__input {
-            padding: 0.875rem 1.25rem;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: var(--radius-pill);
-            color: var(--text); font-size: 0.9375rem; font-family: inherit;
-            transition: border-color 0.2s ease;
+        .bocy-pet__eye:nth-child(2) { animation-delay: 0.1s; }
+        @keyframes bocy-blink {
+            0%, 42%, 46%, 100% { transform: scaleY(1); }
+            44% { transform: scaleY(0.1); }
         }
-        .cta__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
-        .cta__input::placeholder { color: var(--text-muted); }
-        .cta__btn {
-            padding: 0.875rem 1.5rem; background: var(--accent); color: var(--bg);
-            font-size: 0.9375rem; font-weight: 600; border: none; border-radius: var(--radius-pill);
-            transition: all 0.2s ease;
+        .bocy-pet:hover .bocy-pet__eye { background: #fff; box-shadow: 0 0 10px #fff; width: 7px; height: 7px; }
+        .bocy-pet.is-happy .bocy-pet__eye { transform: scaleY(0.6); border-radius: 50% 50% 0 0; }
+        .bocy-pet.is-happy .bocy-pet__body { border-color: var(--accent); }
+        .bocy-pet__mouth {
+            position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            width: 8px; height: 4px; border-bottom: 2px solid var(--accent);
+            border-radius: 0 0 50% 50%; opacity: 0; transition: opacity 0.2s;
         }
-        .cta__btn:hover { background: var(--teal); transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-dim); }
-        .cta__btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .cta__success { padding: 1rem; color: var(--accent); font-weight: 500; }
-        .cta__error { padding: 0.5rem; color: var(--coral); font-size: 0.875rem; }
-        @media (min-width: 640px) {
-            .cta__form { flex-direction: row; }
-            .cta__input { flex: 1; }
-            .cta__btn { padding: 0.875rem 1.75rem; }
+        .bocy-pet:hover .bocy-pet__mouth { opacity: 1; }
+        .bocy-pet.is-happy .bocy-pet__mouth { opacity: 1; height: 5px; }
+        .bocy-pet__ring {
+            position: absolute; inset: -3px; border-radius: 50%;
+            border: 1px solid transparent; border-top-color: var(--accent);
+            animation: bocy-ring-spin 3s linear infinite; opacity: 0.4;
+        }
+        @keyframes bocy-ring-spin { to { transform: rotate(360deg); } }
+        .bocy-pet__bubble {
+            position: absolute; bottom: calc(100% + 10px); right: 0;
+            padding: 0.5rem 0.75rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: var(--text-secondary); white-space: nowrap;
+            opacity: 0; transform: translateY(4px) scale(0.95);
+            transition: all 0.25s var(--ease-out-expo); pointer-events: none;
+        }
+        .bocy-pet__bubble::after {
+            content: ""; position: absolute; bottom: -5px; right: 18px;
+            width: 8px; height: 8px;
+            background: var(--glass-bg);
+            border-right: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            transform: rotate(45deg);
+        }
+        .bocy-pet:hover .bocy-pet__bubble,
+        .bocy-pet.is-speaking .bocy-pet__bubble { opacity: 1; transform: translateY(0) scale(1); }
+        .bocy-particle {
+            position: fixed; width: 4px; height: 4px;
+            background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 89;
         }
         @media (min-width: 768px) {
-            .cta { padding: 6rem 2rem; }
-            .cta__container { padding: 4rem 3rem; }
-            .cta__title { font-size: 2rem; }
+            .bocy-pet { bottom: 2rem; right: 2rem; }
+            .bocy-pet__body { width: 64px; height: 64px; }
         }
-        @media (min-width: 1024px) { .cta { padding: 7rem 3rem; } }
 
         /* ═══════════════════════════════════════
-           FOOTER — Nothing.tech style with dot-matrix nav
+           DIVIDER — Animated
            ═══════════════════════════════════════ */
-        .footer { padding: 4rem 1.25rem 2.5rem; position: relative; z-index: 1; }
-        .footer__inner { max-width: 1200px; margin: 0 auto; }
+        .divider {
+            text-align: center; padding: 2rem 0; position: relative; z-index: 1;
+            font-family: var(--font-mono); font-size: 0.625rem;
+            color: rgba(255,255,255,0.06); letter-spacing: 0.3em;
+            user-select: none; overflow: hidden;
+        }
 
-        /* Dot-matrix text navigation */
-        .footer__dot-nav {
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer { padding: 5rem 1.25rem 2.5rem; position: relative; z-index: 1; }
+        .footer__inner { max-width: 1200px; margin: 0 auto; }
+        .footer__nav {
             display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 1rem; margin-bottom: 3rem; padding-bottom: 3rem;
+            gap: 0.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
             border-bottom: 1px solid var(--glass-border);
         }
-        .dot-text {
-            font-family: var(--font-mono); font-weight: 700;
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;
-            color: transparent;
-            background-image: radial-gradient(circle, var(--text) 1.1px, transparent 1.1px);
-            background-size: 4.5px 4.5px;
-            -webkit-background-clip: text; background-clip: text;
-            transition: filter 0.3s; line-height: 1.3;
+        .footer__nav-link {
+            padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500;
+            color: var(--text-secondary); border-radius: var(--radius-pill);
+            border: 1px solid transparent; transition: all 0.3s var(--ease-out-expo);
         }
-        .dot-text:hover { filter: brightness(1.5) drop-shadow(0 0 8px rgba(255,255,255,0.15)); }
-
+        .footer__nav-link:hover { color: var(--text); background: var(--glass-bg); border-color: var(--glass-border); }
         .footer__bottom-row {
             display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;
         }
-        .footer__logo { font-size: 1rem; font-weight: 700; font-family: var(--font-mono); }
+        .footer__logo { font-size: 1.125rem; font-weight: 700; font-family: var(--font-mono); }
         .footer__social { display: flex; gap: 0.75rem; }
         .footer__social-link {
             width: 40px; height: 40px; display: grid; place-items: center;
             font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted);
             background: var(--glass-bg); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm); transition: all 0.2s ease;
+            border-radius: var(--radius-sm); transition: all 0.3s var(--ease-out-expo);
         }
         .footer__social-link .dot-icon span.on { background: var(--text-muted); opacity: 1; }
-        .footer__social-link:hover {
-            color: var(--text); border-color: var(--glass-border-hover);
-            background: var(--glass-bg-hover);
-        }
+        .footer__social-link:hover { color: var(--text); border-color: var(--glass-border-hover); background: var(--glass-bg-hover); }
         .footer__social-link:hover .dot-icon span.on { background: var(--accent); }
         .footer__links { display: flex; gap: 1.5rem; list-style: none; }
-        .footer__link { font-size: 0.8125rem; color: var(--text-muted); transition: color 0.2s ease; }
+        .footer__link { font-size: 0.8125rem; color: var(--text-muted); transition: color 0.2s; }
         .footer__link:hover { color: var(--text-secondary); }
         .footer__copy {
             margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);
             font-size: 0.6875rem; color: var(--text-muted); font-family: var(--font-mono); text-align: center;
         }
         @media (min-width: 768px) {
-            .footer { padding: 5rem 2rem 3rem; }
-            .footer__dot-nav { gap: 2rem; }
-            .dot-text { font-size: 1.5rem; letter-spacing: 0.12em; }
-            .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
-            .footer__right { display: flex; align-items: center; gap: 2rem; }
+            .footer { padding: 6rem 2rem 3rem; }
+            .footer__bottom-row { flex-direction: row; justify-content: space-between; align-items: center; text-align: left; }
         }
-        @media (min-width: 1024px) { .footer { padding: 6rem 3rem 3rem; } .dot-text { font-size: 2.25rem; } }
+        @media (min-width: 1024px) { .footer { padding: 8rem 3rem 3rem; } }
 
         /* ═══════════════════════════════════════
-           SECTION DIVIDER — ASCII dot art
+           REDUCED MOTION
            ═══════════════════════════════════════ */
-        .divider {
-            text-align: center; padding: 1.5rem 0; position: relative; z-index: 1;
-            font-family: var(--font-mono); font-size: 0.625rem;
-            color: rgba(255,255,255,0.08); letter-spacing: 0.3em;
-            user-select: none; overflow: hidden; max-width: 100%;
-        }
-
-        /* ═══════════════════════════════════════
-           ANIMATIONS & REVEALS
-           ═══════════════════════════════════════ */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.is-visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-
         @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; transition: none; }
-            .hero__glow { animation: none; }
-            .hero__badge-dot { animation: none; }
-            .orb, .orb--income { animation: none; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .cursor { display: none; }
+            .grain { display: none; }
+        }
+
+        /* ═══════════════════════════════════════
+           MOBILE CURSOR OVERRIDE
+           ═══════════════════════════════════════ */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor { display: none !important; }
+            .grain { display: none; }
+            .dot-grid { display: none; }
+            .cursor-glow { display: none; }
+            .hero__canvas { display: none; }
+        }
+
+        /* ═══════════════════════════════════════
+           MOBILE TIMELINE FLOW LINE
+           ═══════════════════════════════════════ */
+        .timeline__flow-line {
+            display: none;
+        }
+
+        /* ═══════════════════════════════════════
+           MOBILE — Nothing Phone Design System
+           Pure B&W · Space Mono · Dot-matrix DNA
+           Minimalist · High contrast · Clear
+           ═══════════════════════════════════════ */
+        @media (max-width: 639px) {
+
+            /* ── HERO ── */
+            .hero { padding: 7rem 1.5rem 4rem; min-height: 100dvh; }
+            .hero__title {
+                font-size: clamp(2.5rem, 11vw, 3.75rem);
+                margin-bottom: 0.75rem;
+                letter-spacing: -0.05em;
+                font-weight: 800;
+            }
+            .hero__subtitle {
+                font-size: 1rem; margin-bottom: 2.5rem;
+                line-height: 1.75; max-width: 92%;
+                color: var(--text-secondary);
+            }
+            .hero__cta-group { max-width: 100%; margin-bottom: 3.5rem; }
+            .hero__cta-group .btn {
+                width: 100%; padding: 1.25rem 2rem;
+                font-size: 1.0625rem; font-family: var(--font-mono);
+                letter-spacing: 0.02em;
+                font-weight: 700;
+            }
+            /* Hero image — zoomed in, full bleed */
+            .hero__mockup {
+                max-width: 120vw;
+                margin-left: -2.5rem; margin-right: -2.5rem;
+                width: calc(100% + 5rem);
+                border-radius: 0;
+                overflow: hidden;
+            }
+            .hero__mockup-img {
+                border-radius: 0;
+                transform: scale(1.55);
+                transform-origin: top center;
+            }
+            .hero__badge {
+                font-size: 0.6875rem; padding: 0.5rem 1rem;
+                margin-bottom: 2.5rem;
+                border: 1px solid rgba(255,255,255,0.12);
+                background: transparent;
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+            }
+            .hero__scroll-hint { bottom: 1.25rem; }
+
+            /* ── TRUST BAR ── */
+            .trust { padding: 3.5rem 1.5rem; }
+            .trust__list { gap: 0.75rem; }
+            .trust__item {
+                font-size: 0.8125rem; padding: 0.625rem 1rem;
+                background: transparent;
+                border: 1px solid rgba(255,255,255,0.1);
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+            }
+
+            /* ══════════════════════════════════════
+               TIMELINE — Nothing-style dotted rail
+               White dotted line · Blue active dot
+               ══════════════════════════════════════ */
+            .timeline-section { padding: 0; }
+            .timeline-pin {
+                height: auto; min-height: auto;
+                padding: 6rem 1.5rem 7rem;
+                align-items: flex-start;
+            }
+            .timeline-pin__inner { gap: 2.5rem; }
+
+            /* Centered heading */
+            .timeline__header {
+                margin-bottom: 2.5rem;
+                text-align: center;
+            }
+            .timeline__header .section-title {
+                font-size: clamp(1.75rem, 8vw, 2.25rem);
+                text-align: center;
+            }
+            .timeline__header .section-label {
+                text-align: center;
+            }
+            .timeline__progress { display: none; }
+
+            /* Cards container with left rail */
+            .timeline__cards {
+                position: relative; min-height: auto;
+                display: flex; flex-direction: column; gap: 0;
+                padding-left: 2.5rem;
+            }
+
+            /* Dotted vertical line — accent-tinted */
+            .timeline__flow-line {
+                display: block;
+                position: absolute;
+                left: 7px;
+                top: 0;
+                bottom: 0;
+                width: 0;
+                border-left: 2px dotted rgba(0,212,170,0.25);
+                background: none;
+                z-index: 0;
+            }
+            .timeline__flow-line-fill {
+                display: none;
+            }
+
+            /* Cards — visible, prominent borders */
+            .timeline__card {
+                position: relative; top: auto; left: auto; right: auto;
+                opacity: 0; transform: translateY(40px) scale(0.92);
+                pointer-events: auto;
+                padding: 2rem;
+                margin-bottom: 3.5rem;
+                border: 1.5px solid rgba(255,255,255,0.14);
+                background: rgba(255,255,255,0.03);
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+                border-radius: var(--radius-lg);
+                transition: opacity 0.8s var(--ease-out-expo),
+                            transform 0.8s var(--ease-out-expo),
+                            border-color 0.6s var(--ease-out-expo),
+                            background 0.6s var(--ease-out-expo),
+                            box-shadow 0.6s var(--ease-out-expo);
+            }
+            /* Dot on the rail */
+            .timeline__card::before {
+                content: '';
+                position: absolute;
+                left: calc(-2.5rem + 1px);
+                top: 2rem;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--bg);
+                border: 2px solid rgba(0,212,170,0.3);
+                z-index: 2;
+                transition: all 0.6s var(--ease-out-expo);
+            }
+            /* Connector arm from dot to card */
+            .timeline__card::after {
+                content: '';
+                position: absolute;
+                left: calc(-2.5rem + 15px);
+                top: calc(2rem + 5.5px);
+                width: calc(2.5rem - 15px);
+                height: 1px;
+                background: rgba(0,212,170,0.12);
+                z-index: 1;
+                transition: background 0.6s var(--ease-out-expo);
+            }
+            /* Active card — accent dot */
+            .timeline__card.is-active {
+                opacity: 1; transform: translateY(0) scale(1);
+                border-color: rgba(0,212,170,0.35);
+                background: rgba(0,212,170,0.03);
+                animation: timeline-card-glow 3s ease-in-out infinite;
+            }
+            .timeline__card.is-active::before {
+                background: var(--accent);
+                border-color: var(--accent);
+                box-shadow: 0 0 12px rgba(0,212,170,0.5), 0 0 3px rgba(0,212,170,0.8);
+                animation: timeline-dot-pulse 2.5s ease-in-out infinite;
+            }
+            .timeline__card.is-active::after {
+                background: rgba(0,212,170,0.4);
+            }
+            /* Past cards — subdued but still readable */
+            .timeline__card.is-prev {
+                opacity: 0.5; transform: scale(0.96);
+                border-color: rgba(255,255,255,0.08);
+                background: rgba(255,255,255,0.015);
+            }
+            .timeline__card.is-prev::before {
+                background: var(--accent);
+                border-color: var(--accent);
+                opacity: 0.35;
+                box-shadow: none;
+            }
+            .timeline__card.is-prev::after {
+                background: rgba(0,212,170,0.15);
+            }
+            .timeline__card:last-child { margin-bottom: 0; }
+            .timeline__step {
+                font-size: 0.75rem; margin-bottom: 0.875rem;
+                color: var(--accent);
+                letter-spacing: 0.12em;
+                font-weight: 600;
+            }
+            .timeline__title {
+                font-size: 1.175rem; font-weight: 700;
+                color: var(--text);
+                line-height: 1.35;
+            }
+            .timeline__desc {
+                font-size: 0.9375rem; margin-bottom: 1.25rem;
+                line-height: 1.75; color: var(--text-secondary);
+            }
+            .timeline__data {
+                font-size: 0.8125rem;
+                background: rgba(0,0,0,0.3);
+                border: 1.5px solid rgba(255,255,255,0.12);
+                border-radius: var(--radius-md);
+            }
+            .timeline__row {
+                padding: 0.85rem 1.125rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .timeline__row-label { color: var(--text-secondary); }
+            .timeline__row-value { color: var(--text); }
+            .timeline__actions { gap: 0.75rem; margin-top: 1.25rem; }
+            .timeline__btn { padding: 0.75rem; font-size: 0.8125rem; }
+            .timeline__result { font-size: 0.8125rem; margin-top: 1.25rem; padding: 0.875rem 1rem; }
+
+            /* ── DIVIDERS ── */
+            .divider { padding: 3.5rem 0; }
+
+            /* ── PEOPLE ── */
+            .people { padding: 6rem 0; }
+            .people__header { margin-bottom: 3.5rem; padding: 0 1.5rem; }
+            .people__subtitle { font-size: 1rem; margin-top: 1rem; line-height: 1.75; }
+            .person-card {
+                width: calc(100vw - 3rem); max-width: 320px; padding: 2rem;
+                background: transparent;
+                border: 1px solid rgba(255,255,255,0.1);
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+            }
+            .person-card__quote { font-size: 1rem; line-height: 1.75; }
+            .person-card__stat-value { font-size: 1.75rem; }
+
+            /* ── FEATURES — zoomed in, full bleed ── */
+            .features { padding: 6rem 1.5rem 7rem; }
+            .features__header { margin-bottom: 3.5rem; }
+            .features__subtitle { font-size: 1rem; line-height: 1.75; }
+            .features__mockup {
+                max-width: 120vw;
+                margin-left: -2.5rem; margin-right: -2.5rem;
+                width: calc(100% + 5rem);
+                margin-bottom: 4rem;
+                border-radius: 0;
+                overflow: hidden;
+            }
+            .features__mockup img {
+                border-radius: 0;
+                transform: scale(1.55);
+                transform-origin: top center;
+            }
+            .features__grid { gap: 1.25rem; }
+            .feature {
+                padding: 1.75rem; gap: 1.25rem;
+                background: transparent;
+                border: 1px solid rgba(255,255,255,0.08);
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+            }
+            .feature__title { font-size: 1.0625rem; }
+            .feature__desc { font-size: 0.9375rem; line-height: 1.75; }
+
+            /* ── CTA ── */
+            .cta-section { padding: 7rem 1.5rem; }
+            .cta-section__title {
+                font-size: clamp(1.875rem, 8vw, 2.75rem);
+                margin-bottom: 1.5rem; letter-spacing: -0.04em;
+            }
+            .cta-section__desc { font-size: 1rem; margin-bottom: 3rem; line-height: 1.75; }
+            .cta-section__buttons { max-width: 100%; }
+            .cta-section__buttons .btn {
+                width: 100%; padding: 1.125rem 1.75rem;
+                font-size: 1rem; font-family: var(--font-mono);
+            }
+
+            /* ── FOOTER ── */
+            .footer { padding: 5rem 1.5rem 2.5rem; }
+            .footer__nav { gap: 0.5rem; margin-bottom: 3rem; padding-bottom: 3rem; }
+            .footer__nav-link { font-size: 0.875rem; padding: 0.5rem 0.875rem; }
+
+            /* ── TYPOGRAPHY HIERARCHY ── */
+            .section-label { font-size: 0.6875rem; margin-bottom: 1.25rem; letter-spacing: 0.12em; }
+            .section-title { font-size: clamp(1.75rem, 8vw, 2.75rem); }
         }
     </style>
 </head>
 <body>
-    <!-- Structured dot grid background -->
+    <!-- Preloader -->
+    <div class="preloader" aria-hidden="true">
+        <div class="preloader__logo">BOCY<span>.</span></div>
+        <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" aria-hidden="true"></div>
+
+    <!-- Grain Overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Dot Grid -->
     <div class="dot-grid" aria-hidden="true"></div>
     <div class="cursor-glow" aria-hidden="true"></div>
-    <div class="scanline" aria-hidden="true"></div>
 
     <nav class="nav">
         <div class="nav__inner">
-            <a href="/" class="nav__logo">BOCY<span>.</span></a>
-            <a href="#waitlist" class="nav__cta">Get Early Access</a>
+            <a href="/" class="nav__logo magnetic">BOCY<span>.</span></a>
+            <div class="nav__links">
+                <a href="/savings-comparison.html" class="nav__link">Savings</a>
+                <a href="/isa-comparison.html" class="nav__link">ISAs</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__cta magnetic">Start Optimising</a>
+            </div>
+            <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="nav__drawer" aria-hidden="true">
+        <a href="#how-it-works" class="nav__drawer-link">How It Works</a>
+        <a href="#features" class="nav__drawer-link">Features</a>
+        <a href="/savings-comparison.html" class="nav__drawer-link">Savings</a>
+        <a href="/isa-comparison.html" class="nav__drawer-link">ISAs</a>
+        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="nav__drawer-cta">Start Optimising</a>
+    </div>
 
     <main>
         <!-- ═══ HERO ═══ -->
         <section class="hero">
             <div class="hero__glow"></div>
+            <div class="hero__canvas" id="hero-canvas"></div>
             <div class="hero__content">
                 <span class="hero__badge">
                     <span class="hero__badge-dot"></span>
-                    Built for how you actually live
+                    Scans your accounts in real time
                 </span>
                 <h1 class="hero__title">
-                    <span class="hero__title-line">Beyond budgeting.</span>
-                    <span class="hero__title-line">Start optimising.</span>
+                    <span class="hero__title-line">Your money has moves.</span>
                 </h1>
-                <p class="hero__subtitle">Your AI financial decision assistant that sees the full picture, breaks down every option, and only acts when you say so.</p>
+                <p class="hero__subtitle">BOCY scans all your accounts, finds your highest impact moves, and works with you to optimise your money.</p>
                 <div class="hero__cta-group">
-                    <a href="#waitlist" class="btn btn--primary">Join Waitlist</a>
-                    <a href="https://telegram-truelayer-webapp.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn--glass">Try the Demo →</a>
-                </div>
-                <div class="phone">
-                    <div class="phone__screen">
-                        <div class="phone__header"><span class="phone__greeting">Hi, there</span></div>
-                        <div class="phone__status">
-                            <p class="phone__status-label">your money is</p>
-                            <p class="phone__status-value"><span class="phone__status-dot"></span>Stable</p>
-                        </div>
-                        <div class="orbs">
-                            <div class="orbs__container">
-                                <div class="orb orb--income">Income</div>
-                                <div class="orb orb--bills">Bills</div>
-                                <div class="orb orb--credit">Credit</div>
-                                <div class="orb orb--debt">Debt</div>
-                                <div class="orb orb--savings">Savings</div>
-                                <span class="orbs__center">✦</span>
-                            </div>
-                        </div>
+                    <div class="magnetic">
+                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">See Your Moves Free</span></a>
                     </div>
                 </div>
+            </div>
+            <div class="hero__mockup">
+                <img src="homescreen.png" alt="BOCY app showing ranked financial moves with pound savings" class="hero__mockup-img" />
+            </div>
+            <div class="hero__scroll-hint">
+                <span class="hero__scroll-text">Scroll</span>
+                <div class="hero__scroll-line"></div>
             </div>
         </section>
 
@@ -759,286 +1418,895 @@
         <section class="trust">
             <ul class="trust__list">
                 <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Bank-level encryption</li>
-                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Full transparency</li>
-                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></span>You approve every action</li>
+                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></span></span>Ranked by &pound; impact</li>
+                <li class="trust__item"><span class="trust__icon"><span class="dot-icon" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></span>Nothing moves without your say</li>
             </ul>
         </section>
 
-        <!-- ═══ PEOPLE — User stories ═══ -->
+        <!-- ═══ HOW IT WORKS — Pinned Timeline ═══ -->
+        <section id="how-it-works" class="timeline-section" aria-label="How it works - step by step">
+            <div class="timeline-pin">
+                <div class="timeline-pin__inner">
+                    <div class="timeline__left">
+                        <header class="timeline__header">
+                            <p class="section-label">// how a conversation works</p>
+                            <h2 class="section-title">Ask Bocy anything<br>about your money</h2>
+                        </header>
+                        <nav class="timeline__progress" aria-label="Timeline steps">
+                            <div class="timeline__progress-step is-active" data-step="0" tabindex="0" role="button" aria-label="Step 1: You ask" aria-current="step">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
+                                <span>01 &middot; You ask</span>
+                            </div>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="1" tabindex="0" role="button" aria-label="Step 2: Bocy digs">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
+                                <span>02 &middot; Bocy digs</span>
+                            </div>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="2" tabindex="0" role="button" aria-label="Step 3: You decide">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
+                                <span>03 &middot; You decide</span>
+                            </div>
+                            <div class="timeline__progress-line" aria-hidden="true"><span class="timeline__progress-line-fill"></span></div>
+                            <div class="timeline__progress-step" data-step="3" tabindex="0" role="button" aria-label="Step 4: Done">
+                                <span class="timeline__progress-dot" aria-hidden="true"></span>
+                                <span>04 &middot; Done</span>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="timeline__cards" role="region" aria-label="Timeline card content" aria-live="polite">
+                        <div class="timeline__flow-line" aria-hidden="true"><div class="timeline__flow-line-fill"></div></div>
+                        <div class="timeline__card is-active" data-card="0">
+                            <p class="timeline__step">01 &middot; You ask</p>
+                            <h3 class="timeline__title">&ldquo;Bocy, what should I do with the money left this month?&rdquo;</h3>
+                            <p class="timeline__desc">Just say it. Bocy connects to your accounts via Open Banking and instantly understands your full financial picture.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">&pound;3,200</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">bills + spending</span><span class="timeline__row-value">&pound;2,353</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">left over</span><span class="timeline__row-value timeline__row-value--highlight">&pound;847</span></div>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="1">
+                            <p class="timeline__step">02 &middot; Bocy digs</p>
+                            <h3 class="timeline__title">&ldquo;I found three options. Here&rsquo;s what each one actually costs you.&rdquo;</h3>
+                            <p class="timeline__desc">Bocy doesn&rsquo;t just list choices. It calculates the real pound-for-pound impact of each one, then explains it like a friend would.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves &pound;127/yr</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns &pound;38/yr</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">leave it</span><span class="timeline__row-value timeline__row-value--negative">&pound;0</span></div>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="2">
+                            <p class="timeline__step">03 &middot; You decide</p>
+                            <h3 class="timeline__title">&ldquo;Put &pound;600 on the card. Keep the rest.&rdquo;</h3>
+                            <p class="timeline__desc">Bocy suggests. You choose. Modify the amount, reject it entirely, or approve with one word. Your money, your call.</p>
+                            <div class="timeline__data">
+                                <div class="timeline__row"><span class="timeline__row-label">payment</span><span class="timeline__row-value">&pound;600 &rarr; credit card</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">kept as buffer</span><span class="timeline__row-value">&pound;247</span></div>
+                                <div class="timeline__row"><span class="timeline__row-label">you save this year</span><span class="timeline__row-value timeline__row-value--highlight">+&pound;127</span></div>
+                            </div>
+                            <div class="timeline__actions">
+                                <button class="timeline__btn timeline__btn--approve" type="button">"Do it"</button>
+                                <button class="timeline__btn" type="button">"Change it"</button>
+                            </div>
+                        </div>
+                        <div class="timeline__card" data-card="3">
+                            <p class="timeline__step">04 &middot; Done</p>
+                            <h3 class="timeline__title">&ldquo;Sorted. I&rsquo;ll check in next month.&rdquo;</h3>
+                            <p class="timeline__desc">Bocy executes instantly, confirms it&rsquo;s done, and proactively comes back next month to keep you on track. No app to open. Just talk.</p>
+                            <div class="timeline__result">&check; &pound;600 payment scheduled &middot; next check-in: 12 April</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</div>
+
+        <!-- ═══ PEOPLE — Horizontal scroll ═══ -->
         <section class="people">
-            <header class="people__header reveal">
-                <p class="mono-label">// built for real people</p>
-                <h2 class="people__title">Your money story, understood</h2>
-                <p class="people__subtitle">Bocy works for every kind of financial life — not just spreadsheet people.</p>
+            <header class="people__header">
+                <p class="section-label">// real conversations, real results</p>
+                <h2 class="section-title">Every money story<br>is different</h2>
+                <p class="people__subtitle">Bocy adapts to your life, not the other way around. Here&rsquo;s what those conversations sound like.</p>
             </header>
-            <div class="people__grid">
-                <article class="person-card glass-card reveal reveal-delay-1">
+            <div class="people__track">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--1">S</div>
                         <div class="person-card__info">
-                            <span class="person-card__name">Sarah</span>
-                            <span class="person-card__role">freelancer · 28</span>
+                            <span class="person-card__name">The freelancer</span>
+                            <span class="person-card__role">irregular income &middot; no safety net</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"My income is unpredictable. Bocy sees patterns I can't and helps me prepare for the quiet months."</p>
+                    <p class="person-card__quote">&ldquo;Bocy, I got paid &pound;4,200 this month but nothing&rsquo;s coming in for six weeks. What do I do?&rdquo; Bocy mapped out exactly where to park it and how much to keep liquid.</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£3,200</span>
-                        <span class="person-card__stat-label">emergency fund built</span>
+                        <span class="person-card__stat-value">&pound;3,200</span>
+                        <span class="person-card__stat-label">emergency fund built in 4 months</span>
                     </div>
                 </article>
-                <article class="person-card glass-card reveal reveal-delay-2">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--2">J</div>
                         <div class="person-card__info">
-                            <span class="person-card__name">James</span>
-                            <span class="person-card__role">dad of two · 34</span>
+                            <span class="person-card__name">The parent</span>
+                            <span class="person-card__role">mortgage &middot; two kids &middot; one salary</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"Between the mortgage, the kids, and the car — I never knew where my money went. Now I do."</p>
+                    <p class="person-card__quote">&ldquo;Where&rsquo;s all our money going?&rdquo; Bocy found &pound;200/month in subscriptions, insurance overlap, and a savings account paying 0.5% when 4.65% was available.</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£2,400</span>
-                        <span class="person-card__stat-label">saved per year on bills</span>
+                        <span class="person-card__stat-value">&pound;2,400</span>
+                        <span class="person-card__stat-label">saved per year, no lifestyle change</span>
                     </div>
                 </article>
-                <article class="person-card glass-card reveal reveal-delay-3">
+                <article class="person-card">
                     <div class="person-card__top">
                         <div class="person-card__avatar person-card__avatar--3">M</div>
                         <div class="person-card__info">
-                            <span class="person-card__name">Maya</span>
-                            <span class="person-card__role">recent grad · 24</span>
+                            <span class="person-card__name">The new grad</span>
+                            <span class="person-card__role">first job &middot; credit card debt &middot; overwhelmed</span>
                         </div>
                     </div>
-                    <p class="person-card__quote">"I was drowning in credit card debt and too embarrassed to ask for help. Bocy just showed me a plan."</p>
+                    <p class="person-card__quote">&ldquo;I owe &pound;3,800 and I don&rsquo;t know where to start.&rdquo; Bocy built a payoff plan in 30 seconds. No judgement. No jargon. Just a clear path out.</p>
                     <div class="person-card__stat">
-                        <span class="person-card__stat-value">£0</span>
-                        <span class="person-card__stat-label">credit card debt remaining</span>
+                        <span class="person-card__stat-value">&pound;0</span>
+                        <span class="person-card__stat-label">debt remaining after 11 months</span>
                     </div>
                 </article>
             </div>
         </section>
 
-        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
+        <div class="divider" aria-hidden="true">&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</div>
 
-        <!-- ═══ HOW IT WORKS — Timeline ═══ -->
-        <section id="how-it-works" class="timeline-section">
-            <header class="timeline-section__header reveal">
-                <p class="mono-label">// how it works</p>
-                <h2 class="timeline-section__title">See exactly what Bocy does</h2>
-                <p class="timeline-section__subtitle">real example · £847 monthly surplus</p>
+        <!-- ═══ FEATURES ═══ -->
+        <section id="features" class="features">
+            <header class="features__header">
+                <p class="section-label">// why it works</p>
+                <h2 class="section-title">Not another app.<br>A conversation.</h2>
+                <p class="features__subtitle">The difference is how it feels.</p>
             </header>
-            <div class="timeline">
-                <article class="timeline__item timeline__item--active reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">01 · Analyse</p>
-                        <h3 class="timeline__title">Bocy scans your finances</h3>
-                        <p class="timeline__desc">Connects via Open Banking. Sees your income, bills, debts and savings in real-time — no spreadsheets needed.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">income</span><span class="timeline__row-value">£3,200</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">bills</span><span class="timeline__row-value">£1,850</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">spending</span><span class="timeline__row-value">£503</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">surplus</span><span class="timeline__row-value timeline__row-value--highlight">£847</span></div>
-                        </div>
-                    </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">02 · Compare</p>
-                        <h3 class="timeline__title">What should you do with £847?</h3>
-                        <p class="timeline__desc">Bocy calculates the real impact of each option — so you can see which one actually benefits you.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">pay credit card</span><span class="timeline__row-value timeline__row-value--highlight">saves £127/yr</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">add to savings</span><span class="timeline__row-value">earns £38/yr</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">do nothing</span><span class="timeline__row-value timeline__row-value--negative">£0</span></div>
-                        </div>
-                    </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">03 · Recommend</p>
-                        <h3 class="timeline__title">Clear action, clear reasoning</h3>
-                        <p class="timeline__desc">Bocy recommends the best option and explains why in plain English. You always see the full picture.</p>
-                        <div class="timeline__data">
-                            <div class="timeline__row"><span class="timeline__row-label">action</span><span class="timeline__row-value">pay £600 to card</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">keep buffer</span><span class="timeline__row-value">£247</span></div>
-                            <div class="timeline__row"><span class="timeline__row-label">annual benefit</span><span class="timeline__row-value timeline__row-value--highlight">+£94</span></div>
-                        </div>
-                        <div class="timeline__actions">
-                            <button class="timeline__btn timeline__btn--approve" type="button">approve</button>
-                            <button class="timeline__btn" type="button">modify</button>
-                        </div>
-                    </div>
-                </article>
-                <article class="timeline__item reveal">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__card">
-                        <p class="timeline__step">04 · Execute</p>
-                        <h3 class="timeline__title">Only when you say so</h3>
-                        <p class="timeline__desc">Bocy never moves your money without permission. One tap to approve, or set your own automation rules.</p>
-                        <div class="timeline__result">✓ £600 payment scheduled for tomorrow</div>
-                    </div>
-                </article>
+            <div class="features__mockup">
+                <img src="bocy listening.gif" alt="BOCY chat — conversational AI finance assistant" />
             </div>
-        </section>
-
-        <div class="divider" aria-hidden="true">· · · · · · · · · · · · · · · · · · · · ·</div>
-
-        <!-- ═══ FEATURES — ASCII dot-art icons ═══ -->
-        <section class="features">
-            <header class="features__header reveal">
-                <p class="mono-label">// built on trust</p>
-                <h2 class="features__title">Your money. Your rules. Always.</h2>
-                <p class="features__subtitle">No hidden logic. No surprises. Just clarity.</p>
-            </header>
             <div class="features__grid">
-                <article class="feature glass-card reveal reveal-delay-1">
-                    <!-- Eye icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
                     <div class="feature__content">
-                        <h3 class="feature__title">See the full picture</h3>
-                        <p class="feature__desc">Every calculation, every trade-off, every reason — laid out so you actually understand your money.</p>
+                        <h3 class="feature__title">Talk, don&rsquo;t tap</h3>
+                        <p class="feature__desc">No menus, no dashboards, no learning curve. Just ask Bocy a question about your money and get a real answer in seconds.</p>
                     </div>
                 </article>
-                <article class="feature glass-card reveal reveal-delay-2">
-                    <!-- Shield icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></span>
                     <div class="feature__content">
-                        <h3 class="feature__title">Your rules, always</h3>
-                        <p class="feature__desc">Nothing happens without your approval. Set your own limits, override any suggestion, stay in control.</p>
+                        <h3 class="feature__title">Shows the working</h3>
+                        <p class="feature__desc">Your bank shows a balance. Bocy shows you that paying your credit card saves &pound;127 more than adding to savings. And proves it.</p>
                     </div>
                 </article>
-                <article class="feature glass-card reveal reveal-delay-3">
-                    <!-- Lock icon: dot-matrix 5x5 -->
+                <article class="feature">
                     <span class="dot-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
                     <div class="feature__content">
-                        <h3 class="feature__title">Bank-grade security</h3>
-                        <p class="feature__desc">256-bit encryption. Open Banking regulated. Your data stays yours — it's never sold, ever.</p>
+                        <h3 class="feature__title">Your voice is the key</h3>
+                        <p class="feature__desc">Nothing moves without you saying so. 256-bit encryption. FCA-regulated Open Banking. Your data is never sold. Ever.</p>
                     </div>
                 </article>
             </div>
         </section>
-
-        <!-- ═══ CTA / WAITLIST ═══ -->
-        <section id="waitlist" class="cta">
-            <div class="cta__container reveal">
-                <p class="mono-label">// join the waitlist</p>
-                <h2 class="cta__title">Ready to take control?</h2>
-                <p class="cta__subtitle">Be the first to know when Bocy launches. No spam, just one email.</p>
-                <form class="cta__form" id="waitlist-form">
-                    <label for="email" class="visually-hidden">Email address</label>
-                    <input type="email" id="email" name="email" class="cta__input" placeholder="your@email.com" required autocomplete="email">
-                    <button type="submit" class="cta__btn" id="submit-btn">Join Waitlist</button>
-                </form>
-                <div id="form-message"></div>
+        <!-- ═══ CLOSING CTA ═══ -->
+        <section class="cta-section">
+            <div class="cta-section__glow"></div>
+            <div class="cta-section__content">
+                <h2 class="cta-section__title">Your money is already doing something.<br><span>Make sure it&rsquo;s the best thing.</span></h2>
+                <p class="cta-section__desc">BOCY finds the moves you&rsquo;re missing, ranked by how much they save you.</p>
+                <div class="cta-section__buttons">
+                    <div class="magnetic">
+                        <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="btn btn--primary"><span class="btn__text">Start Optimising</span></a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- BOCY Pet -->
+    <div class="bocy-pet" role="button" aria-label="BOCY, click to start optimising" tabindex="0">
+        <div class="bocy-pet__body">
+            <div class="bocy-pet__ring"></div>
+            <div class="bocy-pet__face">
+                <div class="bocy-pet__eye"></div>
+                <div class="bocy-pet__eye"></div>
+                <div class="bocy-pet__mouth"></div>
+            </div>
+        </div>
+        <div class="bocy-pet__bubble">Hey! Want to see your best moves?</div>
+    </div>
+
     <footer class="footer">
         <div class="footer__inner">
-            <!-- Nothing.tech-style dot-matrix navigation -->
-            <nav class="footer__dot-nav" aria-label="Footer navigation">
-                <a href="#how-it-works" class="dot-text">How It Works</a>
-                <a href="#features" class="dot-text">Features</a>
-                <a href="#waitlist" class="dot-text">Waitlist</a>
-                <a href="https://telegram-truelayer-webapp.vercel.app" target="_blank" rel="noopener noreferrer" class="dot-text">Demo</a>
+            <nav class="footer__nav" aria-label="Footer navigation">
+                <a href="#how-it-works" class="footer__nav-link magnetic">How It Works</a>
+                <a href="#features" class="footer__nav-link magnetic">Features</a>
+                <a href="/savings-comparison.html" class="footer__nav-link magnetic">Savings</a>
+                <a href="/isa-comparison.html" class="footer__nav-link magnetic">ISAs</a>
+                <a href="https://app.bocy.io" target="_blank" rel="noopener noreferrer" class="footer__nav-link magnetic">Start Optimising</a>
             </nav>
-
             <div class="footer__bottom-row">
-                <a href="/" class="footer__logo">BOCY.</a>
-                <div class="footer__right">
-                    <div class="footer__social">
-                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
-                        <a href="https://x.com/bocy_io" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
-                    </div>
-                    <nav>
-                        <ul class="footer__links">
-                            <li><a href="#" class="footer__link">Privacy</a></li>
-                            <li><a href="#" class="footer__link">Terms</a></li>
-                        </ul>
-                    </nav>
+                <a href="/" class="footer__logo magnetic">BOCY.</a>
+                <nav>
+                    <ul class="footer__links">
+                        <li><a href="/privacy.html" class="footer__link">Privacy</a></li>
+                        <li><a href="/terms.html" class="footer__link">Terms</a></li>
+                        <li><a href="/contact.html" class="footer__link">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="footer__social">
+                    <a href="https://www.instagram.com/bocy.io/" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
+                    <a href="https://x.com/bocy_io" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
                 </div>
             </div>
-            <p class="footer__copy">© 2025 BOCY. All rights reserved.</p>
+            <p class="footer__copy">&copy; 2026 BOCY. All rights reserved.</p>
         </div>
     </footer>
-
     <script>
-        // ═══ Cursor glow effect ═══
+    // Wait for all libraries to load
+    function initSite() {
+        // ═══════════════════════════════════════
+        // LENIS — Smooth scrolling
+        // ═══════════════════════════════════════
+        const lenis = new Lenis({
+            duration: 1.0,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        // Single raf source via GSAP ticker — avoids double-update jank
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        // ═══════════════════════════════════════
+        // CUSTOM CURSOR
+        // ═══════════════════════════════════════
+        const cursor = document.querySelector('.cursor');
         const cursorGlow = document.querySelector('.cursor-glow');
-        let glowActive = false;
-        document.addEventListener('mousemove', e => {
-            if (!glowActive) { cursorGlow.classList.add('is-active'); glowActive = true; }
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-        document.addEventListener('mouseleave', () => {
-            cursorGlow.classList.remove('is-active'); glowActive = false;
-        });
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
 
-        // ═══ Reveal on scroll (staggered) ═══
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!cursor.classList.contains('is-active')) {
+                    cursor.classList.add('is-active');
+                    cursorGlow.classList.add('is-active');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-
-        // ═══ Smooth scroll (skip external links) ═══
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.addEventListener('mouseleave', () => {
+                cursor.classList.remove('is-active');
+                cursorGlow.classList.remove('is-active');
             });
-        });
 
-        // ═══ Timeline active state on scroll ═══
-        const timelineItems = document.querySelectorAll('.timeline__item');
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    timelineItems.forEach(item => item.classList.remove('timeline__item--active'));
-                    entry.target.classList.add('timeline__item--active');
-                }
+            function updateCursor() {
+                cursorX += (mouseX - cursorX) * 0.25;
+                cursorY += (mouseY - cursorY) * 0.25;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                cursorGlow.style.left = mouseX + 'px';
+                cursorGlow.style.top = mouseY + 'px';
+                cursorGlow.style.transform = 'translate(-50%, -50%)';
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+
+            // Hover states for cursor
+            document.querySelectorAll('a, button, .magnetic, [role="button"]').forEach((el) => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
             });
-        }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
-        timelineItems.forEach(item => timelineObserver.observe(item));
+        }
 
-        // ═══ Form submission ═══
-        const form = document.getElementById('waitlist-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const formMessage = document.getElementById('form-message');
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwOJ7DwZo4z3jiW25aH6nu5cC3qkIQs-GIizz0-xyeaoxe5Hdxg1TK3jxl_K1yJpIFRg/exec';
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
-            formMessage.innerHTML = '';
-
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, timestamp: new Date().toISOString(), source: 'bocy.io' })
+        // ═══════════════════════════════════════
+        // MAGNETIC BUTTONS
+        // ═══════════════════════════════════════
+        if (!isTouchDevice) {
+            document.querySelectorAll('.magnetic').forEach((el) => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
                 });
-                form.style.display = 'none';
-                formMessage.innerHTML = '<p class="cta__success">✓ You\'re on the list. We\'ll be in touch soon.</p>';
-            } catch (error) {
-                formMessage.innerHTML = '<p class="cta__error">Something went wrong. Please try again.</p>';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Join Waitlist';
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // NAV — Scroll-aware
+        // ═══════════════════════════════════════
+        const nav = document.querySelector('.nav');
+        ScrollTrigger.create({
+            start: 100,
+            onUpdate: (self) => {
+                if (self.scroll() > 100) nav.classList.add('is-scrolled');
+                else nav.classList.remove('is-scrolled');
             }
         });
+
+        // ═══════════════════════════════════════
+        // HAMBURGER MENU
+        // ═══════════════════════════════════════
+        const hamburger = document.querySelector('.nav__hamburger');
+        const drawer = document.querySelector('.nav__drawer');
+        if (hamburger && drawer) {
+            hamburger.addEventListener('click', () => {
+                const isOpen = hamburger.classList.toggle('is-open');
+                drawer.classList.toggle('is-open', isOpen);
+                hamburger.setAttribute('aria-expanded', isOpen);
+                drawer.setAttribute('aria-hidden', !isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            drawer.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('is-open');
+                    drawer.classList.remove('is-open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    drawer.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // PRELOADER + INTRO SEQUENCE
+        // ═══════════════════════════════════════
+        const preloader = document.querySelector('.preloader');
+        const preloaderLogo = document.querySelector('.preloader__logo');
+        const preloaderFill = document.querySelector('.preloader__fill');
+
+        const introTL = gsap.timeline({ delay: 0.2 });
+
+        // Preloader animation
+        introTL.to(preloaderLogo, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+            .to(preloaderFill, { width: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.3)
+            .to(preloader, { opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => {
+                preloader.classList.add('is-done');
+            }}, '+=0.2');
+
+        // Hero entrance after preloader
+        introTL.to('.hero__glow', { opacity: 0.7, duration: 1.5, ease: 'power2.out' }, '-=0.3');
+
+        // Split text animation for hero title
+        const titleLines = document.querySelectorAll('.hero__title-line');
+        titleLines.forEach((line) => {
+            const text = line.textContent;
+            const words = text.split(' ');
+            line.innerHTML = words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+        });
+
+        introTL.to('.hero__title .word-inner', {
+            y: 0, duration: 1, stagger: 0.08,
+            ease: 'power4.out'
+        }, '-=1');
+
+        introTL.to('.hero__badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.7')
+            .to('.hero__subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.5')
+            .to('.hero__cta-group', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+            .to('.hero__mockup', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+            .to('.hero__scroll-hint', { opacity: 0.6, duration: 0.6 }, '-=0.2');
+
+        // Nav items
+        introTL.to(['.nav__logo', '.nav__link', '.nav__cta', '.nav__hamburger'], {
+            opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out'
+        }, '-=0.8');
+
+        // ═══════════════════════════════════════
+        // HERO — Parallax on scroll
+        // ═══════════════════════════════════════
+        gsap.to('.hero__content', {
+            y: -100, opacity: 0.3,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 0.6
+            }
+        });
+        gsap.to('.hero__glow', {
+            scale: 1.5, opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'center top',
+                end: 'bottom top',
+                scrub: 0.6
+            }
+        });
+        gsap.to('.hero__scroll-hint', {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: '10% top',
+                end: '20% top',
+                scrub: true
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // HERO MOCKUP — no 3D tilt needed for static image
+
+        // ═══════════════════════════════════════
+        // TRUST BAR — Staggered reveal
+        // ═══════════════════════════════════════
+        gsap.to('.trust__item', {
+            opacity: 1, y: 0, stagger: 0.1, duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.trust',
+                start: 'top 80%'
+            }
+        });
+
+        // ═══════════════════════════════════════
+        // TIMELINE — Pinned scroll with step progress
+        // ═══════════════════════════════════════
+        const timelineCards = document.querySelectorAll('.timeline__card');
+        const timelineSteps = document.querySelectorAll('.timeline__progress-step');
+        const timelineLines = document.querySelectorAll('.timeline__progress-line');
+        let activeStep = -1;
+
+        function setTimelineStep(index) {
+            if (index === activeStep) return;
+            const prevStep = activeStep;
+            activeStep = index;
+
+            timelineCards.forEach((c, i) => {
+                c.classList.remove('is-active', 'is-prev');
+                if (i === index) {
+                    c.classList.add('is-active');
+                    // Micro-animation: stagger data rows into view
+                    const rows = c.querySelectorAll('.timeline__row');
+                    rows.forEach((row, ri) => {
+                        row.style.opacity = '0';
+                        row.style.transform = 'translateX(-8px)';
+                        setTimeout(() => {
+                            row.style.transition = 'opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo)';
+                            row.style.opacity = '1';
+                            row.style.transform = 'translateX(0)';
+                        }, 200 + ri * 100);
+                    });
+                }
+                else if (i < index) c.classList.add('is-prev');
+            });
+
+            timelineSteps.forEach((s, i) => {
+                s.classList.remove('is-active', 'is-past');
+                s.removeAttribute('aria-current');
+                if (i === index) { s.classList.add('is-active'); s.setAttribute('aria-current', 'step'); }
+                else if (i < index) s.classList.add('is-past');
+            });
+
+            timelineLines.forEach((l, i) => {
+                l.classList.toggle('is-filled', i < index);
+            });
+        }
+
+        // Keyboard support for timeline progress steps
+        timelineSteps.forEach((step, i) => {
+            step.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setTimelineStep(i);
+                }
+            });
+            step.addEventListener('click', () => setTimelineStep(i));
+        });
+
+        // Section heading reveal — animate opacity directly
+        gsap.from('.timeline__header .section-label', {
+            opacity: 0, y: 20, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: '.timeline-section', start: 'top 75%' }
+        });
+
+        // Split text for timeline title
+        const tlTitle = document.querySelector('.timeline__header .section-title');
+        if (tlTitle) {
+            tlTitle.style.opacity = '1';
+            const text = tlTitle.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            tlTitle.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.timeline__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.timeline-section', start: 'top 70%' }
+            });
+        }
+
+        // Pinned scroll — pins the section and steps through cards (desktop only)
+        setTimelineStep(0);
+
+        const isMobileTimeline = window.innerWidth < 768;
+        if (!isMobileTimeline) {
+            ScrollTrigger.create({
+                trigger: '.timeline-section',
+                start: 'top top',
+                end: '+=300%',
+                pin: '.timeline-pin',
+                pinSpacing: true,
+                scrub: 0.5,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    const step = Math.min(3, Math.floor(progress * 4));
+                    setTimelineStep(step);
+                }
+            });
+        } else {
+            // Mobile — sequential card reveal with dotted rail + blue active dot
+            const mobileCards = document.querySelectorAll('.timeline__card');
+
+            // Reset all cards to hidden initially
+            mobileCards.forEach(card => {
+                card.classList.remove('is-active', 'is-prev');
+            });
+
+            // Reveal cards one by one as user scrolls
+            mobileCards.forEach((card, i) => {
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: 'top 85%',
+                    onEnter: () => {
+                        mobileCards.forEach((c, j) => {
+                            if (j < i) {
+                                c.classList.remove('is-active');
+                                c.classList.add('is-prev');
+                            }
+                        });
+                        card.classList.add('is-active');
+                        card.classList.remove('is-prev');
+                    },
+                    once: false
+                });
+            });
+
+            // Initial state — show first card after preloader
+            setTimeout(() => {
+                if (mobileCards[0]) {
+                    mobileCards[0].classList.add('is-active');
+                }
+            }, 2500);
+        }
+
+        // ═══════════════════════════════════════
+        // PEOPLE — Horizontal scroll
+        // ═══════════════════════════════════════
+        const peopleHeader = document.querySelector('.people__header');
+        const peopleTitleEl = peopleHeader.querySelector('.section-title');
+        if (peopleTitleEl) {
+            const text = peopleTitleEl.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            peopleTitleEl.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.people__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.people', start: 'top 70%' }
+            });
+        }
+
+        gsap.from('.people__header .section-label', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.people', start: 'top 75%' }
+        });
+        gsap.from('.people__subtitle', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.people', start: 'top 70%' }
+        });
+
+        // Horizontal scroll animation — cards animate to center
+        const track = document.querySelector('.people__track');
+        const cards = document.querySelectorAll('.person-card');
+        if (track && cards.length) {
+            // Calculate center offsets for each card
+            function getCardOffsets() {
+                var vw = window.innerWidth;
+                var offsets = [];
+                cards.forEach(function(card) {
+                    var cardLeft = card.offsetLeft;
+                    var cardWidth = card.offsetWidth;
+                    var centerX = cardLeft + cardWidth / 2 - vw / 2;
+                    offsets.push(Math.max(0, centerX));
+                });
+                return offsets;
+            }
+
+            gsap.set(cards, { opacity: 0.35, scale: 0.92 });
+            gsap.set(cards[0], { opacity: 1, scale: 1 });
+            // Center first card initially
+            gsap.set(track, { x: -getCardOffsets()[0] });
+
+            var tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.people',
+                    start: 'top top',
+                    end: function() { return '+=' + (cards.length * 500 + 200); },
+                    scrub: 0.6,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            cards.forEach(function(card, i) {
+                if (i > 0) {
+                    // Move track to center next card + fade transition
+                    tl.to(track, { x: function() { return -getCardOffsets()[i]; }, duration: 1, ease: 'power2.inOut' })
+                      .to(cards[i - 1], { opacity: 0.35, scale: 0.92, duration: 0.5 }, '<')
+                      .to(card, { opacity: 1, scale: 1, duration: 0.5 }, '<+0.2');
+                    // Hold on centered card
+                    tl.to({}, { duration: 0.3 });
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════
+        // FEATURES — Staggered reveal
+        // ═══════════════════════════════════════
+        const featuresHeader = document.querySelector('.features__header');
+        const featuresTitleEl = featuresHeader.querySelector('.section-title');
+        if (featuresTitleEl) {
+            const text = featuresTitleEl.innerHTML;
+            const parts = text.split(/<br\s*\/?>/);
+            featuresTitleEl.innerHTML = parts.map(part => {
+                const words = part.trim().split(' ');
+                return words.map(w => '<span class="word"><span class="word-inner">' + w + '</span></span>').join(' ');
+            }).join('<br>');
+
+            gsap.to('.features__header .section-title .word-inner', {
+                y: 0, duration: 0.8, stagger: 0.06, ease: 'power4.out',
+                scrollTrigger: { trigger: '.features', start: 'top 70%' }
+            });
+        }
+
+        gsap.from('.features__header .section-label', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.features', start: 'top 75%' }
+        });
+        gsap.from('.features__subtitle', {
+            opacity: 0, y: 20, duration: 0.6,
+            scrollTrigger: { trigger: '.features', start: 'top 70%' }
+        });
+        gsap.to('.features__mockup', {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: '.features__mockup', start: 'top 80%' }
+        });
+
+
+        gsap.to('.feature', {
+            opacity: 1, y: 0, stagger: 0.12, duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.features__grid', start: 'top 80%' }
+        });
+
+        // ═══════════════════════════════════════
+        // CLOSING CTA — Reveal
+        // ═══════════════════════════════════════
+        gsap.to('.cta-section__glow', {
+            opacity: 0.6, duration: 1.5, ease: 'power2.out',
+            scrollTrigger: { trigger: '.cta-section', start: 'top 70%' }
+        });
+        gsap.from('.cta-section__title', {
+            opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: '.cta-section', start: 'top 70%' }
+        });
+        gsap.from('.cta-section__desc', {
+            opacity: 0, y: 30, duration: 0.6, ease: 'power3.out',
+            scrollTrigger: { trigger: '.cta-section', start: 'top 65%' }
+        });
+        gsap.from('.cta-section__buttons', {
+            opacity: 0, y: 30, duration: 0.6, ease: 'power3.out',
+            scrollTrigger: { trigger: '.cta-section', start: 'top 60%' }
+        });
+
+        // ═══════════════════════════════════════
+        // FOOTER — Reveal
+        // ═══════════════════════════════════════
+        gsap.from('.footer__nav-link', {
+            opacity: 0, y: 20, stagger: 0.06, duration: 0.5,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.footer', start: 'top 85%' }
+        });
+
+        // ═══════════════════════════════════════
+        // SMOOTH SCROLL for anchor links
+        // ═══════════════════════════════════════
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    // Close drawer if open
+                    if (drawer && drawer.classList.contains('is-open')) {
+                        hamburger.classList.remove('is-open');
+                        drawer.classList.remove('is-open');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        drawer.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    }
+                    lenis.scrollTo(target, { offset: -80 });
+                }
+            });
+        });
+
+        // ═══════════════════════════════════════
+        // HERO PARTICLE SYSTEM — Canvas-based
+        // ═══════════════════════════════════════
+        const heroCanvasContainer = document.getElementById('hero-canvas');
+        if (heroCanvasContainer) {
+            const canvas = document.createElement('canvas');
+            heroCanvasContainer.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let heroW, heroH;
+            let hMouseX = 0, hMouseY = 0;
+
+            function resizeCanvas() {
+                heroW = heroCanvasContainer.offsetWidth;
+                heroH = heroCanvasContainer.offsetHeight;
+                canvas.width = heroW * window.devicePixelRatio;
+                canvas.height = heroH * window.devicePixelRatio;
+                canvas.style.width = heroW + 'px';
+                canvas.style.height = heroH + 'px';
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particleCount = Math.min(40, Math.floor(window.innerWidth / 25));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * heroW,
+                    y: Math.random() * heroH,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: Math.random() * 2 + 0.5,
+                    alpha: Math.random() * 0.4 + 0.1,
+                });
+            }
+
+            document.addEventListener('mousemove', (e) => {
+                const rect = heroCanvasContainer.getBoundingClientRect();
+                hMouseX = e.clientX - rect.left;
+                hMouseY = e.clientY - rect.top;
+            });
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, heroW, heroH);
+
+                particles.forEach((p) => {
+                    // Mouse repulsion
+                    const dx = p.x - hMouseX;
+                    const dy = p.y - hMouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150;
+                        p.vx += (dx / dist) * force * 0.2;
+                        p.vy += (dy / dist) * force * 0.2;
+                    }
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vx *= 0.99;
+                    p.vy *= 0.99;
+
+                    // Wrap
+                    if (p.x < 0) p.x = heroW;
+                    if (p.x > heroW) p.x = 0;
+                    if (p.y < 0) p.y = heroH;
+                    if (p.y > heroH) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 212, 170, ' + p.alpha + ')';
+                    ctx.fill();
+                });
+
+                // Draw connections
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 90) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = 'rgba(0, 212, 170, ' + (0.05 * (1 - dist / 90)) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        }
+
+        // ═══════════════════════════════════════
+        // TAMAGOTCHI BOCY
+        // ═══════════════════════════════════════
+        const bocyPet = document.querySelector('.bocy-pet');
+        const bocyBubble = document.querySelector('.bocy-pet__bubble');
+        const bocyMessages = [
+            'Hey! Want to see your best moves?',
+            'I found something interesting in your accounts',
+            'Your numbers say you could be doing better',
+            'Your savings could be working harder',
+            'I spotted some moves worth checking',
+            'Ready when you are',
+        ];
+        let messageIndex = 0;
+
+        bocyPet.addEventListener('click', () => {
+            bocyPet.classList.add('is-happy');
+            for (let i = 0; i < 6; i++) {
+                const p = document.createElement('div');
+                p.className = 'bocy-particle';
+                const rect = bocyPet.getBoundingClientRect();
+                p.style.left = (rect.left + rect.width / 2) + 'px';
+                p.style.top = (rect.top + rect.height / 2) + 'px';
+                document.body.appendChild(p);
+                const angle = (Math.PI * 2 / 6) * i;
+                const dist = 30 + Math.random() * 20;
+                p.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: 'translate(' + Math.cos(angle)*dist + 'px, ' + Math.sin(angle)*dist + 'px) scale(0)', opacity: 0 }
+                ], { duration: 500, easing: 'ease-out' });
+                setTimeout(() => p.remove(), 500);
+            }
+            setTimeout(() => bocyPet.classList.remove('is-happy'), 800);
+            setTimeout(() => window.open('https://app.bocy.io', '_blank'), 400);
+        });
+
+        function cycleMessage() {
+            bocyBubble.textContent = bocyMessages[messageIndex];
+            bocyPet.classList.add('is-speaking');
+            setTimeout(() => bocyPet.classList.remove('is-speaking'), 3000);
+            messageIndex = (messageIndex + 1) % bocyMessages.length;
+        }
+        setTimeout(cycleMessage, 5000);
+        setInterval(cycleMessage, 15000);
+
+        // ═══════════════════════════════════════
+        // HERO GLOW — Ambient pulse
+        // ═══════════════════════════════════════
+        gsap.to('.hero__glow', {
+            scale: 1.1, opacity: 0.9,
+            duration: 4, repeat: -1, yoyo: true,
+            ease: 'sine.inOut'
+        });
+    }
+
+    // Initialize when DOM + libs are ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait a tick for deferred scripts
+            setTimeout(initSite, 100);
+        });
+    } else {
+        setTimeout(initSite, 100);
+    }
     </script>
 </body>
 </html>
