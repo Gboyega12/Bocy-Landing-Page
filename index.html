@@ -1031,8 +1031,7 @@
         }
         @media (min-width: 768px) {
             .footer { padding: 6rem 2rem 3rem; }
-            .footer__bottom-row { flex-direction: row; justify-content: space-between; text-align: left; }
-            .footer__right { display: flex; align-items: center; gap: 2rem; }
+            .footer__bottom-row { flex-direction: row; justify-content: space-between; align-items: center; text-align: left; }
         }
         @media (min-width: 1024px) { .footer { padding: 8rem 3rem 3rem; } }
 
@@ -1632,18 +1631,16 @@
             </nav>
             <div class="footer__bottom-row">
                 <a href="/" class="footer__logo magnetic">BOCY.</a>
-                <div class="footer__right">
-                    <div class="footer__social">
-                        <a href="https://www.instagram.com/bocy.io/" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
-                        <a href="https://x.com/bocy_io" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
-                    </div>
-                    <nav>
-                        <ul class="footer__links">
-                            <li><a href="/privacy.html" class="footer__link">Privacy</a></li>
-                            <li><a href="/terms.html" class="footer__link">Terms</a></li>
-                            <li><a href="/contact.html" class="footer__link">Contact</a></li>
-                        </ul>
-                    </nav>
+                <nav>
+                    <ul class="footer__links">
+                        <li><a href="/privacy.html" class="footer__link">Privacy</a></li>
+                        <li><a href="/terms.html" class="footer__link">Terms</a></li>
+                        <li><a href="/contact.html" class="footer__link">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="footer__social">
+                    <a href="https://www.instagram.com/bocy.io/" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></a>
+                    <a href="https://x.com/bocy_io" class="footer__social-link magnetic" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="dot-icon" style="grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></span></a>
                 </div>
             </div>
             <p class="footer__copy">&copy; 2026 BOCY. All rights reserved.</p>
