@@ -485,15 +485,20 @@
         .hero__mockup {
             margin: 0 auto;
             opacity: 0; transform: translateY(60px);
-            max-width: 500px;
+            max-width: 780px;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
         }
         .hero__mockup-img {
             width: 100%;
             height: auto;
             background: transparent;
+            transform: scale(1.4);
+            transform-origin: top center;
+            transition: transform 0.8s var(--ease-out-expo);
         }
-        @media (min-width: 640px) { .hero__mockup { max-width: 560px; } }
-        @media (min-width: 1024px) { .hero__mockup { max-width: 640px; } }
+        @media (min-width: 640px) { .hero__mockup { max-width: 860px; } }
+        @media (min-width: 1024px) { .hero__mockup { max-width: 960px; } }
 
         /* ═══════════════════════════════════════
            CLOSING CTA
@@ -801,13 +806,18 @@
         .features__header { text-align: center; margin-bottom: 4rem; }
         .features__subtitle { font-size: 1.0625rem; color: var(--text-secondary); margin-top: 1rem; }
         .features__mockup {
-            max-width: 500px; margin: 0 auto 4rem; opacity: 0; transform: translateY(40px);
+            max-width: 780px; margin: 0 auto 4rem; opacity: 0; transform: translateY(40px);
+            overflow: hidden;
+            border-radius: var(--radius-lg);
         }
         .features__mockup img {
             width: 100%; height: auto; background: transparent;
+            transform: scale(1.4);
+            transform-origin: top center;
+            transition: transform 0.8s var(--ease-out-expo);
         }
-        @media (min-width: 640px) { .features__mockup { max-width: 560px; } }
-        @media (min-width: 1024px) { .features__mockup { max-width: 640px; } }
+        @media (min-width: 640px) { .features__mockup { max-width: 860px; } }
+        @media (min-width: 1024px) { .features__mockup { max-width: 960px; } }
         .features__grid { display: grid; gap: 1.25rem; max-width: 960px; margin: 0 auto; }
         .feature {
             display: flex; gap: 1.5rem; padding: 2rem; align-items: flex-start;
@@ -1047,13 +1057,19 @@
                 font-size: 1rem; font-family: var(--font-mono);
                 letter-spacing: 0.02em;
             }
-            /* 2x bigger hero image — full bleed */
+            /* Hero image — zoomed in, full bleed */
             .hero__mockup {
-                max-width: 110vw;
-                margin-left: -1.5rem; margin-right: -1.5rem;
-                width: calc(100% + 3rem);
+                max-width: 120vw;
+                margin-left: -2.5rem; margin-right: -2.5rem;
+                width: calc(100% + 5rem);
+                border-radius: 0;
+                overflow: hidden;
             }
-            .hero__mockup-img { border-radius: 0; }
+            .hero__mockup-img {
+                border-radius: 0;
+                transform: scale(1.55);
+                transform-origin: top center;
+            }
             .hero__badge {
                 font-size: 0.6875rem; padding: 0.5rem 1rem;
                 margin-bottom: 2.5rem;
@@ -1244,17 +1260,23 @@
             .person-card__quote { font-size: 1rem; line-height: 1.75; }
             .person-card__stat-value { font-size: 1.75rem; }
 
-            /* ── FEATURES — 2x bigger image ── */
+            /* ── FEATURES — zoomed in, full bleed ── */
             .features { padding: 6rem 1.5rem 7rem; }
             .features__header { margin-bottom: 3.5rem; }
             .features__subtitle { font-size: 1rem; line-height: 1.75; }
             .features__mockup {
-                max-width: 110vw;
-                margin-left: -1.5rem; margin-right: -1.5rem;
-                width: calc(100% + 3rem);
+                max-width: 120vw;
+                margin-left: -2.5rem; margin-right: -2.5rem;
+                width: calc(100% + 5rem);
                 margin-bottom: 4rem;
+                border-radius: 0;
+                overflow: hidden;
             }
-            .features__mockup img { border-radius: 0; }
+            .features__mockup img {
+                border-radius: 0;
+                transform: scale(1.55);
+                transform-origin: top center;
+            }
             .features__grid { gap: 1.25rem; }
             .feature {
                 padding: 1.75rem; gap: 1.25rem;
