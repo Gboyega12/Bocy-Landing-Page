@@ -785,7 +785,7 @@
         }
         .people__track {
             display: flex; gap: 1.25rem;
-            padding: 0 1.5rem; width: max-content;
+            width: max-content;
             will-change: transform;
         }
         .person-card {
@@ -2016,27 +2016,50 @@
             scrollTrigger: { trigger: '.people', start: 'top 70%' }
         });
 
-        // Horizontal scroll animation
+        // Horizontal scroll animation — cards animate to center
         const track = document.querySelector('.people__track');
-        if (track) {
-            const trackWidth = track.scrollWidth;
-            const viewportWidth = window.innerWidth;
-            const scrollDistance = trackWidth - viewportWidth;
-            if (scrollDistance > 0) {
-                gsap.to(track, {
-                    x: -scrollDistance,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: '.people',
-                        start: 'top top',
-                        end: () => '+=' + (scrollDistance + 200),
-                        scrub: 0.6,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true
-                    }
+        const cards = document.querySelectorAll('.person-card');
+        if (track && cards.length) {
+            // Calculate center offsets for each card
+            function getCardOffsets() {
+                var vw = window.innerWidth;
+                var offsets = [];
+                cards.forEach(function(card) {
+                    var cardLeft = card.offsetLeft;
+                    var cardWidth = card.offsetWidth;
+                    var centerX = cardLeft + cardWidth / 2 - vw / 2;
+                    offsets.push(Math.max(0, centerX));
                 });
+                return offsets;
             }
+
+            gsap.set(cards, { opacity: 0.35, scale: 0.92 });
+            gsap.set(cards[0], { opacity: 1, scale: 1 });
+            // Center first card initially
+            gsap.set(track, { x: -getCardOffsets()[0] });
+
+            var tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.people',
+                    start: 'top top',
+                    end: function() { return '+=' + (cards.length * 500 + 200); },
+                    scrub: 0.6,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            cards.forEach(function(card, i) {
+                if (i > 0) {
+                    // Move track to center next card + fade transition
+                    tl.to(track, { x: function() { return -getCardOffsets()[i]; }, duration: 1, ease: 'power2.inOut' })
+                      .to(cards[i - 1], { opacity: 0.35, scale: 0.92, duration: 0.5 }, '<')
+                      .to(card, { opacity: 1, scale: 1, duration: 0.5 }, '<+0.2');
+                    // Hold on centered card
+                    tl.to({}, { duration: 0.3 });
+                }
+            });
         }
 
         // ═══════════════════════════════════════
