@@ -838,12 +838,47 @@
             max-width: 780px; margin: 0 auto 4rem; opacity: 0; transform: translateY(40px);
             overflow: hidden;
             border-radius: var(--radius-lg);
+            position: relative;
         }
         .features__mockup img {
             width: 100%; height: auto; background: transparent;
             transform: scale(1.4);
             transform-origin: top center;
-            transition: transform 0.8s var(--ease-out-expo);
+            transition: transform 0.8s var(--ease-out-expo), filter 1.2s ease;
+            filter: grayscale(1) brightness(0.5) blur(2px);
+        }
+        .features__mockup.is-listening img {
+            filter: grayscale(0) brightness(1) blur(0px);
+        }
+        .features__mockup::after {
+            content: ""; position: absolute; inset: 0;
+            border: 2px solid transparent; border-radius: inherit;
+            transition: border-color 1s ease, box-shadow 1s ease;
+            pointer-events: none; z-index: 2;
+        }
+        .features__mockup.is-listening::after {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(0,212,170,0.15), inset 0 0 30px rgba(0,212,170,0.05);
+            animation: mockup-border-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes mockup-border-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0,212,170,0.15), inset 0 0 30px rgba(0,212,170,0.05); }
+            50% { box-shadow: 0 0 45px rgba(0,212,170,0.25), inset 0 0 40px rgba(0,212,170,0.08); }
+        }
+        .features__mockup-label {
+            position: absolute; top: 1rem; right: 1rem; z-index: 3;
+            font-family: var(--font-mono); font-size: 0.625rem;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            padding: 0.35rem 0.75rem; border-radius: var(--radius-pill);
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+            transition: all 0.8s ease;
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .features__mockup.is-listening .features__mockup-label {
+            color: var(--accent);
+            background: rgba(0,212,170,0.1);
+            border-color: rgba(0,212,170,0.3);
         }
         @media (min-width: 640px) { .features__mockup { max-width: 860px; } }
         @media (min-width: 1024px) { .features__mockup { max-width: 960px; } }
@@ -1307,6 +1342,10 @@
                 transform: scale(1.55);
                 transform-origin: top center;
             }
+            .features__mockup-label {
+                top: 0.75rem; right: 0.75rem;
+                font-size: 0.5625rem; padding: 0.3rem 0.6rem;
+            }
             .features__grid { gap: 1.25rem; }
             .feature {
                 padding: 1.75rem; gap: 1.25rem;
@@ -1564,6 +1603,7 @@
                 <p class="features__subtitle">The difference is how it feels.</p>
             </header>
             <div class="features__mockup">
+                <span class="features__mockup-label">&#9679; inactive</span>
                 <img src="bocy listening.gif" alt="BOCY chat — conversational AI finance assistant" />
             </div>
             <div class="features__grid">
@@ -2063,6 +2103,24 @@
         gsap.to('.features__mockup', {
             opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: '.features__mockup', start: 'top 80%' }
+        });
+
+        // Inactive → Listening scroll transition
+        ScrollTrigger.create({
+            trigger: '.features__mockup',
+            start: 'top 55%',
+            onEnter: () => {
+                const mockup = document.querySelector('.features__mockup');
+                const label = mockup.querySelector('.features__mockup-label');
+                mockup.classList.add('is-listening');
+                label.innerHTML = '&#9679; listening';
+            },
+            onLeaveBack: () => {
+                const mockup = document.querySelector('.features__mockup');
+                const label = mockup.querySelector('.features__mockup-label');
+                mockup.classList.remove('is-listening');
+                label.innerHTML = '&#9679; inactive';
+            }
         });
 
         gsap.to('.feature', {
